@@ -4,7 +4,7 @@ import HighlightText from '../HighlightText';
 
 const Homepage: React.FC = () => {
   return (
-    <div className="relative mx-auto flex flex-col w-11/12 items-center justify-between text-white">
+    <div className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between text-white">
       {/* Section 1 */}
       <div>
         <Link to={'/signup'}>
@@ -21,6 +21,13 @@ const Homepage: React.FC = () => {
 
         <div className="text-center text-4xl font-semibold mt-7">
           Empower Your Future with <HighlightText text={'Coding Skills'} />
+        </div>
+
+        <div className="mt-4 w-[90%] text-center text-lg font-bold text-richblack-300">
+          With our online coding courses, you can learn at your own pace, from
+          anywhere in the world, and get access to a wealth of resources,
+          including hands-on projects, quizzes, and personalized feedback from
+          instructors.
         </div>
       </div>
     </div>
