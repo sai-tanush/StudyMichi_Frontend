@@ -1,14 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import './index.css';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
     <div>
-      <div className="w-screen h-screen flex flex-col justify-center items-center">
-        <div className="text-3xl font-bold text-blue-600">
-          React Vite + Typescript + Tailwind
-        </div>
-        <div className="text-lg font-semibold">Starter Pack</div>
-      </div>
+      <Routes>
+        <Route path="/homepage" element={<Homepage />} />
+      </Routes>
     </div>
   );
 }
