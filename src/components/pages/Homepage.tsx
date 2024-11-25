@@ -1,6 +1,7 @@
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import HighlightText from '../HighlightText';
+import CTAButton from '../Button';
 
 const Homepage: React.FC = () => {
   return (
@@ -23,11 +24,22 @@ const Homepage: React.FC = () => {
           Empower Your Future with <HighlightText text={'Coding Skills'} />
         </div>
 
-        <div className="mt-4 w-[90%] text-center text-lg font-bold text-richblack-300">
+        <div className="mt-4 mx-auto w-[90%] text-center text-lg font-bold text-richblack-300">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
           instructors.
+        </div>
+
+        <div className="w-full flex justify-center">
+          <div className="mt-8 gap-7 flex flex-row items-center">
+            <CTAButton active={true} linkto={'/signup'}>
+              Learn More
+            </CTAButton>
+            <CTAButton active={false} linkto={'/login'}>
+              Book a Demo
+            </CTAButton>
+          </div>
         </div>
       </div>
     </div>
