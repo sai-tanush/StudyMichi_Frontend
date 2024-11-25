@@ -2,6 +2,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import HighlightText from '../HighlightText';
 import CTAButton from '../Button';
+import Banner from '../../assets/Images/banner.mp4';
 
 const Homepage: React.FC = () => {
   return (
@@ -40,6 +41,12 @@ const Homepage: React.FC = () => {
               Book a Demo
             </CTAButton>
           </div>
+        </div>
+
+        <div className="mx-3 my-12 shadow-blue-200">
+          <video muted loop autoPlay>
+            <source src={Banner} type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
