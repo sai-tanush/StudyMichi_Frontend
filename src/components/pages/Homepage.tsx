@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import HighlightText from '../HighlightText';
 import CTAButton from '../Button';
 import Banner from '../../assets/Images/banner.mp4';
+import CodeBlocks from '../CodeBlocks';
 
 const Homepage: React.FC = () => {
   return (
@@ -47,6 +48,67 @@ const Homepage: React.FC = () => {
           <video muted loop autoPlay>
             <source src={Banner} type="video/mp4" />
           </video>
+        </div>
+
+        {/* Code Section 1 */}
+        <div>
+          <CodeBlocks
+            position={'lg: flex-row'}
+            heading={
+              <div className="text-4xl font-semibold">
+                Unlock Your
+                <HighlightText text={` coding potential `} />
+                with our online courses
+              </div>
+            }
+            subheading={`Our courses are designed and taught by industry experts who have years of 
+            experience in coding and are passionate about sharing their knowledge with you.`}
+            ctabtn1={{
+              btnText: 'Try it Yourself',
+              linkto: '/signup',
+              active: true,
+            }}
+            ctabtn2={{
+              btnText: 'Learn More',
+              linkto: '/login',
+              active: false,
+            }}
+            codeblock={`<!DOCTYPE html>\n<html\n<head>\n<title>Example</title>
+            <linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a></h1>
+            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n`}
+            codeColor={'text-yellow-25'}
+            backgroundGradient={'yellow'}
+          />
+        </div>
+        {/* Code Section 2 */}
+        <div>
+          <CodeBlocks
+            position={'lg: flex-row-reverse'}
+            heading={
+              <div className="text-4xl font-semibold">
+                Start
+                <HighlightText text={` coding in seconds `} />
+                with our online courses
+              </div>
+            }
+            subheading={`Go ahead, give it a try. Our hands-on learning environment
+            means you'll be writing real code from your very first lesson.`}
+            ctabtn1={{
+              btnText: 'Try it Yourself',
+              linkto: '/signup',
+              active: true,
+            }}
+            ctabtn2={{
+              btnText: 'Learn More',
+              linkto: '/login',
+              active: false,
+            }}
+            codeblock={`<!DOCTYPE html>\n<html\n<head>\n<title>Example</title>
+            <linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a></h1>
+            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n`}
+            codeColor={'text-yellow-25'}
+            backgroundGradient={'blue'}
+          />
         </div>
       </div>
     </div>
