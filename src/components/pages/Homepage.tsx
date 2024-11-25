@@ -1,5 +1,6 @@
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import HighlightText from '../HighlightText';
 
 const Homepage: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const Homepage: React.FC = () => {
           </div>
         </Link>
 
-        <div></div>
+        <div className="text-center text-4xl font-semibold mt-7">
+          Empower Your Future with <HighlightText text={'Coding Skills'} />
+        </div>
       </div>
     </div>
   );
