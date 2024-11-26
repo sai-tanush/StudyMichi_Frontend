@@ -4,6 +4,7 @@ import HighlightText from '../../HighlightText';
 import CTAButton from '../../Button';
 import Banner from '../../../assets/Images/banner.mp4';
 import CodeBlocks from '../../CodeBlocks';
+import TimelineSection from './TimelineSection';
 
 const Homepage: React.FC = () => {
   return (
@@ -149,11 +150,9 @@ const Homepage: React.FC = () => {
               </CTAButton>
             </div>
           </div>
+          <TimelineSection />
         </div>
       </div>
-
-      {/* Section 3 */}
-      <div></div>
     </div>
   );
 };
