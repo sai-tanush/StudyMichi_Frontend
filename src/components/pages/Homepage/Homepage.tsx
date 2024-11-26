@@ -8,6 +8,7 @@ import TimelineSection from './TimelineSection';
 import LearningLanguageSection from './LearningLanguageSection';
 import InstructorSection from './InstructorSection';
 import ReviewSection from './ReviewSection';
+import ExploreMore from './ExploreMore';
 
 const Homepage: React.FC = () => {
   return (
@@ -114,6 +115,8 @@ const Homepage: React.FC = () => {
             backgroundGradient={'blue'}
           />
         </div>
+        {/* Explore More */}
+        <ExploreMore />
       </div>
 
       {/* Section 2 */}
