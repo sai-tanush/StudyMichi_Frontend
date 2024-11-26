@@ -2,7 +2,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import HighlightText from '../../HighlightText';
 import CTAButton from '../../Button';
-import Banner from '../../assets/Images/banner.mp4';
+import Banner from '../../../assets/Images/banner.mp4';
 import CodeBlocks from '../../CodeBlocks';
 
 const Homepage: React.FC = () => {
@@ -151,6 +151,9 @@ const Homepage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Section 3 */}
+      <div></div>
     </div>
   );
 };
