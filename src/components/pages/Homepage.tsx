@@ -94,7 +94,7 @@ const Homepage: React.FC = () => {
             subheading={`Go ahead, give it a try. Our hands-on learning environment
             means you'll be writing real code from your very first lesson.`}
             ctabtn1={{
-              btnText: 'Try it Yourself',
+              btnText: 'Continue Lesson',
               linkto: '/signup',
               active: true,
             }}
