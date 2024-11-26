@@ -6,6 +6,7 @@ import Banner from '../../../assets/Images/banner.mp4';
 import CodeBlocks from '../../CodeBlocks';
 import TimelineSection from './TimelineSection';
 import LearningLanguageSection from './LearningLanguageSection';
+import InstructorSection from './InstructorSection';
 
 const Homepage: React.FC = () => {
   return (
@@ -154,6 +155,16 @@ const Homepage: React.FC = () => {
           <TimelineSection />
           <LearningLanguageSection />
         </div>
+      </div>
+
+      {/* Section 3 */}
+      <div
+        className="w-11/12 mx-auto my-[100px] max-w-maxContent flex flex-col items-center justify-between gap-8 
+      first-letter bg-richblack-900 text-white"
+      >
+        {/* Top Div */}
+        <InstructorSection />
+        {/* Review Div Bottom */}
       </div>
     </div>
   );
