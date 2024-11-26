@@ -7,6 +7,7 @@ import CodeBlocks from '../../CodeBlocks';
 import TimelineSection from './TimelineSection';
 import LearningLanguageSection from './LearningLanguageSection';
 import InstructorSection from './InstructorSection';
+import ReviewSection from './ReviewSection';
 
 const Homepage: React.FC = () => {
   return (
@@ -165,6 +166,7 @@ const Homepage: React.FC = () => {
         {/* Top Div */}
         <InstructorSection />
         {/* Review Div Bottom */}
+        <ReviewSection />
       </div>
     </div>
   );
