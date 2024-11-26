@@ -111,6 +111,27 @@ const Homepage: React.FC = () => {
           />
         </div>
       </div>
+
+      {/* Section 2 */}
+      <div className="bg-pure-greys-5 text-richblack-700">
+        <div className="homepage_bg h-[333px] w-screen">
+          <div className="w-11/12 max-w-maxContent flex items-center gap-5 mx-auto">
+            <div className="w-full flex justify-center">
+              <div className="mt-8 gap-7 flex flex-row items-center">
+                <CTAButton active={true} linkto={'/signup'}>
+                  <div className="flex flex-row gap-2 items-center">
+                    Explore Full Catalog
+                    <FaArrowRight />
+                  </div>
+                </CTAButton>
+                <CTAButton active={false} linkto={'/login'}>
+                  Learn More
+                </CTAButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
