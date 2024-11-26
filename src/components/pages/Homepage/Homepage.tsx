@@ -1,9 +1,9 @@
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import HighlightText from '../HighlightText';
-import CTAButton from '../Button';
+import HighlightText from '../../HighlightText';
+import CTAButton from '../../Button';
 import Banner from '../../assets/Images/banner.mp4';
-import CodeBlocks from '../CodeBlocks';
+import CodeBlocks from '../../CodeBlocks';
 
 const Homepage: React.FC = () => {
   return (
@@ -116,7 +116,7 @@ const Homepage: React.FC = () => {
       <div className="bg-pure-greys-5 text-richblack-700">
         <div className="homepage_bg h-[333px] w-screen">
           <div className="w-11/12 max-w-maxContent flex items-center gap-5 mx-auto">
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center mt-[150px]">
               <div className="mt-8 gap-7 flex flex-row items-center">
                 <CTAButton active={true} linkto={'/signup'}>
                   <div className="flex flex-row gap-2 items-center">
@@ -128,6 +128,25 @@ const Homepage: React.FC = () => {
                   Learn More
                 </CTAButton>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-[100px] w-11/12 max-w-maxContent flex flex-col items-center justify-center gap-7">
+          <div className="flex flex-row justify-between">
+            <div className="text-4xl font-semibold w-[45%]">
+              Get the skills you need for a
+              <HighlightText text={` job that is in demand.`} />
+            </div>
+            <div className="flex flex-col gap-10 w-[50%] items-start">
+              <p className="text-[16px] text-richblack-600 font-inter font-medium">
+                The modern StudyNotion is the dictates its own terms. Today, to
+                be a competitive specialist requires more than professional
+                skills.
+              </p>
+              <CTAButton active={true} linkto={'/signup'}>
+                Learn More
+              </CTAButton>
             </div>
           </div>
         </div>
