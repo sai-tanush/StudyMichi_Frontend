@@ -9,6 +9,7 @@ import LearningLanguageSection from './LearningLanguageSection';
 import InstructorSection from './InstructorSection';
 import ReviewSection from './ReviewSection';
 import ExploreMore from './ExploreMore';
+import Footer from '../../Footer';
 
 const Homepage: React.FC = () => {
   return (
@@ -171,6 +172,9 @@ const Homepage: React.FC = () => {
         {/* Review Div Bottom */}
         <ReviewSection />
       </div>
+
+      {/* Section 4 */}
+      <Footer />
     </div>
   );
 };
