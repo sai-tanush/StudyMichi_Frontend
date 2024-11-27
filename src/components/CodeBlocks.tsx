@@ -51,10 +51,21 @@ const CodeBlocks: React.FC<CodeBlocksProps> = ({
 
       {/* Section 2 */}
       <div
-        className={`h-full flex flex-row text-[1rem] w-[100%] py-4 lg:w-[500px] border border-richblack-600
-            ${backgroundGradient === 'yellow' ? 'bg-gradient-to-r from-brown-500 to-transparent' : 'bg-gradient-to-r from-blue-500 to-transparent'} `}
+        className={`relative h-full flex flex-row text-[1rem] w-[100%] py-4 lg:w-[500px]`}
       >
-        <div className="h-[290px] text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100">
+        {/* Gradient layer (conditionally applied with absolute positioning) */}
+        {backgroundGradient === 'yellow' ? (
+          <div
+            className={`absolute inset-0 z-20 bg-[radial-gradient(circle_at_30%_30%,_#3d2802,_transparent_60%)] 
+            border-t border-l border-richblack-600`}
+          ></div>
+        ) : (
+          <div
+            className={`absolute inset-0 z-20 bg-[radial-gradient(circle_at_30%_30%,_#053842,_transparent_60%)] 
+            border-t border-r border-richblack-600`}
+          ></div>
+        )}
+        <div className="relative h-[290px] text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100 z-10">
           <p>1</p>
           <p>2</p>
           <p>3</p>
@@ -69,7 +80,7 @@ const CodeBlocks: React.FC<CodeBlocksProps> = ({
         </div>
 
         <div
-          className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-2`}
+          className={`w-[90%] flex flex-col gap-2 font-bold font-mono ${codeColor} pr-2 z-30 relative`}
         >
           <TypeAnimation
             sequence={[codeblock, 10000, '']}
