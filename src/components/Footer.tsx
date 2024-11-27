@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto  pb-14 text-sm">
+      <div className="flex flex-row items-center justify-between w-11/12 -mt-6 max-w-maxContent text-richblack-400 mx-auto  pb-14 text-sm">
         {/* Section 1 */}
         <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
           <div className="flex flex-row">
