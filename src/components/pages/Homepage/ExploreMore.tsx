@@ -58,7 +58,7 @@ const ExploreMore: React.FC = () => {
       <div className="lg:h-[150px]"></div>
 
       {/* Course Card */}
-      <div className="absolute bottom-[54.5%] flex flex-row gap-10 justify-between w-full ">
+      <div className="absolute bottom-[60%] flex flex-row gap-10 justify-between w-full ">
         {courses.map((element, index) => {
           return (
             <CourseCard

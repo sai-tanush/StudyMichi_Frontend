@@ -125,7 +125,7 @@ const Homepage: React.FC = () => {
         <div className="homepage_bg h-[333px] w-screen">
           <div className="w-11/12 max-w-maxContent flex items-center gap-5 mx-auto">
             <div className="w-full flex justify-center mt-[150px]">
-              <div className="mt-8 gap-7 flex flex-row items-center">
+              <div className="mt-20 gap-7 flex flex-row items-center">
                 <CTAButton active={true} linkto={'/signup'}>
                   <div className="flex flex-row gap-2 items-center">
                     Explore Full Catalog
