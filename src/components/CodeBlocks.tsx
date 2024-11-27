@@ -51,10 +51,10 @@ const CodeBlocks: React.FC<CodeBlocksProps> = ({
 
       {/* Section 2 */}
       <div
-        className={`h-fit flex flex-row text-[1rem] w-[100%] py-4 lg:w-[500px] rounded-full
-            ${backgroundGradient === 'yellow' ? 'bg-gradient-to-r from-yellow-500 to-transparent ' : 'bg-gradient-to-r from-blue-500 to-transparent'} `}
+        className={`h-full flex flex-row text-[1rem] w-[100%] py-4 lg:w-[500px] border border-richblack-600
+            ${backgroundGradient === 'yellow' ? 'bg-gradient-to-r from-brown-500 to-transparent' : 'bg-gradient-to-r from-blue-500 to-transparent'} `}
       >
-        <div className="text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100">
+        <div className="h-[290px] text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100">
           <p>1</p>
           <p>2</p>
           <p>3</p>
