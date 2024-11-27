@@ -167,9 +167,7 @@ const Footer: React.FC = () => {
             })}
           </div>
 
-          <div className="text-center">
-            Made with ❤️ CodeHelp © 2023 Studynotion
-          </div>
+          <div className="text-center">Made with ❤️ StudyMichi © 2024</div>
         </div>
       </div>
     </div>
