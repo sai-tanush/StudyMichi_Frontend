@@ -65,7 +65,7 @@ const CodeBlocks: React.FC<CodeBlocksProps> = ({
             border-t border-r border-richblack-600`}
           ></div>
         )}
-        <div className="relative h-[290px] text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100 z-10">
+        <div className="relative h-[295px] text-center flex flex-col w-[10%] text-[1rem] text-richblack-400 font-inter font-bold opacity-100 z-10">
           <p>1</p>
           <p>2</p>
           <p>3</p>
@@ -77,6 +77,8 @@ const CodeBlocks: React.FC<CodeBlocksProps> = ({
           <p>9</p>
           <p>10</p>
           <p>11</p>
+          <p>12</p>
+          <p>13</p>
         </div>
 
         <div

@@ -82,7 +82,7 @@ const Homepage: React.FC = () => {
             }}
             codeblock={`<!DOCTYPE html>\n<html\n<head>\n<title>Example</title>
             <linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a></h1>
-            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n`}
+            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n</body>\n</html>`}
             codeColor={'text-yellow-25'}
             backgroundGradient={'yellow'}
           />
@@ -112,7 +112,7 @@ const Homepage: React.FC = () => {
             }}
             codeblock={`<!DOCTYPE html>\n<html\n<head>\n<title>Example</title>
             <linkrel="stylesheet"href="styles.css">\n</head>\n<body>\n<h1><ahref="/">Header</a></h1>
-            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n`}
+            <nav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a></nav>\n</body>\n</html>`}
             codeColor={'text-yellow-25'}
             backgroundGradient={'blue'}
           />
