@@ -21,7 +21,7 @@ const Homepage: React.FC = () => {
             className="group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-300 transition-all duration-200
           hover:scale-95 w-fit"
           >
-            <div className="flex items-center space-x-1 rounded-full px-10 py-[5px] group-hover:bg-richblack-900">
+            <div className="flex items-center space-x-1 rounded-full px-10 py-[5px] group-hover:bg-richblack-900 shadow-richblack-500 shadow-sm">
               <p>Become an Instructor</p>
               <FaArrowRight />
             </div>
@@ -44,13 +44,14 @@ const Homepage: React.FC = () => {
             <CTAButton active={true} linkto={'/signup'}>
               Learn More
             </CTAButton>
+
             <CTAButton active={false} linkto={'/login'}>
               Book a Demo
             </CTAButton>
           </div>
         </div>
 
-        <div className="mx-3 my-12 shadow-blue-200">
+        <div className="mx-3 my-12 shadow-blue-200 shadow-xl">
           <video muted loop autoPlay>
             <source src={Banner} type="video/mp4" />
           </video>

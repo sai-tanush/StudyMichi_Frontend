@@ -7,7 +7,11 @@ const InstructorSection: React.FC = () => {
   return (
     <div className="flex flex-row justify-between gap-10">
       <div className="w-[80%]">
-        <img src={Instructor} alt="Instructor" className="object-contain" />
+        <img
+          src={Instructor}
+          alt="Instructor"
+          className="object-contain shadow-xl shadow-blue-200"
+        />
       </div>
       <div className="w-[55%] flex flex-col justify-center items-start">
         <div className="text-4xl font-bold">
