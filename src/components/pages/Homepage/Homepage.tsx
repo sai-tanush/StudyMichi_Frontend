@@ -9,7 +9,7 @@ import LearningLanguageSection from './LearningLanguageSection';
 import InstructorSection from './InstructorSection';
 import ReviewSection from './ReviewSection';
 import ExploreMore from './ExploreMore';
-import Footer from '../../Footer';
+import Footer from '../../common/Footer';
 
 const Homepage: React.FC = () => {
   return (
