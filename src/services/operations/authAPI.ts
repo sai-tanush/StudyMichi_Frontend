@@ -35,13 +35,6 @@ interface SignUpParams {
 // Define the types for the parameters
 type EmailType = string;
 
-interface ApiResponse {
-  data: {
-    success: boolean;
-    message: string;
-  };
-}
-
 // The sendOtp function with types
 export function sendOtp(email: EmailType, navigate: NavigateFunction) {
   return async (dispatch: Dispatch) => {
@@ -161,7 +154,10 @@ export function login(
   };
 }
 
-export function getPasswordResetToken(email: emailType, setEmailSent) {
+export function getPasswordResetToken(
+  email: emailType,
+  setEmailSent: React.Dispatch<React.SetStateAction<boolean>>,
+) {
   return async (dispatch: Dispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
