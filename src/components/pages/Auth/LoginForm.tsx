@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { login } from '../../../services/operations/authAPI';
 
-function LoginForm() {
+const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -91,6 +91,6 @@ function LoginForm() {
       </button>
     </form>
   );
-}
+};
 
 export default LoginForm;
