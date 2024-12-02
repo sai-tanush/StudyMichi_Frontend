@@ -1,7 +1,7 @@
 import loginImg from '../assets/Images/login.webp';
 import Template from '../core/Auth/Template';
 
-function Login() {
+const Login = () => {
   return (
     <Template
       title="Welcome Back"
@@ -11,6 +11,6 @@ function Login() {
       formType="login"
     />
   );
-}
+};
 
 export default Login;
