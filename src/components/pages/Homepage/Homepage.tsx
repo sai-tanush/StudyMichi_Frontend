@@ -1,7 +1,7 @@
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import HighlightText from '../../HighlightText';
-import CTAButton from '../../Button';
+import HighlightText from './HighlightText';
+import CTAButton from './Button';
 import Banner from '../../../assets/Images/banner.mp4';
 import CodeBlocks from '../../CodeBlocks';
 import TimelineSection from './TimelineSection';

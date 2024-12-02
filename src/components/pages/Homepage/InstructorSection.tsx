@@ -1,7 +1,7 @@
 import { FaArrowRight } from 'react-icons/fa';
 import Instructor from '../../../assets/Images/Instructor.png';
-import HighlightText from '../../HighlightText';
-import CTAButton from '../../Button';
+import HighlightText from './HighlightText';
+import CTAButton from './Button';
 
 const InstructorSection: React.FC = () => {
   return (
