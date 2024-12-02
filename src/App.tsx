@@ -2,6 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import './index.css';
 import Homepage from './components/pages/Homepage';
 import Navbar from './components/common/Navbar';
+import OpenRoute from './components/core/Auth/OpenRoute';
+import Signup from './components/pages/Signup';
+import Login from './components/pages/Login';
 
 function App() {
   return (
@@ -9,7 +12,22 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route
+          path="signup"
+          element={
+            <OpenRoute>
+              <Signup />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <OpenRoute>
+              <Login />
+            </OpenRoute>
+          }
+        />
       </Routes>
     </div>
   );
