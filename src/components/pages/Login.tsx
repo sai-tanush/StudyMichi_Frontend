@@ -1,4 +1,4 @@
-import loginImg from '../assets/Images/login.webp';
+import loginImg from '../../assets/Images/login.webp';
 import Template from '../core/Auth/Template';
 
 const Login = () => {
