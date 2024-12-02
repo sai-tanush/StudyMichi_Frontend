@@ -8,7 +8,7 @@ import { apiConnector } from '../../services/apisconnector';
 import { categories } from '../../services/apis';
 import { NavbarLinks } from '../../data/navbar-links';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
-import ProfileDropdown from '../pages/Auth/ProfileDropDown';
+import ProfileDropdown from '../core/Auth/ProfileDropDown';
 
 interface CategoryProps {
   _id: string;
