@@ -1,4 +1,4 @@
-import signupImg from '../assets/Images/signup.webp';
+import signupImg from '../../assets/Images/signup.webp';
 import Template from '../core/Auth/Template';
 
 const Signup: React.FC = () => {
