@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
 import { FooterLink2 } from '../../data/footer-links';
 
-const BottomFooter = ['Privacy Policy', 'Cookie Policy', 'Terms'];
-const Resources = [
+const BOTTOM_FOOTER = ['Privacy Policy', 'Cookie Policy', 'Terms'];
+const RESOURCES = [
   'Articles',
   'Blog',
   'Chart Sheet',
@@ -14,9 +14,9 @@ const Resources = [
   'Videos',
   'Workspaces',
 ];
-const Plans = ['Paid memberships', 'For students', 'Business solutions'];
-const Community = ['Forums', 'Chapters', 'Events'];
-const FooterData = ['About', 'Careers', 'Affiliates'];
+const PLANS = ['Paid memberships', 'For students', 'Business solutions'];
+const COMMUNITY = ['Forums', 'Chapters', 'Events'];
+const FOOTER_DATA = ['About', 'Careers', 'Affiliates'];
 
 const Footer: React.FC = () => {
   return (
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
                 Company
               </h1>
               <div className="flex flex-col gap-2">
-                {FooterData.map((ele, i) => {
+                {FOOTER_DATA.map((ele, i) => {
                   return (
                     <div
                       key={i}
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {Resources.map((ele, index) => {
+                {RESOURCES.map((ele, index) => {
                   return (
                     <div
                       key={index}
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {Plans.map((ele, index) => {
+                {PLANS.map((ele, index) => {
                   return (
                     <div
                       key={index}
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {Community.map((ele, index) => {
+                {COMMUNITY.map((ele, index) => {
                   return (
                     <div
                       key={index}
@@ -150,12 +150,12 @@ const Footer: React.FC = () => {
         {/* Section 1 */}
         <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
           <div className="flex flex-row">
-            {BottomFooter.map((ele, i) => {
+            {BOTTOM_FOOTER.map((ele, i) => {
               return (
                 <div
                   key={i}
                   className={` ${
-                    BottomFooter.length - 1 === i
+                    BOTTOM_FOOTER.length - 1 === i
                       ? ''
                       : 'border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200'
                   } px-3 `}
