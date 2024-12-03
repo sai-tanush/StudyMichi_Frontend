@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../utils/store/store';
+import { AppDispatch, RootState } from '../../utils/store/store';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -8,7 +8,7 @@ import Spinner from '../common/Spinner';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 const ForgotPassword: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [emailSent, setEmailSent] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const { loading } = useSelector((state: RootState) => state.auth);
