@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../utils/store/store';
+import { AppDispatch, RootState } from '../../utils/store/store';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../services/operations/authAPI';
@@ -17,7 +17,7 @@ const UpdatePassword: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
   const { loading } = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
   const navigate = useNavigate();
   const { password, confirmPassword } = formData;
