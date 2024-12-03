@@ -16,6 +16,7 @@ const Resources = [
 ];
 const Plans = ['Paid memberships', 'For students', 'Business solutions'];
 const Community = ['Forums', 'Chapters', 'Events'];
+const FooterData = ['About', 'Careers', 'Affiliates'];
 
 const Footer: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ const Footer: React.FC = () => {
                 Company
               </h1>
               <div className="flex flex-col gap-2">
-                {['About', 'Careers', 'Affiliates'].map((ele, i) => {
+                {FooterData.map((ele, i) => {
                   return (
                     <div
                       key={i}
