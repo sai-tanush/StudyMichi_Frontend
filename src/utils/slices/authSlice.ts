@@ -1,6 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { NavigateFunction } from 'react-router-dom';
 
-const initialState = {
+type SignupData = {
+  accountType: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  otp: string;
+  navigate: NavigateFunction;
+};
+
+interface AuthState {
+  signupData: SignupData | null;
+  loading: boolean;
+  token: string | null;
+}
+
+const initialState: AuthState = {
   signupData: null,
   loading: false,
   token: localStorage.getItem('token')
@@ -12,14 +30,14 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
   reducers: {
-    setSignupData(state, value) {
-      state.signupData = value.payload;
+    setSignupData(state, action: PayloadAction<SignupData | null>) {
+      state.signupData = action.payload;
     },
-    setLoading(state, value) {
-      state.loading = value.payload;
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
     },
-    setToken(state, value) {
-      state.token = value.payload;
+    setToken(state, action: PayloadAction<string | null>) {
+      state.token = action.payload;
     },
   },
 });
