@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector'; // Assuming this is your apiConnector function
 import { setLoading } from '../../utils/slices/authSlice';
 import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from '../../utils/store/store';
 
 const {
   SENDOTP_API,
@@ -37,7 +38,7 @@ type EmailType = string;
 
 // The sendOtp function with types
 export function sendOtp(email: EmailType, navigate: NavigateFunction) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -78,7 +79,7 @@ export function signUp({
   otp,
   navigate,
 }: SignUpParams) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
