@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RootState } from '../../utils/store/store';
+import { AppDispatch, RootState } from '../../utils/store/store';
 import Spinner from '../common/Spinner';
 import OTPInput from 'react-otp-input';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { GiBackwardTime } from 'react-icons/gi';
 
 const VerifyEmail: React.FC = () => {
   const [otp, setOtp] = useState<string>('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { signupData, loading } = useSelector((state: RootState) => state.auth);
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
@@ -33,7 +33,7 @@ const VerifyEmail: React.FC = () => {
       email,
       password,
       confirmPassword,
-    } = signupData;
+    } = signupData!;
     dispatch(
       signUp({
         accountType: accountType,
@@ -106,11 +106,13 @@ const VerifyEmail: React.FC = () => {
             </div>
             <div className="flex mt-5 mr-3 text-blue-200 text-md font-bold justify-center items-center cursor-pointer">
               <GiBackwardTime size={24} />
-              <button
-                onClick={() => dispatch(sendOtp(signupData.email, navigate))}
-              >
-                Resend it
-              </button>
+              {signupData && (
+                <button
+                  onClick={() => dispatch(sendOtp(signupData.email, navigate))}
+                >
+                  Resend it
+                </button>
+              )}
             </div>
           </div>
         </div>
