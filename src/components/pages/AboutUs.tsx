@@ -5,10 +5,11 @@ import aboutUsImage3 from '../../assets/Images/aboutus3.webp';
 import foundingStoryImage from '../../assets/Images/FoundingStory.png';
 import Quote from '../core/AboutUs/Quote';
 import Stats from '../core/AboutUs/Stats';
+import LearningGrid from '../core/AboutUs/LearningGrid';
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="mt-[100px] text-center">
+    <div className="mt-[100px] w-11/12 max-w-maxContent flex flex-col ml-[15%]">
       {/* section 1 */}
       <section>
         <div className="flex flex-col justify-center items-center">
@@ -41,8 +42,8 @@ const AboutUs: React.FC = () => {
       </section>
 
       {/* section 3 */}
-      <section className="w-11/12 mt-[10rem] mx-auto ">
-        <div className="flex flex-col my-10 justify-between items-center ml-[5rem] mb-[100px]">
+      <section>
+        <div className="flex flex-col mt-32 justify-between items-center ml-[5rem] mb-[100px]">
           <div className="flex justify-center items-center gap-x-36">
             <div className="w-1/3 flex flex-col">
               <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-200">
@@ -74,11 +75,11 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
           <div className="flex justify-center items-center gap-x-36 mt-32">
-            <div className="w-1/3 flex flex-col">
+            <div className="w-2/5 flex flex-col -ml-20">
               <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#E65C00] to-[#ffa600]">
                 Our Vision
               </h1>
-              <p className="w-4/5 text-richblack-100 text-left mt-5">
+              <p className="w-4/5 text-richblack-100 text-left mt-5 ">
                 With this vision in mind, we set out on a journey to create an
                 e-learning platform that would revolutionize the way people
                 learn. Our team of dedicated experts worked tirelessly to
@@ -88,7 +89,7 @@ const AboutUs: React.FC = () => {
                 technology in understanding needs of student.
               </p>
             </div>
-            <div className="w-1/3 flex flex-col">
+            <div className="w-2/5 flex flex-col -ml-20">
               <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39b5c5] to-[#02e1ff]">
                 Our Mission
               </h1>
@@ -109,7 +110,7 @@ const AboutUs: React.FC = () => {
       <Stats />
 
       {/* section 5 */}
-      <section></section>
+      <LearningGrid />
     </div>
   );
 };
