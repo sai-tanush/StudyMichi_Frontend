@@ -10,7 +10,7 @@ const Quote: React.FC = () => {
         <span className="font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#FF512F] to-[#F09819]">
           {' '}
           expertise
-        </span>
+        </span>{' '}
         and community to <br></br>create an{' '}
         <span className="font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#E65C00] to-[#F9D423]">
           unparalleled educational experience.
