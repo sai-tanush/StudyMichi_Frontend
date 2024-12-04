@@ -4,6 +4,7 @@ import aboutUsImage2 from '../../assets/Images/aboutus2.webp';
 import aboutUsImage3 from '../../assets/Images/aboutus3.webp';
 import foundingStoryImage from '../../assets/Images/FoundingStory.png';
 import Quote from '../core/AboutUs/Quote';
+import Stats from '../core/AboutUs/Stats';
 
 const AboutUs: React.FC = () => {
   return (
@@ -105,28 +106,7 @@ const AboutUs: React.FC = () => {
       </section>
 
       {/* section 4 */}
-      <section className="w-full h-[150px] bg-richblack-800 flex items-center">
-        <div className="w-full flex justify-around mt-5">
-          <div className="flex flex-col items-center gap-y-5">
-            <h1 className="text-3xl font-bold text-richblack-5">20K+</h1>
-            <p className="text-richblack-400 text-sm font-semibold">
-              Active Students
-            </p>
-          </div>
-          <div className="flex flex-col gap-y-5">
-            <h1 className="text-3xl font-bold text-richblack-5">10+</h1>
-            <p className="text-richblack-400 text-sm font-semibold">Members</p>
-          </div>
-          <div className="flex flex-col gap-y-5">
-            <h1 className="text-3xl font-bold text-richblack-5">200</h1>
-            <p className="text-richblack-400 text-sm font-semibold">Courses</p>
-          </div>
-          <div className="flex flex-col gap-y-5">
-            <h1 className="text-3xl font-bold text-richblack-5">50+</h1>
-            <p className="text-richblack-400 text-sm font-semibold">Awards</p>
-          </div>
-        </div>
-      </section>
+      <Stats />
 
       {/* section 5 */}
       <section></section>
