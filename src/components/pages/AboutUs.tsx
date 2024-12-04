@@ -105,7 +105,7 @@ const AboutUs: React.FC = () => {
       </section>
 
       {/* section 4 */}
-      <section className="w-full h-[250px] bg-richblack-800 flex items-center">
+      <section className="w-full h-[150px] bg-richblack-800 flex items-center">
         <div className="w-full flex justify-around mt-5">
           <div className="flex flex-col items-center gap-y-5">
             <h1 className="text-3xl font-bold text-richblack-5">20K+</h1>
@@ -129,6 +129,7 @@ const AboutUs: React.FC = () => {
       </section>
 
       {/* section 5 */}
+      <section></section>
     </div>
   );
 };
