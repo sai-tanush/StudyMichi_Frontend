@@ -4,7 +4,7 @@ import CTAButton from '../../common/Button';
 
 const LearningGrid: React.FC = () => {
   return (
-    <div className="grid mx-auto grid-col-1 lg:grid-cols-4 mb-10 mt-24">
+    <div className="grid mx-auto grid-col-1 lg:grid-cols-4 mb-48 mt-24">
       {learningGridData.map((card, index) => {
         return (
           <div
