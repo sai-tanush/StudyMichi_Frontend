@@ -58,7 +58,7 @@ function App() {
           }
         />
         <Route
-          path="contactus"
+          path="contact"
           element={
             <OpenRoute>
               <ContactUs />
