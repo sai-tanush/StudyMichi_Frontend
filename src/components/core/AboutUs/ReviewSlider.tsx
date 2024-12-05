@@ -1,5 +1,5 @@
 const ReviewSlider = () => {
-  return <div></div>;
+  return <div className="mb-24"></div>;
 };
 
 export default ReviewSlider;
