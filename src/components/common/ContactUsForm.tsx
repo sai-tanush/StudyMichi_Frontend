@@ -47,7 +47,15 @@ const ContactUsForm: React.FC = () => {
       console.log('Logging AboutUs Page response = ', response);
       setLoading(false);
     } catch (error) {
-      console.log('Error occurred = ', error.message);
+      if (error instanceof Error) {
+        console.log('Error occurred = ', error.message);
+      } else {
+        console.log(
+          'An unexpected Error occured in AboutUs page componrnt submitCantactForm function',
+          error,
+        );
+      }
+
       setLoading(false);
     }
   };
