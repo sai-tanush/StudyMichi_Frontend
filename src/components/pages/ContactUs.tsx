@@ -2,8 +2,8 @@ import React from 'react';
 import { FaEarthAsia } from 'react-icons/fa6';
 import { IoIosChatboxes } from 'react-icons/io';
 import { MdCall } from 'react-icons/md';
-import ContactUsForm from '../common/ContactUsForm';
 import ContactFormSection from '../core/AboutUs/ContactFormSection';
+import ReviewSlider from '../common/ReviewSlider';
 
 const ContactUs: React.FC = () => {
   const INFO_DATA = [
@@ -66,6 +66,16 @@ const ContactUs: React.FC = () => {
               }
             />
           </div>
+        </div>
+      </section>
+
+      {/* section 2 */}
+      <section>
+        <div className="flex flex-col justify-center items-center">
+          <h1 className="text-4xl font-bold text-richblack-5">
+            Reviews from other learners
+          </h1>
+          <ReviewSlider />
         </div>
       </section>
     </div>
