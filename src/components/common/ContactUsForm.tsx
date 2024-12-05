@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { apiConnector } from '../../services/apisconnector';
 import { contactusEndpoint } from '../../services/apis';
-import CountryCodes from '../../data/countrycode.json';
 import Spinner from './Spinner';
+import { callingCountries } from 'country-data';
 
 interface FormData {
   firstName: string;
@@ -22,6 +22,7 @@ const ContactUsForm: React.FC = () => {
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
   } = useForm<FormData>();
+  const countries = callingCountries.all;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -159,10 +160,10 @@ const ContactUsForm: React.FC = () => {
                   defaultValue="+91-India"
                   {...register('countryCode', { required: true })}
                 >
-                  {CountryCodes.map((country, index) => {
+                  {countries.map((country, index) => {
                     return (
                       <option key={index}>
-                        {country.code} - {country.country}
+                        {country.countryCallingCodes[0]} - {country.name}
                       </option>
                     );
                   })}
