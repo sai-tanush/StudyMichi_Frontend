@@ -118,7 +118,10 @@ const AboutUs: React.FC = () => {
         <LearningGrid />
 
         {/* section 6 */}
-        <ContactFormSection />
+        <ContactFormSection
+          title={'Get in Touch'}
+          paragraph={"We'd love to hear for you, Please fill out this form."}
+        />
 
         {/* section 7 */}
         <section>
