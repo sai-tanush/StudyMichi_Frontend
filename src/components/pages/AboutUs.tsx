@@ -8,10 +8,11 @@ import Stats from '../core/AboutUs/Stats';
 import LearningGrid from '../core/AboutUs/LearningGrid';
 import ContactFormSection from '../core/AboutUs/ContactFormSection';
 import ReviewSlider from '../core/AboutUs/ReviewSlider';
+import Footer from '../common/Footer';
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[5%]">
+    <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[2%]">
       {/* section 1 */}
       <section>
         <div className="flex flex-col justify-center items-center">
@@ -125,6 +126,11 @@ const AboutUs: React.FC = () => {
           </h1>
           <ReviewSlider />
         </div>
+      </section>
+
+      {/* footer section */}
+      <section className="">
+        <Footer />
       </section>
     </div>
   );
