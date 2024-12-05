@@ -7,7 +7,7 @@ import Quote from '../core/AboutUs/Quote';
 import Stats from '../core/AboutUs/Stats';
 import LearningGrid from '../core/AboutUs/LearningGrid';
 import ContactFormSection from '../core/AboutUs/ContactFormSection';
-import ReviewSlider from '../core/AboutUs/ReviewSlider';
+import ReviewSlider from '../common/ReviewSlider';
 import Footer from '../common/Footer';
 
 const AboutUs: React.FC = () => {
