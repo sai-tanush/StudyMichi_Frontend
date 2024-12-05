@@ -1,6 +1,6 @@
 import { FaArrowRight } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
-import CTAButton from './Button';
+import CTAButton from '../../common/Button';
 
 interface CTAButtonProps {
   btnText: string;

@@ -10,3 +10,20 @@ body {
 .homepage_bg {
   background: url('../src/assets/Images/bghome.svg');
 }
+
+/* OTPStyles.css */
+
+/* Default input box styles */
+.otp-input {
+  background-color: #2c333f;
+  color: #f1f2ff;
+  font-size: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: border 0.3s ease;
+}
+
+.otp-input:focus {
+  border: 2px solid yellow;
+  outline: none; /* Focus border color */
+}
