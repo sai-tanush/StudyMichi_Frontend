@@ -29,7 +29,7 @@ const ContactUs: React.FC = () => {
     },
   ];
   return (
-    <div>
+    <div className="mb-5">
       <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[2%]">
         {/* section 1 */}
         <section>
