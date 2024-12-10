@@ -73,26 +73,20 @@ const MyProfile: React.FC = () => {
             <div className="flex gap-x-14 mt-10">
               <div className="flex flex-col gap-y-5">
                 <div className="flex flex-col">
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
-                    First Name
-                  </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-sm text-richblack-200 mt-1">First Name</p>
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.firstName}
                   </p>
                 </div>
                 <div>
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
-                    Last Name
-                  </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-sm text-richblack-200 mt-1">Last Name</p>
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.lastName}
                   </p>
                 </div>
                 <div>
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
-                    Email
-                  </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-sm text-richblack-200 mt-1">Email</p>
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.email}
                   </p>
                 </div>
@@ -100,27 +94,25 @@ const MyProfile: React.FC = () => {
 
               <div className="flex flex-col gap-y-5">
                 <div>
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
-                    Gender
-                  </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-sm text-richblack-200 mt-1">Gender</p>
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.additionalDetails?.gender ?? 'Add your Gender'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                  <p className="text-sm  text-richblack-200 mt-1">
                     Phone Number
                   </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.additionalDetails?.contactNumber ??
                       'Add Contact Number'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                  <p className="text-sm  text-richblack-200 mt-1">
                     Date of Birth
                   </p>
-                  <p className="text-left text-md mt-1 text-richblack-200">
+                  <p className="text-left font-semibold text-md mt-1 text-richblack-5">
                     {user?.additionalDetails?.dateOfBirth ??
                       'Add Date of Birth'}
                   </p>
