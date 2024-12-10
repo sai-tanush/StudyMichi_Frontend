@@ -1,5 +1,4 @@
 import * as Icons from 'react-icons/vsc';
-//import { useDispatch } from "react-redux";
 import { matchPath, NavLink, useLocation } from 'react-router-dom';
 import { ACCOUNT_TYPE_PROPS } from '../../../utils/constants';
 
@@ -8,26 +7,26 @@ interface LinkProps {
   name: string;
   path: string;
   type?: ACCOUNT_TYPE_PROPS | string;
-  icon: string;
+  icon: keyof typeof Icons;
 }
+
 interface SidebarLinkProps {
   link: LinkProps;
-  iconName: string;
 }
 
-const SidebarLink: React.FC<SidebarLinkProps> = ({ link, iconName }) => {
-  const Icon = Icons[iconName];
+const SidebarLink: React.FC<SidebarLinkProps> = ({ link }) => {
+  const Icon = Icons[link.icon];
   const location = useLocation();
-  //const dispatch = useDispatch();
 
   if (!Icon) {
-    console.error(`Icon "${iconName}" not found in react-icons/vsc.`);
-    return null; // Prevent rendering if the icon is invalid
+    console.error(`Icon "${link.icon}" not found in react-icons/vsc.`);
+    return null;
   }
 
   const matchRoute = ({ route }: { route: string | undefined }) => {
     if (route) return matchPath({ path: route }, location.pathname);
   };
+
   return (
     <div
       className={`mt-3 ${matchRoute({ route: link.path }) ? 'bg-yellow-800' : 'bg-opacity-0'} text-richblack-300`}
