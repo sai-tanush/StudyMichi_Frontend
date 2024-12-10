@@ -10,83 +10,133 @@ const MyProfile: React.FC = () => {
   console.log('user details = ', user);
 
   return (
-    <div className="text-richblack-5">
+    <div className=" mx-5">
       <h1 className="text-4xl text-richblack-5">My Profile</h1>
 
-      {/* Section 1 */}
-      {user && (
-        <div>
-          <div>
-            <img
-              src={`${user.image}`}
-              alt={`profile-${user?.firstName}`}
-              className="aspect-square w-[78px] rounded-full object-cover"
-            />
-            <div>
-              <p>{user?.firstName + ' ' + user?.lastName}</p>
-              <p>{user?.email}</p>
+      <div className="w-2/3 flex flex-col gap-y-5 mx-[7%] px-[7%]">
+        {/* Section 1 */}
+        {user && (
+          <div className="flex justify-between items-center mt-10 bg-richblack-800 p-5 rounded-xl">
+            <div className="flex items-center gap-x-8">
+              <img
+                src={`${user.image}`}
+                alt={`profile-${user?.firstName}`}
+                className="aspect-square w-[78px] rounded-full object-cover"
+              />
+              <div>
+                <p className="text-xl font-semibold text-richblack-5">
+                  {user?.firstName + ' ' + user?.lastName}
+                </p>
+                <p className="text-md text-richblack-200 mt-1">{user?.email}</p>
+              </div>
             </div>
+            <IconBtn
+              text="Edit"
+              customClasses="flex gap-3 items-center"
+              iconName="VscEdit"
+              onclick={() => {
+                navigate('/dashboard/settings');
+              }}
+            ></IconBtn>
           </div>
+        )}
+
+        {/* section 2 */}
+        <div className="flex justify-between items-center bg-richblack-800 p-5 rounded-xl">
+          <div className="flex flex-col items-start gap-x-8">
+            <p className="text-left text-xl font-semibold text-richblack-5">
+              About
+            </p>
+            <p className="text-left text-md mt-1 text-richblack-200">
+              {' '}
+              {user?.additionalDetails?.about ??
+                'Write Something about Yourself...'}
+            </p>
+          </div>
+
           <IconBtn
             text="Edit"
+            customClasses="flex gap-3 items-center"
+            iconName="VscEdit"
             onclick={() => {
               navigate('/dashboard/settings');
             }}
-          />
+          ></IconBtn>
         </div>
-      )}
 
-      {/* section 2 */}
-      <div>
-        <div>
-          <p>About</p>
-          <IconBtn
-            text="Edit"
-            onclick={() => navigate('/dashboard/settings')}
-          />
-        </div>
-        <p>
-          {' '}
-          {user?.additionalDetails?.about ?? 'Write Something about Yourself'}
-        </p>
-      </div>
-
-      {/* section 3 */}
-      <div>
-        <div>
-          <p>Personal Details</p>
-          <IconBtn
-            text="Edit"
-            onclick={() => navigate('/dashboard/settings')}
-          />
-        </div>
-        <div>
-          <div>
-            <p>First Name</p>
-            <p>{user?.firstName}</p>
-          </div>
-          <div>
-            <p>Email</p>
-            <p>{user?.email}</p>
-          </div>
-          <div>
-            <p>Gender</p>
-            <p>{user?.additionalDetails?.gender ?? 'Add your Gender'}</p>
-          </div>
-          <div>
-            <p>Last Name</p>
-            <p>{user?.lastName}</p>
-          </div>
-          <div>
-            <p>Phone Number</p>
-            <p>
-              {user?.additionalDetails?.contactNumber ?? 'Add Contact Number'}
+        {/* section 3 */}
+        <div className="flex justify-between items-start bg-richblack-800 p-5 rounded-xl">
+          <div className="flex flex-col items-start gap-x-8">
+            <p className="text-left text-xl font-semibold text-richblack-5">
+              Personal Details
             </p>
+            <div className="flex gap-x-14 mt-10">
+              <div className="flex flex-col">
+                <div className="flex flex-col">
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    First Name
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.firstName}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    Last Name
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.lastName}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    Email
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.email}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <div>
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    Gender
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.additionalDetails?.gender ?? 'Add your Gender'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    Phone Number
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.additionalDetails?.contactNumber ??
+                      'Add Contact Number'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-md font-semibold text-richblack-5 mt-1">
+                    Date of Birth
+                  </p>
+                  <p className="text-left text-md mt-1 text-richblack-200">
+                    {user?.additionalDetails?.dateOfBirth ??
+                      'Add Date of Birth'}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <p>Date of Birth</p>
-            <p>{user?.additionalDetails?.dateOfBirth ?? 'Add Date of Birth'}</p>
-          </div>
+
+          <IconBtn
+            text="Edit"
+            customClasses="flex gap-3 items-center"
+            iconName="VscEdit"
+            onclick={() => {
+              navigate('/dashboard/settings');
+            }}
+          ></IconBtn>
         </div>
       </div>
     </div>
