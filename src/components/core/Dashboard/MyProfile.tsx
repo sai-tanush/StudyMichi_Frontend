@@ -71,7 +71,7 @@ const MyProfile: React.FC = () => {
               Personal Details
             </p>
             <div className="flex gap-x-14 mt-10">
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-y-5">
                 <div className="flex flex-col">
                   <p className="text-md font-semibold text-richblack-5 mt-1">
                     First Name
@@ -98,7 +98,7 @@ const MyProfile: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-y-5">
                 <div>
                   <p className="text-md font-semibold text-richblack-5 mt-1">
                     Gender
