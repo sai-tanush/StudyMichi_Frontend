@@ -38,7 +38,7 @@ const Sidebar = () => {
         className="flex flex-col min-w-[222px] border-r-[1px] border-r-richblack-700 
         h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 text-richblack-5"
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col mx-1">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null;
             return (
@@ -46,9 +46,9 @@ const Sidebar = () => {
             );
           })}
         </div>
-        <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-600"></div>
+        <div className="mx-auto mt-6 mb-1 h-[1px] w-10/12 bg-richblack-600"></div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center items-start gap-y-3 text-richblack-300">
           <SidebarLink
             link={sidebarSettingData}
             iconName={sidebarSettingData.icon}
@@ -65,10 +65,10 @@ const Sidebar = () => {
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
-            className="text-sm font-medium text-richblack-300"
+            className="text-sm font-medium text-richblack-300 ml-8"
           >
-            <div className="flex items-center gap-x-2">
-              <VscSignOut className="text-lg" />
+            <div className="flex items-center gap-x-2 text-richblack-300">
+              <VscSignOut className="text-lg " />
               <span>Logout</span>
             </div>
           </button>
