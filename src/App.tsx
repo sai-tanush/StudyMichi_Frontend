@@ -15,6 +15,7 @@ import Dashboard from './components/pages/Dashboard';
 import PrivateRoute from './components/core/Auth/PrivateRoute';
 import Error from './components/pages/Error';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
+import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
 
 function App() {
   return (
@@ -90,6 +91,10 @@ function App() {
           <Route
             path="dashboard/enrolled-courses"
             element={<EnrolledCourses />}
+          />
+          <Route
+            path="dashboard/purchase-history"
+            element={<PurchaseHistory />}
           />
         </Route>
 
