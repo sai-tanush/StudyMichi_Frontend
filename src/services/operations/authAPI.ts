@@ -2,7 +2,6 @@ import { setToken } from '../../utils/slices/authSlice';
 import { resetCart } from '../../utils/slices/cartSlice';
 import { setUser } from '../../utils/slices/profileSlice';
 import { endpoints } from '../apis';
-import { Dispatch } from 'redux';
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector'; // Assuming this is your apiConnector function
 import { setLoading } from '../../utils/slices/authSlice';
@@ -119,7 +118,7 @@ export function login(
   password: passwordType,
   navigate: NavigateFunction,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -160,7 +159,7 @@ export function getPasswordResetToken(
   email: emailType,
   setEmailSent: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -195,7 +194,7 @@ export function resetPassword(
   token: string,
   navigate: NavigateFunction,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -227,7 +226,7 @@ export function resetPassword(
 }
 
 export function logout(navigate: NavigateFunction) {
-  return (dispatch: Dispatch) => {
+  return (dispatch: AppDispatch) => {
     dispatch(setToken(null));
     dispatch(setUser(null));
     dispatch(resetCart());
