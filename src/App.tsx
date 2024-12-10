@@ -84,11 +84,11 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           }
-        />
+        >
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
+        </Route>
 
         <Route path="*" element={<Error />} />
-
-        <Route path="dashboard/my-profile" element={<MyProfile />} />
       </Routes>
     </div>
   );
