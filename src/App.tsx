@@ -25,6 +25,22 @@ import AddCourse from './components/core/Dashboard/AddCourse/AddCourse';
 import MyCourses from './components/core/Dashboard/MyCourses/MyCourses';
 import EditCourse from './components/core/Dashboard/EditCourse/EditCourse';
 import MyProfile from './components/core/Dashboard/MyProfile';
+import Dashboard from './components/pages/Dashboard';
+import PrivateRoute from './components/core/Auth/PrivateRoute';
+import Error from './components/pages/Error';
+import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
+import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
+import Settings from './components/core/Dashboard/Settings/Settings';
+import Cart from './components/core/Dashboard/Cart/Cart';
+import { ACCOUNT_TYPE } from './utils/constants';
+import { useSelector } from 'react-redux';
+import { RootState } from './utils/store/store';
+import AddCourse from './components/core/Dashboard/AddCourse/AddCourse';
+import MyCourses from './components/core/Dashboard/MyCourses/MyCourses';
+import EditCourse from './components/core/Dashboard/EditCourse/EditCourse';
+import MyProfile from './components/core/Dashboard/MyProfile';
+import Dashboard from './components/pages/Dashboard';
+import PrivateRoute from './components/core/Auth/PrivateRoute';
 
 function App() {
   const { user } = useSelector((state: RootState) => state.profile);
@@ -90,6 +106,7 @@ function App() {
             </OpenRoute>
           }
         />
+        <Route path="dashboard/my-profile" element={<MyProfile />} />
       </Routes>
     </div>
   );
