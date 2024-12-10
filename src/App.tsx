@@ -14,6 +14,7 @@ import MyProfile from './components/core/Dashboard/MyProfile';
 import Dashboard from './components/pages/Dashboard';
 import PrivateRoute from './components/core/Auth/PrivateRoute';
 import Error from './components/pages/Error';
+<<<<<<< HEAD
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
 import Settings from './components/core/Dashboard/Settings/Settings';
@@ -41,6 +42,8 @@ import EditCourse from './components/core/Dashboard/EditCourse/EditCourse';
 import MyProfile from './components/core/Dashboard/MyProfile';
 import Dashboard from './components/pages/Dashboard';
 import PrivateRoute from './components/core/Auth/PrivateRoute';
+=======
+>>>>>>> d73bdc5 (chore: added route for Error page if route is not defined)
 
 function App() {
   const { user } = useSelector((state: RootState) => state.profile);
@@ -106,6 +109,20 @@ function App() {
             </OpenRoute>
           }
         />
+<<<<<<< HEAD
+=======
+
+        <Route
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
+        <Route path="*" element={<Error />} />
+
+>>>>>>> d73bdc5 (chore: added route for Error page if route is not defined)
         <Route path="dashboard/my-profile" element={<MyProfile />} />
       </Routes>
     </div>
