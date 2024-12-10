@@ -1,11 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ProfileState {
-  user: Object | null;
-  loading: boolean;
-}
-const initialState: ProfileState = {
-  user: null,
+const initialState = {
+  user: localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user') as string)
+    : null,
   loading: false,
 };
 
