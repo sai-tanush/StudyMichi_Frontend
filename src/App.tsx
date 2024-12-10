@@ -10,6 +10,7 @@ import UpdatePassword from './components/pages/UpdatePassword';
 import VerifyEmail from './components/pages/VerifyEmail';
 import AboutUs from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
+import MyProfile from './components/core/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
             </OpenRoute>
           }
         />
+        <Route path="dashboard/my-profile" element={<MyProfile />} />
       </Routes>
     </div>
   );
