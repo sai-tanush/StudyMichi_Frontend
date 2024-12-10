@@ -1,10 +1,10 @@
-import axios, { AxiosRequestHeaders } from 'axios';
+import axios from 'axios';
 
 interface ApiConnectorProps {
   method: string;
   url: string;
   bodyData?: object;
-  headers?: AxiosRequestHeaders;
+  headers?: Record<string, string>;
   params?: Record<string, unknown>;
 }
 
