@@ -42,3 +42,9 @@ export const sidebarLinks = [
     icon: 'VscHistory',
   },
 ];
+
+export const sidebarSettingData = {
+  name: 'Settings',
+  path: 'dashboard/settings',
+  icon: 'VscSettingsGear',
+};
