@@ -22,8 +22,8 @@ const Dashboard: React.FC = () => {
   return (
     <div className="relative flex min-h-[calc(100vh-3.5rem)]">
       <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] overflow-auto overflow-x-hidden">
-        <div className="mx-auto w-11/12 max-w-[1000px] py-10">
+      <div className="h-[calc(100vh-3.5rem)] overflow-auto overflow-x-hidden ml-5 mr-24">
+        <div className="mx-auto h-full w-screen py-10">
           <Outlet />
         </div>
       </div>
