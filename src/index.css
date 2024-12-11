@@ -27,3 +27,18 @@ body {
   border: 2px solid yellow;
   outline: none; /* Focus border color */
 }
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  background-color: #2c333f;
+  width: 30px; /* Increase size */
+  height: 25px; /* Increase size */
+  cursor: pointer;
+}
+
+/* Optional: Adjust size for Firefox */
+input[type='date']::-moz-calendar-picker-indicator {
+  background-color: #2c333f; /* Change to white */
+  width: 30px; /* Increase size */
+  height: 25px; /* Increase size */
+  cursor: pointer;
+}
