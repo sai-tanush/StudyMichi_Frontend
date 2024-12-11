@@ -16,7 +16,7 @@ const MyProfile: React.FC = () => {
       <div className="w-2/3 flex flex-col gap-y-5 mx-[7%] px-[7%]">
         {/* Section 1 */}
         {user && (
-          <div className="flex justify-between items-center mt-10 bg-richblack-800 p-5 rounded-xl">
+          <div className="flex justify-between items-center mt-10 bg-richblack-800 p-5 px-12 rounded-xl">
             <div className="flex items-center gap-x-8">
               <img
                 src={`${user.image}`}
@@ -42,7 +42,7 @@ const MyProfile: React.FC = () => {
         )}
 
         {/* section 2 */}
-        <div className="flex justify-between items-center bg-richblack-800 p-5 rounded-xl">
+        <div className="flex justify-between items-center bg-richblack-800 p-5 px-12 rounded-xl">
           <div className="flex flex-col items-start gap-x-8">
             <p className="text-left text-xl font-semibold text-richblack-5">
               About
@@ -65,7 +65,7 @@ const MyProfile: React.FC = () => {
         </div>
 
         {/* section 3 */}
-        <div className="flex justify-between items-start bg-richblack-800 p-5 rounded-xl">
+        <div className="flex justify-between items-start bg-richblack-800 p-5 px-12 rounded-xl">
           <div className="flex flex-col items-start gap-x-8">
             <p className="text-left text-xl font-semibold text-richblack-5">
               Personal Details
