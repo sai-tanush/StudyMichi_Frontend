@@ -71,7 +71,10 @@ const ChangeProfilePicture = () => {
   }, [imageFile]);
 
   return (
-    <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
+    <div
+      className="flex items-center justify-between rounded-md border-[1px] border-richblack-700
+     bg-richblack-800 p-5 text-richblack-5"
+    >
       <div className="flex items-center gap-x-4">
         <img
           src={previewSource || user?.image}
@@ -79,7 +82,7 @@ const ChangeProfilePicture = () => {
           className="aspect-square w-[78px] rounded-full object-cover"
         />
         <div className="space-y-2">
-          <p>Change Profile Picture</p>
+          <p className="mb-2">Change Profile Picture</p>
           <div className="flex flex-row gap-3">
             <input
               type="file"
