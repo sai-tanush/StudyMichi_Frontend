@@ -48,7 +48,7 @@ const Sidebar = () => {
         </div>
         <div className="mx-auto mt-6 mb-1 h-[1px] w-10/12 bg-richblack-600"></div>
 
-        <div className="flex flex-col justify-center items-start gap-y-3 text-richblack-300">
+        <div className="w-full lex flex-col justify-center items-start gap-y-3 text-richblack-300 mb-2">
           <SidebarLink
             link={sidebarSettingData}
             iconName={sidebarSettingData.icon}
@@ -65,7 +65,7 @@ const Sidebar = () => {
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
-            className="text-sm font-medium text-richblack-300 ml-8"
+            className="text-sm font-medium text-richblack-300 ml-8 mt-2.5"
           >
             <div className="flex items-center gap-x-2 text-richblack-300">
               <VscSignOut className="text-lg " />
