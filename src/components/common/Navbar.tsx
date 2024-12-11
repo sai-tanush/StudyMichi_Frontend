@@ -107,8 +107,8 @@ const Navbar: React.FC = () => {
         {/* Login/SignUp/Dashboard */}
         <div className="flex gap-x-3 text-richblack-25">
           {user && user?.accountType != 'Instructor' && (
-            <Link to="/dashboard/cart" className="relative">
-              <AiOutlineShoppingCart />
+            <Link to="/dashboard/cart" className="relative mr-1">
+              <AiOutlineShoppingCart size={26} />
               {totalItems > 0 && <span>{totalItems}</span>}
             </Link>
           )}
