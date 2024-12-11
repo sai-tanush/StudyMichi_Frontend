@@ -16,7 +16,7 @@ const DeleteAccount = () => {
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
 
-  async function handleDeleteAccount() {
+  const handleDeleteAccount = async () => {
     try {
       if (token) {
         (dispatch as AppDispatch)(deleteProfile(token, navigate));
@@ -26,7 +26,7 @@ const DeleteAccount = () => {
         console.error('ERROR MESSAGE - ', error.message);
       }
     }
-  }
+  };
 
   return (
     <>
