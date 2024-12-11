@@ -1,5 +1,6 @@
 import ChangeProfilePicture from './ChangeProfilePicture';
 import EditProfile from './EditProfile';
+import UpdateSettingsPassword from './UpdateSettingsPassword';
 
 const Settings = () => {
   return (
@@ -9,6 +10,7 @@ const Settings = () => {
       </h1>
       <ChangeProfilePicture />
       <EditProfile />
+      <UpdateSettingsPassword />
     </div>
   );
 };
