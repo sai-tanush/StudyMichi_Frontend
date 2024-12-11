@@ -1,4 +1,5 @@
 import ChangeProfilePicture from './ChangeProfilePicture';
+import DeleteAccount from './DeleteAccount';
 import EditProfile from './EditProfile';
 import UpdateSettingsPassword from './UpdateSettingsPassword';
 
@@ -11,6 +12,7 @@ const Settings = () => {
       <ChangeProfilePicture />
       <EditProfile />
       <UpdateSettingsPassword />
+      <DeleteAccount />
     </div>
   );
 };
