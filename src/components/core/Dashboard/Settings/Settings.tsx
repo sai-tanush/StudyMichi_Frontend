@@ -1,4 +1,5 @@
 import ChangeProfilePicture from './ChangeProfilePicture';
+import EditProfile from './EditProfile';
 
 const Settings = () => {
   return (
@@ -7,6 +8,7 @@ const Settings = () => {
         Edit Profile
       </h1>
       <ChangeProfilePicture />
+      <EditProfile />
     </div>
   );
 };
