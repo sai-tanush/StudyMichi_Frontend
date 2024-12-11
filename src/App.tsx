@@ -99,7 +99,7 @@ function App() {
             element={<PurchaseHistory />}
           />
           <Route path="dashboard/settings" element={<Settings />} />
-          <Route path="dashboardcart" element={<Cart />} />
+          <Route path="dashboard/cart" element={<Cart />} />
         </Route>
 
         <Route path="*" element={<Error />} />
