@@ -4,11 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { deleteProfile } from '../../../../services/operations/settingsAPI';
 import { AppDispatch, RootState } from '../../../../utils/store/store';
+import ConfirmationModal, {
+  ModalDataProps,
+} from '../../../common/ConfirmationModal';
+import { useState } from 'react';
 
 const DeleteAccount = () => {
   const { token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [confirmationModal, setConfirmationModal] =
+    useState<ModalDataProps | null>(null);
 
   async function handleDeleteAccount() {
     try {
@@ -42,11 +48,23 @@ const DeleteAccount = () => {
           <button
             type="button"
             className="w-fit cursor-pointer italic text-pink-300"
-            onClick={handleDeleteAccount}
+            onClick={() =>
+              setConfirmationModal({
+                text1: 'Are You Sure?',
+                text2: 'You account will be permanently deleted',
+                btn1Text: 'Delete',
+                btn2Text: 'Cancel',
+                btn1Handler: () => handleDeleteAccount,
+                btn2Handler: () => setConfirmationModal(null),
+              })
+            }
           >
             I want to delete my account.
           </button>
         </div>
+        {confirmationModal && (
+          <ConfirmationModal modalData={confirmationModal} />
+        )}
       </div>
     </>
   );
