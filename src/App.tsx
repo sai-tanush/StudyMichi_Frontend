@@ -18,8 +18,13 @@ import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
 import Settings from './components/core/Dashboard/Settings';
 import Cart from './components/core/Dashboard/Cart/Cart';
+import { ACCOUNT_TYPE } from './utils/constants';
+import { useSelector } from 'react-redux';
+import { RootState } from './utils/store/store';
 
 function App() {
+  const { user } = useSelector((state: RootState) => state.profile);
+
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
@@ -91,15 +96,20 @@ function App() {
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route
-            path="dashboard/enrolled-courses"
-            element={<EnrolledCourses />}
-          />
-          <Route
             path="dashboard/purchase-history"
             element={<PurchaseHistory />}
           />
           <Route path="dashboard/settings" element={<Settings />} />
-          <Route path="dashboard/cart" element={<Cart />} />
+
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route path="dashboard/cart" element={<Cart />} />
+              <Route
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+            </>
+          )}
         </Route>
 
         <Route path="*" element={<Error />} />
