@@ -15,7 +15,7 @@ interface ConfirmationModalProps {
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ modalData }) => {
   return (
-    <div className="absolute top-0 flex justify-center items-center w-screen h-screen z-50 backdrop-blur-sm bg-[rgba(255,255,255,0.2)]">
+    <div className="absolute top-0 left-0 flex justify-center items-center w-screen h-screen z-50 backdrop-blur-sm bg-[rgba(255,255,255,0.2)]">
       <div className="bg-richblack-900 p-7 rounded-lg">
         <p className="text-2xl font-semibold text-richblack-5 text-left">
           {modalData.text1}
