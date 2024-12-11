@@ -17,6 +17,7 @@ import Error from './components/pages/Error';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
 import Settings from './components/core/Dashboard/Settings';
+import Cart from './components/core/Dashboard/Cart/Cart';
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
             element={<PurchaseHistory />}
           />
           <Route path="dashboard/settings" element={<Settings />} />
+          <Route path="dashboardcart" element={<Cart />} />
         </Route>
 
         <Route path="*" element={<Error />} />
