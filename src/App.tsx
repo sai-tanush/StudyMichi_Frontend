@@ -16,7 +16,7 @@ import PrivateRoute from './components/core/Auth/PrivateRoute';
 import Error from './components/pages/Error';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
-import Settings from './components/core/Dashboard/Settings';
+import Settings from './components/core/Dashboard/Settings/Settings';
 import Cart from './components/core/Dashboard/Cart/Cart';
 import { ACCOUNT_TYPE } from './utils/constants';
 import { useSelector } from 'react-redux';
