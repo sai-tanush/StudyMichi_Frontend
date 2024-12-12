@@ -86,7 +86,7 @@ export const fetchCourseCategories = async () => {
     if (!response?.data?.success) {
       throw new Error('Could Not Fetch Course Categories');
     }
-    result = response?.data?.data;
+    result = response?.data?.allCategories;
   } catch (error) {
     console.log('COURSE_CATEGORY_API API ERROR............', error);
     toast.error(error.message);
@@ -95,7 +95,7 @@ export const fetchCourseCategories = async () => {
 };
 
 // add the course details
-export const addCourseDetails = async (data, token: string) => {
+export const addCourseDetails = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -105,7 +105,7 @@ export const addCourseDetails = async (data, token: string) => {
       bodyData: data,
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('CREATE COURSE API RESPONSE............', response);
@@ -133,7 +133,7 @@ export const editCourseDetails = async (data, token: string | null) => {
       bodyData: data,
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('EDIT COURSE API RESPONSE............', response);
