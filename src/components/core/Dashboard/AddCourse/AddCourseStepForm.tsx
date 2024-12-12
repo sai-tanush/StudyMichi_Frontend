@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../utils/store/store';
 import { STEP_FORM_STEPS } from '../../../../data/addCourse-StepForm-data';
 import { FaCheck } from 'react-icons/fa';
-import CourseInformationForm from './CourseInformationForm';
+import CourseInformationForm from '../AddCourse/CourseInformationForm/CourseInformationForm';
 import CourseBuilderForm from './CourseBuilderForm';
 import PublishCourse from './PublishCourse';
 
