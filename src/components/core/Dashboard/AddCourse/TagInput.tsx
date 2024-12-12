@@ -13,7 +13,6 @@ interface TagInputProps {
   placeholder: string;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
-  //   setValue: (name: string, value: any, options?: Object) => void;
   setValue: UseFormSetValue<FieldValues>;
   getValues: UseFormGetValues<FieldValues>;
 }
