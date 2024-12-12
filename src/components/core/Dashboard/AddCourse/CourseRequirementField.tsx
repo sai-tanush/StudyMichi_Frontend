@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FieldErrors,
   FieldValues,
@@ -26,42 +26,55 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   setValue,
   getValues,
 }) => {
-  const [requirements, setRequirements] = useState<string[]>([]); // List of added sentences
-  const [inputValue, setInputValue] = useState<string>(''); // Current input value
+  const [requirementList, setRequirementList] = useState<string[]>([]); // List of added sentences
+  const [requirement, setRequirement] = useState<string>(''); // Current input value
 
-  const handleAddRequirement = () => {
-    if (inputValue.trim() !== '') {
-      setRequirements((prev) => [...prev, inputValue.trim()]);
-      setValue(name, [...requirements, inputValue.trim()]); // Update react-hook-form value
-      setInputValue(''); // Clear the input
+  const handleAddRequirement = (e) => {
+    e.preventDefault();
+    if (requirement.trim() !== '') {
+      setRequirementList((prev) => [...prev, requirement.trim()]);
+      setValue(name, [...requirementList, requirement.trim()]); // Update react-hook-form value
+      setRequirement(''); // Clear the input
     }
   };
 
   const handleRemoveRequirement = (index: number) => {
-    const updatedRequirements = requirements.filter((_, i) => i !== index);
-    setRequirements(updatedRequirements);
+    const updatedRequirements = requirementList.filter((_, i) => i !== index);
+    setRequirementList(updatedRequirements);
     setValue(name, updatedRequirements); // Update react-hook-form value
   };
+
+  useEffect(() => {
+    register(name, {
+      required: true,
+      validate: (value) => value.length > 0,
+    });
+  }, []);
+
+  useEffect(() => {
+    setValue(name, requirementList);
+  }, [requirementList]);
 
   return (
     <div className="w-full">
       <label htmlFor={name} className="block font-semibold mb-2">
         {label}
       </label>
+
       <input
         type="text"
         id={name}
-        value={inputValue}
+        value={requirement}
         placeholder={placeholder}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => setRequirement(e.target.value)}
         className={`w-full border rounded p-2 ${
           errors[name] ? 'border-red-500' : 'border-gray-300'
         }`}
       />
+
       <button
-        type="button"
         onClick={handleAddRequirement}
-        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
+        className="mt-2 font-bold text-yellow-100 px-4 py-2 rounded cursor-pointer"
       >
         ADD
       </button>
@@ -70,8 +83,9 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
           {(errors[name]?.message as string) || `${label} is required.`}
         </p>
       )}
+
       <ul className="mt-4 space-y-2">
-        {requirements.map((req, index) => (
+        {requirementList.map((req, index) => (
           <li
             key={index}
             className="flex items-center justify-between bg-gray-100 p-2 rounded"
@@ -80,7 +94,7 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
             <button
               type="button"
               onClick={() => handleRemoveRequirement(index)}
-              className="text-red-500 hover:underline"
+              className="text-xs text-pure-greys-300 hover:underline"
             >
               Remove
             </button>
