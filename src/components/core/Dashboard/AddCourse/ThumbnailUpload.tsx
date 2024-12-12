@@ -1,111 +1,145 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { FiUploadCloud } from 'react-icons/fi';
+import ReactPlayer from 'react-player';
+
 import {
   FieldErrors,
   FieldValues,
-  UseFormGetValues,
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
 
 interface ThumbnailUploadProps {
-  label: string;
   name: string;
+  label: string;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+  video: boolean;
+  viewData: any | null;
+  editData: any | null;
 }
 
 const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
   name,
   label,
   register,
-  errors,
   setValue,
+  errors,
+  video = false,
+  viewData = null,
+  editData = null,
 }) => {
-  const [preview, setPreview] = useState<string | null>(null); // For preview
-  const [error, setError] = useState<string | null>(null); // For validation errors
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewSource, setPreviewSource] = useState<string>(
+    viewData ? viewData : editData ? editData : '',
+  );
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
+  const onDrop = (acceptedFiles: File[]) => {
+    const file = acceptedFiles[0];
     if (file) {
-      // Validate file size and type
-      const isVideo = file.type.startsWith('video');
-      const maxSize = isVideo ? 12 * 1024 * 1024 : 6 * 1024 * 1024;
-      if (file.size > maxSize) {
-        setError(`File size exceeds the ${isVideo ? '12MB' : '6MB'} limit.`);
-        return;
-      }
-
-      // Set preview and clear errors
-      setError(null);
-      setValue(name, file);
-      setPreview(URL.createObjectURL(file));
+      previewFile(file);
+      setSelectedFile(file);
     }
   };
 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: video ? { 'video/mp4': [] } : { 'image/jpeg': [], 'image/png': [] },
+    onDrop,
+    multiple: false,
+  });
+
+  const previewFile = (file: File) => {
+    const url = URL.createObjectURL(file);
+    setPreviewSource(url);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (previewSource && typeof previewSource === 'string') {
+        URL.revokeObjectURL(previewSource);
+      }
+    };
+  }, [previewSource]);
+
+  useEffect(() => {
+    register(name, { required: true });
+  }, [register, name]);
+
+  useEffect(() => {
+    setValue(name, selectedFile);
+  }, [selectedFile, setValue, name]);
+
   return (
-    <div className="w-full">
-      <label htmlFor={name} className="block font-semibold mb-2">
-        {label}
+    <div className="flex flex-col space-y-2">
+      <label className="text-sm text-richblack-5" htmlFor={name}>
+        {label} {!viewData && <sup className="text-pink-200">*</sup>}
       </label>
       <div
-        className={`border-dashed border-2 rounded p-4 text-center ${
-          errors[name] ? 'border-red-500' : 'border-gray-300'
-        }`}
+        className={`${
+          isDragActive ? 'bg-richblack-600' : 'bg-richblack-700'
+        } flex min-h-[250px] cursor-pointer items-center justify-center rounded-md border-2 border-dotted border-richblack-500`}
+        {...getRootProps()}
       >
-        {preview ? (
-          <div className="relative">
-            {preview.endsWith('.mp4') || preview.endsWith('.webm') ? (
-              <video className="w-full h-auto" controls src={preview}></video>
-            ) : (
+        {previewSource ? (
+          <div className="flex w-full flex-col p-6">
+            {!video ? (
               <img
-                className="w-full h-auto object-cover"
-                src={preview}
+                src={previewSource}
                 alt="Preview"
+                className="h-full w-full rounded-md object-cover"
+              />
+            ) : (
+              <ReactPlayer
+                url={previewSource}
+                controls
+                width="100%"
+                height="100%"
               />
             )}
-            <button
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1"
-              onClick={() => {
-                setPreview(null);
-                setValue(name, null); // Clear form value
-              }}
-            >
-              ✕
-            </button>
+            {!viewData && (
+              <button
+                type="button"
+                onClick={() => {
+                  setPreviewSource('');
+                  setSelectedFile(null);
+                  setValue(name, null);
+                }}
+                className="mt-3 text-richblack-400 underline"
+              >
+                Cancel
+              </button>
+            )}
           </div>
         ) : (
-          <>
-            <p className="text-gray-500">
-              Drag and drop an image, or{' '}
-              <label
-                htmlFor={`file-input-${name}`}
-                className="text-blue-500 cursor-pointer underline"
+          <div className="flex w-full flex-col items-center p-6">
+            <input {...getInputProps()} ref={inputRef} />
+            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
+              <FiUploadCloud className="text-2xl text-yellow-50" />
+            </div>
+            <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
+              Drag and drop an {!video ? 'image' : 'video'}, or click to{' '}
+              <span
+                className="font-semibold text-yellow-50 cursor-pointer"
+                onClick={() => inputRef.current?.click()}
               >
                 Browse
-              </label>
+              </span>{' '}
+              a file
             </p>
-            <p className="text-sm text-gray-400 mt-1">
-              Max 6MB for images, 12MB for videos. Aspect ratio 16:9.
-            </p>
-            <input
-              id={`file-input-${name}`}
-              type="file"
-              accept="image/*,video/*"
-              {...register(name, { required: true })}
-              onChange={handleFileChange}
-              className="hidden"
-            />
-          </>
+            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richblack-200">
+              <li>Aspect ratio 16:9</li>
+              <li>Recommended size 1024x576</li>
+            </ul>
+          </div>
         )}
       </div>
-      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       {errors[name] && (
-        <p className="text-red-500 text-sm mt-2">
-          {(errors[name]?.message as string) || `${label} is required.`}
-        </p>
+        <span className="ml-2 text-xs tracking-wide text-pink-200">
+          {label} is required
+        </span>
       )}
     </div>
   );
