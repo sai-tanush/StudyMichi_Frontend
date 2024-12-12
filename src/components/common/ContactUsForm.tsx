@@ -88,7 +88,7 @@ const ContactUsForm: React.FC = () => {
               />
               {errors.firstName && (
                 <span className="text-sm text-red-500 mt-1">
-                  P{errors.firstName.message}
+                  {errors.firstName.message}
                 </span>
               )}
             </div>
@@ -108,7 +108,7 @@ const ContactUsForm: React.FC = () => {
               />
               {errors.lastName && (
                 <span className="text-sm text-red-500 mt-1">
-                  P{errors.lastName.message}
+                  {errors.lastName.message}
                 </span>
               )}
             </div>
