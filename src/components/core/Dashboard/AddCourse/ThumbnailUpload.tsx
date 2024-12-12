@@ -16,9 +16,9 @@ interface ThumbnailUploadProps {
   register: UseFormRegister<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
   errors: FieldErrors<FieldValues>;
-  video: boolean;
-  viewData: any | null;
-  editData: any | null;
+  video?: boolean;
+  viewData?: any | null;
+  editData?: any | null;
 }
 
 const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
