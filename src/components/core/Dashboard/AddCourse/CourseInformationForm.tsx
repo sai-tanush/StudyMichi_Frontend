@@ -187,7 +187,10 @@ const CourseInformationForm: React.FC = () => {
               {...register('courseTitle', { required: true })}
               className="w-full"
             />
-            {errors.courseTitle && <span>{errors.courseTitle.message}</span>}
+            {errors.courseTitle &&
+              typeof errors.courseTitle.message === 'string' && (
+                <span>{errors.courseTitle.message}</span>
+              )}
           </div>
 
           {/* Course Short Description */}
@@ -201,7 +204,10 @@ const CourseInformationForm: React.FC = () => {
               {...register('courseShortDesc', { required: true })}
               className="w-full min-h-[140px]"
             />
-            {errors.courseTitle && <span>{errors.courseTitle.message}</span>}
+            {errors.courseTitle &&
+              typeof errors.courseTitle.message === 'string' && (
+                <span>{errors.courseTitle.message}</span>
+              )}
           </div>
 
           {/* Course Price */}
@@ -219,7 +225,10 @@ const CourseInformationForm: React.FC = () => {
               size={26}
               className="absolute top-1/2 text-richblack-400"
             />
-            {errors.courseTitle && <span>{errors.coursePrice.message}</span>}
+            {errors.coursePrice &&
+              typeof errors.coursePrice.message === 'string' && (
+                <span>{errors.coursePrice.message}</span>
+              )}
           </div>
 
           {/* Course Category */}
@@ -244,7 +253,10 @@ const CourseInformationForm: React.FC = () => {
                   </option>
                 ))}
             </select>
-            {errors.courseTitle && <span>{errors.courseTitle.message}</span>}
+            {errors.courseCategory &&
+              typeof errors.courseCategory.message === 'string' && (
+                <span>{errors.courseCategory.message}</span>
+              )}
           </div>
 
           {/* Course Tags */}
@@ -268,7 +280,6 @@ const CourseInformationForm: React.FC = () => {
               register={register}
               errors={errors}
               setValue={setValue}
-              getValues={getValues}
             />
           </div>
 
@@ -283,7 +294,10 @@ const CourseInformationForm: React.FC = () => {
               {...register('courseBenefits', { required: true })}
               className="w-full min-h-[140px]"
             />
-            {errors.courseTitle && <span>{errors.courseBenefits.message}</span>}
+            {errors.courseBenefits &&
+              typeof errors.courseBenefits.message === 'string' && (
+                <span>{errors.courseBenefits.message}</span>
+              )}
           </div>
 
           {/* Course Requirement Field */}
