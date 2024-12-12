@@ -6,9 +6,6 @@ import { courseEndpoints } from '../apis';
 type courseIDType = {
   courseId: string;
 };
-type tokenType = {
-  token: string;
-};
 
 const {
   COURSE_DETAILS_API,
@@ -98,7 +95,7 @@ export const fetchCourseCategories = async () => {
 };
 
 // add the course details
-export const addCourseDetails = async (data, token: tokenType) => {
+export const addCourseDetails = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -126,7 +123,7 @@ export const addCourseDetails = async (data, token: tokenType) => {
 };
 
 // edit the course details
-export const editCourseDetails = async (data, token: tokenType) => {
+export const editCourseDetails = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -154,7 +151,7 @@ export const editCourseDetails = async (data, token: tokenType) => {
 };
 
 // create a section
-export const createSection = async (data, token: tokenType) => {
+export const createSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -181,7 +178,7 @@ export const createSection = async (data, token: tokenType) => {
 };
 
 // create a subsection
-export const createSubSection = async (data, token: tokenType) => {
+export const createSubSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -208,7 +205,7 @@ export const createSubSection = async (data, token: tokenType) => {
 };
 
 // update a section
-export const updateSection = async (data, token: tokenType) => {
+export const updateSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -235,7 +232,7 @@ export const updateSection = async (data, token: tokenType) => {
 };
 
 // update a subsection
-export const updateSubSection = async (data, token: tokenType) => {
+export const updateSubSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -262,7 +259,7 @@ export const updateSubSection = async (data, token: tokenType) => {
 };
 
 // delete a section
-export const deleteSection = async (data, token: tokenType) => {
+export const deleteSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -288,7 +285,7 @@ export const deleteSection = async (data, token: tokenType) => {
   return result;
 };
 // delete a subsection
-export const deleteSubSection = async (data, token: tokenType) => {
+export const deleteSubSection = async (data, token: string) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -315,7 +312,7 @@ export const deleteSubSection = async (data, token: tokenType) => {
 };
 
 // fetching all courses under a specific instructor
-export const fetchInstructorCourses = async (token: tokenType) => {
+export const fetchInstructorCourses = async (token: string) => {
   let result = [];
   const toastId = toast.loading('Loading...');
   try {
@@ -340,7 +337,7 @@ export const fetchInstructorCourses = async (token: tokenType) => {
 };
 
 // delete a course
-export const deleteCourse = async (data, token: tokenType) => {
+export const deleteCourse = async (data, token: string) => {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
@@ -366,7 +363,7 @@ export const deleteCourse = async (data, token: tokenType) => {
 // get full details of a course
 export const getFullDetailsOfCourse = async (
   courseId: courseIDType,
-  token: tokenType,
+  token: string,
 ) => {
   const toastId = toast.loading('Loading...');
   //   dispatch(setLoading(true));
@@ -399,7 +396,7 @@ export const getFullDetailsOfCourse = async (
 };
 
 // mark a lecture as complete
-export const markLectureAsComplete = async (data, token: tokenType) => {
+export const markLectureAsComplete = async (data, token: string) => {
   let result = null;
   console.log('mark complete data', data);
   const toastId = toast.loading('Loading...');
@@ -432,7 +429,7 @@ export const markLectureAsComplete = async (data, token: tokenType) => {
 };
 
 // create a rating for course
-export const createRating = async (data, token: tokenType) => {
+export const createRating = async (data, token: string) => {
   const toastId = toast.loading('Loading...');
   let success = false;
   try {
