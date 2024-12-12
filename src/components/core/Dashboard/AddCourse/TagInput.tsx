@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FieldErrors,
   FieldValues,
@@ -28,6 +28,10 @@ const TagInput: React.FC<TagInputProps> = ({
 }) => {
   const [tags, setTags] = useState<string[]>([]);
 
+  useEffect(() => {
+    setValue(name, tags); // Update the form's value with the current tags array
+  }, [tags, name, setValue]);
+
   const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
       e.preventDefault();
@@ -35,7 +39,7 @@ const TagInput: React.FC<TagInputProps> = ({
       if (inputValue && !tags.includes(inputValue)) {
         const updatedTags = [...tags, inputValue];
         setTags(updatedTags);
-        setValue(name, ''); // Clear input field
+        setValue(name, updatedTags); // Ensure form value is updated
       }
     }
   };
@@ -43,6 +47,7 @@ const TagInput: React.FC<TagInputProps> = ({
   const handleRemoveTag = (index: number) => {
     const updatedTags = tags.filter((_, i) => i !== index);
     setTags(updatedTags);
+    setValue(name, updatedTags); // Ensure form value is updated
   };
 
   return (
