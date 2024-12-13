@@ -5,7 +5,7 @@ const AddCourse: React.FC = () => {
   return (
     <div className="w-screen min-h-screen text-white flex gap-x-10 items-start">
       <div className="flex flex-col w-[50%] mx-5">
-        <h1>Add Course</h1>
+        <h1 className="text-4xl font-semibold text-richblack-5">Add Course</h1>
         <div>
           <AddCourseStepForm />
         </div>
