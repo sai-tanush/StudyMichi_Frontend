@@ -22,7 +22,7 @@ export function getUserDetails(
         method: 'GET',
         url: GET_USER_DETAILS_API,
         headers: {
-          Authorisation: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       console.log('GET_USER_DETAILS API RESPONSE............', response);
@@ -53,7 +53,7 @@ export async function getUserEnrolledCourses(token: string | null) {
       method: 'GET',
       url: GET_USER_ENROLLED_COURSES_API,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(
