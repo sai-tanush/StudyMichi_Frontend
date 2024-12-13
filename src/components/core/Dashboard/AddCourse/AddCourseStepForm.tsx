@@ -3,7 +3,7 @@ import { RootState } from '../../../../utils/store/store';
 import { STEP_FORM_STEPS } from '../../../../data/addCourse-StepForm-data';
 import { FaCheck } from 'react-icons/fa';
 import CourseInformationForm from '../AddCourse/CourseInformationForm/CourseInformationForm';
-import CourseBuilderForm from './CourseBuilderForm';
+import CourseBuilderForm from './CourseBuilderForm/CourseBuilderForm';
 import PublishCourse from './PublishCourse';
 
 const AddCourseStepForm: React.FC = () => {
