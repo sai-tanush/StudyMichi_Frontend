@@ -9,6 +9,6 @@ export const STEP_FORM_STEPS = [
   },
   {
     id: 3,
-    title: 'Publish',
+    title: 'Course Publish',
   },
 ];
