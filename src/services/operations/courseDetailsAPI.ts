@@ -105,7 +105,7 @@ export const addCourseDetails = async (data, token: string | null) => {
       bodyData: data,
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('CREATE COURSE API RESPONSE............', response);
@@ -133,7 +133,7 @@ export const editCourseDetails = async (data, token: string | null) => {
       bodyData: data,
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('EDIT COURSE API RESPONSE............', response);
@@ -160,7 +160,7 @@ export const createSection = async (data, token: string | null) => {
       url: CREATE_SECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('CREATE SECTION API RESPONSE............', response);
@@ -187,7 +187,7 @@ export const createSubSection = async (data, token: string) => {
       url: CREATE_SUBSECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('CREATE SUB-SECTION API RESPONSE............', response);
@@ -214,7 +214,7 @@ export const updateSection = async (data, token: string | null) => {
       url: UPDATE_SECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('UPDATE SECTION API RESPONSE............', response);
@@ -241,7 +241,7 @@ export const updateSubSection = async (data, token: string) => {
       url: UPDATE_SUBSECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('UPDATE SUB-SECTION API RESPONSE............', response);
@@ -268,7 +268,7 @@ export const deleteSection = async (data, token: string) => {
       url: DELETE_SECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('DELETE SECTION API RESPONSE............', response);
@@ -294,7 +294,7 @@ export const deleteSubSection = async (data, token: string) => {
       url: DELETE_SUBSECTION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('DELETE SUB-SECTION API RESPONSE............', response);
@@ -320,7 +320,7 @@ export const fetchInstructorCourses = async (token: string) => {
       method: 'GET',
       url: GET_ALL_INSTRUCTOR_COURSES_API,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('INSTRUCTOR COURSES API RESPONSE............', response);
@@ -345,7 +345,7 @@ export const deleteCourse = async (data, token: string) => {
       url: DELETE_COURSE_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('DELETE COURSE API RESPONSE............', response);
@@ -376,7 +376,7 @@ export const getFullDetailsOfCourse = async (
         courseId,
       },
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('COURSE_FULL_DETAILS_API API RESPONSE............', response);
@@ -406,7 +406,7 @@ export const markLectureAsComplete = async (data, token: string) => {
       url: LECTURE_COMPLETION_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log(
@@ -438,7 +438,7 @@ export const createRating = async (data, token: string) => {
       url: CREATE_RATING_API,
       bodyData: data,
       headers: {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     console.log('CREATE RATING API RESPONSE............', response);
