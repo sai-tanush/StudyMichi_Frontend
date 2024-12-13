@@ -8,6 +8,7 @@ import {
   FieldValues,
   UseFormRegister,
   UseFormSetValue,
+  UseFormClearErrors,
 } from 'react-hook-form';
 
 interface ThumbnailUploadProps {
@@ -16,6 +17,7 @@ interface ThumbnailUploadProps {
   register: UseFormRegister<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
   errors: FieldErrors<FieldValues>;
+  clearErrors: UseFormClearErrors<FieldValues>;
   video?: boolean;
   viewData?: any | null;
   editData?: any | null;
@@ -27,6 +29,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
   register,
   setValue,
   errors,
+  clearErrors,
   video = false,
   viewData = null,
   editData = null,
@@ -42,6 +45,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
     if (file) {
       previewFile(file);
       setSelectedFile(file);
+      clearErrors(name);
     }
   };
 
@@ -73,8 +77,11 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
   }, [selectedFile, setValue, name]);
 
   return (
-    <div className="flex flex-col space-y-2">
-      <label className="text-sm text-richblack-5" htmlFor={name}>
+    <div className="flex flex-col gap-y-1 mb-6">
+      <label
+        htmlFor={name}
+        className="lable-style text-sm text-richblack-200 mt-1"
+      >
         {label} {!viewData && <sup className="text-pink-200">*</sup>}
       </label>
       <div
@@ -129,7 +136,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
               </span>{' '}
               a file
             </p>
-            <ul className="mt-10 flex list-disc justify-between space-x-12 text-center text-xs text-richblack-200">
+            <ul className="mt-10 ml-10 flex list-disc justify-between space-x-20 text-center text-xs text-richblack-200">
               <li>Aspect ratio 16:9</li>
               <li>Recommended size 1024x576</li>
             </ul>
@@ -137,7 +144,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
         )}
       </div>
       {errors[name] && (
-        <span className="ml-2 text-xs tracking-wide text-pink-200">
+        <span className="text-sm tracking-wide text-red-300">
           {label} is required
         </span>
       )}
