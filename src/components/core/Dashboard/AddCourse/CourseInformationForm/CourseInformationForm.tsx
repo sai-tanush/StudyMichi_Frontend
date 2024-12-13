@@ -1,21 +1,21 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RootState } from '../../../../utils/store/store';
 import { useEffect, useState } from 'react';
 import {
   addCourseDetails,
   editCourseDetails,
   fetchCourseCategories,
-} from '../../../../services/operations/courseDetailsAPI';
+} from '../../../../../services/operations/courseDetailsAPI';
 import { HiOutlineCurrencyRupee } from 'react-icons/hi';
 import TagInput from './TagInput';
 import ThumbnailUpload from './ThumbnailUpload';
 import CourseRequirementField from './CourseRequirementField';
-import { setCourse, setStep } from '../../../../utils/slices/courseSlice';
-import IconBtn from '../../../common/IconBtn';
+import { setCourse, setStep } from '../../../../../utils/slices/courseSlice';
+import IconBtn from '../../../../common/IconBtn';
 import toast from 'react-hot-toast';
-import { COURSE_STATUS } from '../../../../utils/constants';
+import { COURSE_STATUS } from '../../../../../utils/constants';
+import { RootState } from '../../../../../utils/store/store';
 
 const CourseInformationForm: React.FC = () => {
   const {
@@ -173,7 +173,7 @@ const CourseInformationForm: React.FC = () => {
     <div>
       <form
         onSubmit={handleSubmit(onFormSubmit)}
-        className="rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8"
+        className="rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8 w-full"
       >
         <div>
           {/* Course Title */}
