@@ -29,9 +29,11 @@ const IconBtn: React.FC<IconBtnProps> = ({
       disabled={disabled}
       onClick={onclick}
       type={type}
-      className={`h-fit px-6 py-2 bg-yellow-100 text-richblack-900 rounded-lg ${customClasses} ${
-        outline ? 'outline-1' : 'outline-none'
-      }`}
+      className={`h-fit px-6 py-2 font-semibold rounded-lg ${customClasses} ${
+        outline
+          ? 'border border-yellow-50 text-richblack-5 bg-transparent'
+          : 'bg-yellow-50 text-richblack-900'
+      } `}
     >
       {children ? (
         <div className="flex items-center gap-2">
