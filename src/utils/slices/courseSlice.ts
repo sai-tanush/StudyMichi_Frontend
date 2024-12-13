@@ -33,7 +33,7 @@ export interface CourseProps {
 
 interface initialStateProps {
   step: number;
-  course: CourseProps | null;
+  course: CourseProps;
   editCourse: boolean;
   paymentLoading: boolean;
 }
