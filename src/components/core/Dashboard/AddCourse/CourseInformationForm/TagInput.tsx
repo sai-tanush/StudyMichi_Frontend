@@ -40,6 +40,7 @@ const TagInput: React.FC<TagInputProps> = ({
         const updatedTags = [...tags, inputValue];
         setTags(updatedTags);
         setValue(name, updatedTags); // Ensure form value is updated
+        console.log('Updated Tags = ', updatedTags);
       }
     }
   };
@@ -51,7 +52,7 @@ const TagInput: React.FC<TagInputProps> = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       {/* Display tags */}
       <div className="flex flex-wrap gap-2 mb-2">
         {tags.map((tag, index) => (
@@ -71,8 +72,11 @@ const TagInput: React.FC<TagInputProps> = ({
         ))}
       </div>
 
-      <label htmlFor={name} className="block font-semibold mb-2">
-        {label} <sup className="text-red-500">*</sup>
+      <label
+        htmlFor={name}
+        className="lable-style text-sm text-richblack-200 mt-1"
+      >
+        {label} <sup className="text-red-300 text-md ml-0.5">*</sup>
       </label>
 
       {/* Input field */}
@@ -82,16 +86,12 @@ const TagInput: React.FC<TagInputProps> = ({
         {...register(name, { required: true })}
         onKeyDown={handleAddTag}
         className={`w-full border ${
-          errors[name] ? 'border-red-500' : 'border-gray-300'
-        } p-2 rounded`}
+          errors[name] ? 'border-red-500' : 'border-richblack-700'
+        } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
       />
-
-      {/* Error message */}
-      {errors[name] && (
-        <p className="text-red-500 text-sm mt-1">
-          {typeof errors[name]?.message === 'string'
-            ? errors[name]?.message
-            : `${label} is required`}
+      {errors[name] && typeof errors[name].message === 'string' && (
+        <p className="text-red-300 text-sm mt-0.5">
+          {(errors[name]?.message as string) || `${label} is required`}
         </p>
       )}
     </div>
