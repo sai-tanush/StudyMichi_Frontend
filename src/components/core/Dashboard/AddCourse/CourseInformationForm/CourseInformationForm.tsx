@@ -16,6 +16,7 @@ import IconBtn from '../../../../common/IconBtn';
 import toast from 'react-hot-toast';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { RootState } from '../../../../../utils/store/store';
+import { MdNavigateNext } from 'react-icons/md';
 
 const CourseInformationForm: React.FC = () => {
   const {
@@ -24,6 +25,7 @@ const CourseInformationForm: React.FC = () => {
     setValue,
     getValues,
     formState: { errors },
+    clearErrors,
   } = useForm();
 
   const dispatch = useDispatch();
@@ -146,13 +148,17 @@ const CourseInformationForm: React.FC = () => {
     }
 
     //create a new course
+    console.log(
+      'Course Tags before appending in form ',
+      JSON.stringify(data.courseTags),
+    );
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
     formData.append('price', data.coursePrice);
     formData.append('whatYouWillLearn', data.courseBenefits);
     formData.append('category', data.courseCategory);
-    formData.append('tags', JSON.stringify(data.courseTags));
+    formData.append('tag', JSON.stringify(data.courseTags));
     formData.append('thumbnailImage', data.courseImage);
     formData.append('instructions', JSON.stringify(data.courseRequirements));
     formData.append('status', COURSE_STATUS.DRAFT);
@@ -160,7 +166,7 @@ const CourseInformationForm: React.FC = () => {
     setLoading(true);
     const result = await addCourseDetails(formData, token);
     if (result) {
-      setStep(2);
+      dispatch(setStep(2));
       dispatch(setCourse(result));
     }
     setLoading(false);
@@ -177,70 +183,108 @@ const CourseInformationForm: React.FC = () => {
       >
         <div>
           {/* Course Title */}
-          <div>
-            <label htmlFor="courseTitle">
-              Course Title<sup>*</sup>
+          <div className="flex flex-col gap-y-1 mb-6">
+            <label
+              htmlFor="courseTitle"
+              className="lable-style text-sm text-richblack-200 mt-1"
+            >
+              Course Title<sup className="text-red-300 text-md ml-0.5">*</sup>
             </label>
             <input
               id="courseTitle"
               placeholder="Enter Course Title"
               {...register('courseTitle', { required: true })}
-              className="w-full"
+              className={`w-full border ${
+                errors.courseTitle ? 'border-red-500' : 'border-richblack-700'
+              } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
             />
             {errors.courseTitle &&
               typeof errors.courseTitle.message === 'string' && (
-                <span>{errors.courseTitle.message}</span>
+                <p className="text-red-300 text-sm">
+                  {(errors.courseTitle?.message as string) ||
+                    `Course title is required`}
+                </p>
               )}
           </div>
 
           {/* Course Short Description */}
-          <div>
-            <label htmlFor="courseShortDesc">
-              Course Short Description<sup>*</sup>
+          <div className="flex flex-col gap-y-1 mb-6">
+            <label
+              htmlFor="courseShortDesc"
+              className="lable-style text-sm text-richblack-200 mt-1"
+            >
+              Course Short Description
+              <sup className="text-red-300 text-md ml-0.5">*</sup>
             </label>
             <textarea
               id="courseShortDesc"
               placeholder="Enter Course Description"
               {...register('courseShortDesc', { required: true })}
-              className="w-full min-h-[140px]"
+              className={`w-full border ${
+                errors.courseShortDesc
+                  ? 'border-red-500'
+                  : 'border-richblack-700'
+              } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 lg:min-h-[140px]`}
             />
-            {errors.courseTitle &&
-              typeof errors.courseTitle.message === 'string' && (
-                <span>{errors.courseTitle.message}</span>
+            {errors.courseShortDesc &&
+              typeof errors.courseShortDesc.message === 'string' && (
+                <p className="text-red-300 text-sm">
+                  {(errors.courseShortDesc?.message as string) ||
+                    `Course description is required`}
+                </p>
               )}
           </div>
 
           {/* Course Price */}
-          <div className="relative">
-            <label htmlFor="coursePrice">
-              Course Price<sup>*</sup>
+          <div className="relative flex flex-col gap-y-1 mb-6">
+            <label
+              htmlFor="coursePrice"
+              className="lable-style text-sm text-richblack-200 mt-1"
+            >
+              Course Price<sup className="text-red-300 text-md ml-0.5">*</sup>
             </label>
-            <input
-              id="coursePrice"
-              placeholder="Enter Course Price"
-              {...register('coursePrice', { required: true })}
-              className="w-full"
-            />
-            <HiOutlineCurrencyRupee
-              size={26}
-              className="absolute top-1/2 text-richblack-400"
-            />
+            <div className="relative">
+              <input
+                id="coursePrice"
+                placeholder="Enter Course Price"
+                {...register('coursePrice', { required: true })}
+                className={`w-full border ${
+                  errors.coursePrice ? 'border-red-500' : 'border-richblack-700'
+                } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 pl-10`} // Added padding-left for space
+              />
+
+              <HiOutlineCurrencyRupee
+                size={28} // Adjust size as needed
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 text-richblack-100" // Position the icon
+              />
+            </div>
+
             {errors.coursePrice &&
               typeof errors.coursePrice.message === 'string' && (
-                <span>{errors.coursePrice.message}</span>
+                <p className="text-red-300 text-sm mt-0.5">
+                  {errors.coursePrice?.message || `Course price is required`}
+                </p>
               )}
           </div>
 
           {/* Course Category */}
-          <div>
-            <label htmlFor="courseCategory">
-              Course Category<sup>*</sup>
+          <div className="relative flex flex-col gap-y-1 mb-6">
+            <label
+              htmlFor="courseCategory"
+              className="lable-style text-sm text-richblack-200 mt-1"
+            >
+              Course Category
+              <sup className="text-red-300 text-md ml-0.5">*</sup>
             </label>
             <select
               id="courseCategory"
               defaultValue=""
               {...register('courseCategory', { required: true })}
-              className="w-full"
+              className={`w-full border ${
+                errors.courseCategory
+                  ? 'border-red-500'
+                  : 'border-richblack-700'
+              } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
             >
               <option value="" disabled>
                 Choose a Category
@@ -255,12 +299,15 @@ const CourseInformationForm: React.FC = () => {
             </select>
             {errors.courseCategory &&
               typeof errors.courseCategory.message === 'string' && (
-                <span>{errors.courseCategory.message}</span>
+                <p className="text-red-300 text-sm">
+                  {(errors.courseBenefits?.message as string) ||
+                    `Course category is required`}
+                </p>
               )}
           </div>
 
           {/* Course Tags */}
-          <div>
+          <div className="-mt-2">
             <TagInput
               label="Tags"
               name="courseTags"
@@ -280,28 +327,40 @@ const CourseInformationForm: React.FC = () => {
               register={register}
               errors={errors}
               setValue={setValue}
+              clearErrors={clearErrors}
             />
           </div>
 
           {/* Course Benefits */}
-          <div>
-            <label htmlFor="courseBenefits">
-              Benefits of the Course<sup>*</sup>
+          <div className="relative flex flex-col gap-y-1 mb-6">
+            <label
+              htmlFor="courseBenefits"
+              className="lable-style text-sm text-richblack-200 mt-1"
+            >
+              Benefits of the Course
+              <sup className="text-red-300 text-md ml-0.5">*</sup>
             </label>
             <textarea
               id="courseBenefits"
               placeholder="Enter benefits of the Course"
               {...register('courseBenefits', { required: true })}
-              className="w-full min-h-[140px]"
+              className={`w-full border ${
+                errors.courseBenefits
+                  ? 'border-red-500'
+                  : 'border-richblack-700'
+              } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 lg:min-h-[140px]`}
             />
             {errors.courseBenefits &&
               typeof errors.courseBenefits.message === 'string' && (
-                <span>{errors.courseBenefits.message}</span>
+                <p className="text-red-300 text-sm">
+                  {(errors.courseBenefits?.message as string) ||
+                    `Course benefits is required`}
+                </p>
               )}
           </div>
 
           {/* Course Requirement Field */}
-          <div>
+          <div className="flex flex-col gap-y-1 mb-6">
             <CourseRequirementField
               name="courseRequirements"
               label="Requirements/ Instructions"
@@ -309,12 +368,12 @@ const CourseInformationForm: React.FC = () => {
               register={register}
               errors={errors}
               setValue={setValue}
-              getValues={getValues}
+              clearErrors={clearErrors}
             />
           </div>
         </div>
 
-        <div>
+        <div className="text-right">
           {editCourse && (
             <button
               onClick={() => dispatch(setStep(2))}
@@ -324,7 +383,13 @@ const CourseInformationForm: React.FC = () => {
             </button>
           )}
 
-          <IconBtn text={!editCourse ? 'Next' : 'Save Changes'} />
+          <IconBtn
+            disabled={loading}
+            //onclick={() => dispatch(setStep(2))}
+            text={!editCourse ? 'Next' : 'Save Changes'}
+          >
+            <MdNavigateNext />
+          </IconBtn>
         </div>
       </form>
     </div>
