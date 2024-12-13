@@ -5,6 +5,7 @@ import {
   UseFormGetValues,
   UseFormRegister,
   UseFormSetValue,
+  UseFormClearErrors,
 } from 'react-hook-form';
 
 interface CourseRequirementFieldProps {
@@ -14,7 +15,8 @@ interface CourseRequirementFieldProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
+  getValues?: UseFormGetValues<FieldValues>;
+  clearErrors: UseFormClearErrors<FieldValues>;
 }
 
 const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
@@ -24,17 +26,20 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   register,
   errors,
   setValue,
-  getValues,
+  clearErrors,
 }) => {
   const [requirementList, setRequirementList] = useState<string[]>([]); // List of added sentences
   const [requirement, setRequirement] = useState<string>(''); // Current input value
 
-  const handleAddRequirement = (e) => {
+  const handleAddRequirement = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     e.preventDefault();
     if (requirement.trim() !== '') {
       setRequirementList((prev) => [...prev, requirement.trim()]);
       setValue(name, [...requirementList, requirement.trim()]); // Update react-hook-form value
       setRequirement(''); // Clear the input
+      clearErrors(name);
     }
   };
 
@@ -57,8 +62,12 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
 
   return (
     <div className="w-full">
-      <label htmlFor={name} className="block font-semibold mb-2">
+      <label
+        htmlFor={name}
+        className="lable-style text-sm text-richblack-200 mt-1"
+      >
         {label}
+        <sup className="text-red-300 text-md ml-0.5">*</sup>
       </label>
 
       <input
@@ -67,10 +76,15 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
         value={requirement}
         placeholder={placeholder}
         onChange={(e) => setRequirement(e.target.value)}
-        className={`w-full border rounded p-2 ${
-          errors[name] ? 'border-red-500' : 'border-gray-300'
-        }`}
+        className={`w-full border ${
+          errors[name] ? 'border-red-500' : 'border-richblack-700'
+        } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5`}
       />
+      {errors[name] && typeof errors[name].message === 'string' && (
+        <p className="text-red-300 text-sm mt-0.5">
+          {(errors[name]?.message as string) || `${label} is required`}
+        </p>
+      )}
 
       <button
         onClick={handleAddRequirement}
@@ -78,17 +92,12 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
       >
         ADD
       </button>
-      {errors[name] && (
-        <p className="text-red-500 text-sm mt-2">
-          {(errors[name]?.message as string) || `${label} is required.`}
-        </p>
-      )}
 
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 ml-2 space-y-2">
         {requirementList.map((req, index) => (
           <li
             key={index}
-            className="flex items-center justify-between bg-gray-100 p-2 rounded"
+            className="flex items-center justify-between bg-gray-100 p-2 rounded w-2/3 "
           >
             <span>{req}</span>
             <button
