@@ -33,13 +33,13 @@ export interface CourseProps {
 
 interface initialStateProps {
   step: number;
-  course: CourseProps;
+  course: CourseProps | null;
   editCourse: boolean;
   paymentLoading: boolean;
 }
 
 const initialState: initialStateProps = {
-  step: 2,
+  step: 1,
   course: null,
   editCourse: false,
   paymentLoading: false,
