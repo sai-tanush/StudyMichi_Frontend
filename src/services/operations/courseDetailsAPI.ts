@@ -163,12 +163,15 @@ export const createSection = async (data, token: string | null) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('CREATE SECTION API RESPONSE............', response);
+    console.log(
+      'CREATE SECTION API RESPONSE............',
+      response.data.updateCourseDetails,
+    );
     if (!response?.data?.success) {
       throw new Error('Could Not Create Section');
     }
     toast.success('Course Section Created');
-    result = response?.data?.updatedCourse;
+    result = response?.data?.updateCourseDetails;
   } catch (error) {
     console.log('CREATE SECTION API ERROR............', error);
     toast.error(error.message);
@@ -178,7 +181,7 @@ export const createSection = async (data, token: string | null) => {
 };
 
 // create a subsection
-export const createSubSection = async (data, token: string) => {
+export const createSubSection = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -232,7 +235,7 @@ export const updateSection = async (data, token: string | null) => {
 };
 
 // update a subsection
-export const updateSubSection = async (data, token: string) => {
+export const updateSubSection = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -259,7 +262,7 @@ export const updateSubSection = async (data, token: string) => {
 };
 
 // delete a section
-export const deleteSection = async (data, token: string) => {
+export const deleteSection = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -285,7 +288,7 @@ export const deleteSection = async (data, token: string) => {
   return result;
 };
 // delete a subsection
-export const deleteSubSection = async (data, token: string) => {
+export const deleteSubSection = async (data, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
