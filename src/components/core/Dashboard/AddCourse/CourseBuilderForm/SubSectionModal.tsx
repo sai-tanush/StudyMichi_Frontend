@@ -12,6 +12,7 @@ import { setCourse } from '../../../../../utils/slices/courseSlice';
 import { RxCross1 } from 'react-icons/rx';
 import IconBtn from '../../../../common/IconBtn';
 import ThumbnailUpload from '../CourseInformationForm/ThumbnailUpload';
+import Spinner from '../../../../common/Spinner';
 
 interface SubSectionModalDataProps {
   sectionId: string;
@@ -208,7 +209,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
           {!view && (
             <div className="mt-2">
               <IconBtn
-                text={loading ? 'Loading...' : edit ? 'Save Changes' : 'Save'}
+                text={loading ? <Spinner /> : edit ? 'Save Changes' : 'Save'}
               />
             </div>
           )}
