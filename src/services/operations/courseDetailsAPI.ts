@@ -151,7 +151,7 @@ export const editCourseDetails = async (data, token: string | null) => {
 };
 
 // create a section
-export const createSection = async (data, token: string | null) => {
+export const createSection = async (data: any, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -208,7 +208,7 @@ export const createSubSection = async (data, token: string | null) => {
 };
 
 // update a section
-export const updateSection = async (data, token: string | null) => {
+export const updateSection = async (data: any, token: string | null) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
