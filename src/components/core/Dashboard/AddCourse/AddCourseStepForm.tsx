@@ -4,7 +4,7 @@ import { STEP_FORM_STEPS } from '../../../../data/addCourse-StepForm-data';
 import { FaCheck } from 'react-icons/fa';
 import CourseInformationForm from '../AddCourse/CourseInformationForm/CourseInformationForm';
 import CourseBuilderForm from './CourseBuilderForm/CourseBuilderForm';
-import PublishCourse from './PublishCourse';
+import PublishCourse from './PublishCourse/PublishCourse';
 
 const AddCourseStepForm: React.FC = () => {
   const { step } = useSelector((state: RootState) => state.course);
