@@ -23,7 +23,7 @@ interface SubSectionModalDataProps {
 }
 
 interface SubSectionModalProps {
-  modalData: SubSectionModalDataProps;
+  modalData: any;
   setModalData: React.Dispatch<React.SetStateAction<null>>;
   add?: boolean;
   view?: boolean;
