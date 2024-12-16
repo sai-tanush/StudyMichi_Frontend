@@ -8,13 +8,24 @@ export interface CategoryProps {
   __v: number;
 }
 
+export interface SubSectionProps {
+  _id: string;
+  sectionId: string;
+  title: string;
+  description: string;
+  videoUrl: string;
+  timeDuration: string;
+}
+
 export interface SectionProps {
   _id: string;
   sectionName: string;
   __v: number;
+  subSection: SubSectionProps[];
 }
 
 export interface CourseProps {
+  courseName: string;
   courseDescription: string;
   instructor: string;
   whatYouWillLearn: string;
