@@ -105,11 +105,11 @@ const CourseInformationForm: React.FC = () => {
           formData.append('whatYouWillLearn', data.courseBenefits);
         }
 
-        if (currentValues.courseCategory._id !== course.category._id) {
+        if (currentValues.courseCategory._id !== course?.category._id) {
           formData.append('category', data.courseCategory);
         }
 
-        if (currentValues.courseTags.toString() !== course.tags.toString()) {
+        if (currentValues.courseTags.toString() !== course.tag.toString()) {
           formData.append('tags', JSON.stringify(data.courseTags));
         }
 
