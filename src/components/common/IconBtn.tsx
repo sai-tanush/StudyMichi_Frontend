@@ -1,7 +1,8 @@
 import * as Icons from 'react-icons/vsc';
+import { ReactNode } from 'react';
 
 interface IconBtnProps {
-  text: string; // The text to be displayed on the button.
+  text: string | ReactNode; // The text to be displayed on the button.
   onclick?: () => void; // Optional click handler function.
   children?: React.ReactNode; // Optional ReactNode for nested content.
   disabled?: boolean; // Optional flag to disable the button.
@@ -29,7 +30,7 @@ const IconBtn: React.FC<IconBtnProps> = ({
       disabled={disabled}
       onClick={onclick}
       type={type}
-      className={`h-fit px-6 py-2 font-semibold rounded-lg ${customClasses} ${
+      className={`h-fit w-fit px-6 py-2 font-semibold rounded-lg ${customClasses} ${
         outline
           ? 'border border-yellow-50 text-richblack-5 bg-transparent'
           : 'bg-yellow-50 text-richblack-900'
