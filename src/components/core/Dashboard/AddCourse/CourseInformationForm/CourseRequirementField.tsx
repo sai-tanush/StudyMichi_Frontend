@@ -99,7 +99,7 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
             key={index}
             className="flex items-center justify-between bg-gray-100 p-2 rounded w-2/3 "
           >
-            <span>{req}</span>
+            <span className="text-richblack-100">{req}</span>
             <button
               type="button"
               onClick={() => handleRemoveRequirement(index)}
