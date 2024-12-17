@@ -1,15 +1,14 @@
 // This will prevent authenticated users from accessing this route
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { RootState } from '../../../utils/store/store';
 import { ReactNode } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 interface OpenRouteProps {
   children: ReactNode;
 }
 
 const OpenRoute: React.FC<OpenRouteProps> = ({ children }) => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
 
   if (token === null) {
     return children;

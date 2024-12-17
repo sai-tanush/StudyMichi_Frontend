@@ -9,6 +9,7 @@ import { categories } from '../../services/apis';
 import { NavbarLinks } from '../../data/navbar-links';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
 import ProfileDropdown from '../core/Auth/ProfileDropDown';
+import useAuth from '../../hooks/useAuth';
 
 interface CategoryProps {
   _id: string;
@@ -18,7 +19,7 @@ interface CategoryProps {
 
 const Navbar: React.FC = () => {
   const location = useLocation();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const { user } = useSelector((state: RootState) => state.profile);
   const { totalItems } = useSelector((state: RootState) => state.cart);
 
