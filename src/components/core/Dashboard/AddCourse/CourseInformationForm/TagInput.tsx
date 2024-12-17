@@ -73,7 +73,13 @@ const TagInput: React.FC<TagInputProps> = ({
     setValue(name, updatedTags); // Ensure form value is updated
   };
 
-  console.log('Tags = ', course?.tag);
+  useEffect(() => {
+    if (editCourse && course?.tag) {
+      const tagsArray = course?.tag[0].replace(/"/g, '').split(',');
+      console.log('converted TagsArray = ', tagsArray);
+      setTags(tagsArray);
+    }
+  }, []);
 
   return (
     <div className="mb-6">
