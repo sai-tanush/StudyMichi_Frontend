@@ -46,8 +46,9 @@ const CourseInformationForm: React.FC = () => {
     setLoading(false);
   };
 
+  // Pre-fill form fields if in edit mode
   useEffect(() => {
-    if (editCourse) {
+    if (editCourse && course) {
       setValue('courseTitle', course.courseName);
       setValue('courseShortDesc', course.courseDescription);
       setValue('coursePrice', course.price);
@@ -64,15 +65,16 @@ const CourseInformationForm: React.FC = () => {
   const isFormUpdated = () => {
     const currentValues = getValues();
     if (
-      currentValues.courseTitle !== course.courseName ||
-      currentValues.courseShortDesc !== course.courseDescription ||
-      currentValues.coursePrice !== course.price ||
-      currentValues.courseTags.toString() !== course.tag.toString() ||
-      currentValues.courseBenefits !== course.whatYouWillLearn ||
-      currentValues.courseCategory._id !== course.category._id ||
-      currentValues.courseImage !== course.thumbnail ||
-      currentValues.courseRequirements.toString() !==
-        course.instructions.toString()
+      course &&
+      (currentValues.courseTitle !== course.courseName ||
+        currentValues.courseShortDesc !== course.courseDescription ||
+        currentValues.coursePrice !== course.price ||
+        currentValues.courseTags.toString() !== course.tag.toString() ||
+        currentValues.courseBenefits !== course.whatYouWillLearn ||
+        currentValues.courseCategory._id !== course.category._id ||
+        currentValues.courseImage !== course.thumbnail ||
+        currentValues.courseRequirements.toString() !==
+          course.instructions.toString())
     ) {
       return true;
     } else {
@@ -80,53 +82,55 @@ const CourseInformationForm: React.FC = () => {
     }
   };
 
-  const onFormSubmit = async (data) => {
+  const onFormSubmit = async (data: any) => {
     console.log('Current courseTags: ', getValues('courseTags'));
     if (editCourse) {
       if (isFormUpdated()) {
         const currentValues = getValues();
         const formData = new FormData();
 
-        formData.append('courseId', course._id);
+        if (course) {
+          formData.append('courseId', course._id);
 
-        if (currentValues.courseTitle !== course.courseName) {
-          formData.append('courseName', data.courseTitle);
-        }
+          if (currentValues.courseTitle !== course.courseName) {
+            formData.append('courseName', data.courseTitle);
+          }
 
-        if (currentValues.courseShortDesc !== course.courseDescription) {
-          formData.append('courseDescription', data.courseShortDesc);
-        }
+          if (currentValues.courseShortDesc !== course.courseDescription) {
+            formData.append('courseDescription', data.courseShortDesc);
+          }
 
-        if (currentValues.coursePrice !== course.price) {
-          formData.append('price', data.coursePrice);
-        }
+          if (currentValues.coursePrice !== course.price) {
+            formData.append('price', data.coursePrice);
+          }
 
-        if (currentValues.courseBenefits !== course.whatYouWillLearn) {
-          formData.append('whatYouWillLearn', data.courseBenefits);
-        }
+          if (currentValues.courseBenefits !== course.whatYouWillLearn) {
+            formData.append('whatYouWillLearn', data.courseBenefits);
+          }
 
-        if (currentValues.courseCategory._id !== course?.category._id) {
-          formData.append('category', data.courseCategory);
-        }
+          if (currentValues.courseCategory._id !== course?.category._id) {
+            formData.append('category', data.courseCategory);
+          }
 
-        if (currentValues.courseTags.toString() !== course.tag.toString()) {
-          formData.append('tags', JSON.stringify(data.courseTags));
-        }
+          if (currentValues.courseTags.toString() !== course.tag.toString()) {
+            formData.append('tags', JSON.stringify(data.courseTags));
+          }
 
-        if (
-          currentValues.courseImage.toString() !== course.thumbnail.toString()
-        ) {
-          formData.append('thumbnail', JSON.stringify(data.courseImage));
-        }
+          if (
+            currentValues.courseImage.toString() !== course.thumbnail.toString()
+          ) {
+            formData.append('thumbnail', JSON.stringify(data.courseImage));
+          }
 
-        if (
-          currentValues.courseRequirements.toString() !==
-          course.instructions.toString()
-        ) {
-          formData.append(
-            'instructions',
-            JSON.stringify(data.courseRequirements),
-          );
+          if (
+            currentValues.courseRequirements.toString() !==
+            course.instructions.toString()
+          ) {
+            formData.append(
+              'instructions',
+              JSON.stringify(data.courseRequirements),
+            );
+          }
         }
 
         setLoading(true);
