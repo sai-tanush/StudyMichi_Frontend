@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import {
   FieldErrors,
@@ -32,7 +33,7 @@ const TagInput: React.FC<TagInputProps> = ({
 
   useEffect(() => {
     if (editCourse) {
-      setTags(course?.tag);
+      setTags(course?.tag || []);
     }
     register(name, { required: true, validate: (value) => value.length > 0 });
   }, []);
@@ -42,15 +43,16 @@ const TagInput: React.FC<TagInputProps> = ({
   }, [tags]);
 
   function convertToTags(tagArray: string[]): string[] {
-    // Split the single string in the array by commas and return as an array of strings
     return tagArray[0].split(',').map((tag) => tag.trim());
   }
-  const convertedTags = convertToTags(course?.tag);
-  console.log('convertedTags = ', convertedTags);
 
   useEffect(() => {
-    setTags(convertedTags);
-  }, []);
+    if (editCourse && course?.tag) {
+      const convertedTags = convertToTags(course?.tag);
+      console.log('convertedTags = ', convertedTags);
+      setTags(convertedTags);
+    }
+  }, [editCourse, course?.tag]);
 
   const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
