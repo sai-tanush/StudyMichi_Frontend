@@ -365,8 +365,8 @@ export const deleteCourse = async (data, token: string | null) => {
 
 // get full details of a course
 export const getFullDetailsOfCourse = async (
-  courseId: courseIDType,
-  token: string,
+  courseId: string | undefined,
+  token: string | null,
 ) => {
   const toastId = toast.loading('Loading...');
   //   dispatch(setLoading(true));
