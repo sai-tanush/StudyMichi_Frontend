@@ -72,6 +72,14 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
     setValue(name, requirementList);
   }, [requirementList]);
 
+  useEffect(() => {
+    if (editCourse && course?.instructions) {
+      const requirementArray = JSON.parse(course?.instructions);
+      console.log('requirementArray = ', requirementArray);
+      setRequirementList(requirementArray);
+    }
+  }, []);
+
   return (
     <div className="w-full">
       <label
