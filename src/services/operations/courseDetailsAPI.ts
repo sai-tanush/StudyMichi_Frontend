@@ -315,7 +315,7 @@ export const deleteSubSection = async (data, token: string | null) => {
 };
 
 // fetching all courses under a specific instructor
-export const fetchInstructorCourses = async (token: string) => {
+export const fetchInstructorCourses = async (token: string | null) => {
   let result = [];
   const toastId = toast.loading('Loading...');
   try {
@@ -340,7 +340,7 @@ export const fetchInstructorCourses = async (token: string) => {
 };
 
 // delete a course
-export const deleteCourse = async (data, token: string) => {
+export const deleteCourse = async (data, token: string | null) => {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
