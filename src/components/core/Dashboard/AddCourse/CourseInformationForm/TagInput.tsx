@@ -6,6 +6,8 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../utils/store/store';
 
 interface TagInputProps {
   label: string;
@@ -14,7 +16,7 @@ interface TagInputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
+  getValues?: UseFormGetValues<FieldValues>;
 }
 
 const TagInput: React.FC<TagInputProps> = ({
@@ -27,19 +29,40 @@ const TagInput: React.FC<TagInputProps> = ({
   getValues,
 }) => {
   const [tags, setTags] = useState<string[]>([]);
+  const { editCourse, course } = useSelector(
+    (state: RootState) => state.course,
+  );
+
+  useEffect(() => {
+    if (editCourse) {
+      setTags(course?.tag);
+    }
+    register(name, { required: true, validate: (value) => value.length > 0 });
+  }, []);
 
   useEffect(() => {
     setValue(name, tags); // Update the form's value with the current tags array
-  }, [tags, name, setValue]);
+  }, [tags]);
+
+  function convertToTags(tagArray: string[]): string[] {
+    // Split the single string in the array by commas and return as an array of strings
+    return tagArray[0].split(',').map((tag) => tag.trim());
+  }
+  const convertedTags = convertToTags(course?.tag);
+  console.log('convertedTags = ', convertedTags);
+
+  useEffect(() => {
+    setTags(convertedTags);
+  }, []);
 
   const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
       e.preventDefault();
-      const inputValue = getValues(name).trim();
+      const inputValue = e.currentTarget.value.trim();
       if (inputValue && !tags.includes(inputValue)) {
         const updatedTags = [...tags, inputValue];
         setTags(updatedTags);
-        setValue(name, updatedTags); // Ensure form value is updated
+        e.currentTarget.value = '';
         console.log('Updated Tags = ', updatedTags);
       }
     }
@@ -50,6 +73,8 @@ const TagInput: React.FC<TagInputProps> = ({
     setTags(updatedTags);
     setValue(name, updatedTags); // Ensure form value is updated
   };
+
+  console.log('Tags = ', course?.tag);
 
   return (
     <div className="mb-6">
