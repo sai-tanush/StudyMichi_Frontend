@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import {
   FieldErrors,
@@ -37,7 +38,7 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   const [requirement, setRequirement] = useState<string>(''); // Current input value
 
   useEffect(() => {
-    if (editCourse) {
+    if (editCourse && typeof course?.instructions === 'string') {
       setRequirementList(JSON.parse(course?.instructions));
     }
   }, []);
