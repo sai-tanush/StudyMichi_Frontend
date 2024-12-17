@@ -11,12 +11,17 @@ import { HiOutlineCurrencyRupee } from 'react-icons/hi';
 import TagInput from './TagInput';
 import ThumbnailUpload from './ThumbnailUpload';
 import CourseRequirementField from './CourseRequirementField';
-import { setCourse, setStep } from '../../../../../utils/slices/courseSlice';
+import {
+  setCourse,
+  setEditCourse,
+  setStep,
+} from '../../../../../utils/slices/courseSlice';
 import IconBtn from '../../../../common/IconBtn';
 import toast from 'react-hot-toast';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { RootState } from '../../../../../utils/store/store';
 import { MdNavigateNext } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const CourseInformationForm: React.FC = () => {
   const {
@@ -29,6 +34,7 @@ const CourseInformationForm: React.FC = () => {
   } = useForm();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { token } = useSelector((state: RootState) => state.auth);
   const { course, editCourse } = useSelector(
     (state: RootState) => state.course,
@@ -80,6 +86,11 @@ const CourseInformationForm: React.FC = () => {
     } else {
       return false;
     }
+  };
+
+  const handleEditCancel = () => {
+    dispatch(setEditCourse(false));
+    navigate('/dashboard/my-courses');
   };
 
   const onFormSubmit = async (data: any) => {
@@ -378,6 +389,14 @@ const CourseInformationForm: React.FC = () => {
         </div>
 
         <div className="text-right flex justify-between ">
+          {editCourse && (
+            <button
+              onClick={handleEditCancel}
+              className="flex items-center gap-x-2 py-2 px-4 rounded-lg bg-richblack-600 text-richblack-5"
+            >
+              Cancel
+            </button>
+          )}
           {editCourse && (
             <button
               onClick={() => dispatch(setStep(2))}
