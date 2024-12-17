@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -12,6 +13,7 @@ import TagInput from './TagInput';
 import ThumbnailUpload from './ThumbnailUpload';
 import CourseRequirementField from './CourseRequirementField';
 import {
+  CategoryProps,
   setCourse,
   setEditCourse,
   setStep,
@@ -40,7 +42,7 @@ const CourseInformationForm: React.FC = () => {
     (state: RootState) => state.course,
   );
   const [loading, setLoading] = useState<boolean>(false);
-  const [courseCategories, setCourseCategories] = useState([]);
+  const [courseCategories, setCourseCategories] = useState<CategoryProps[]>([]);
 
   const getCategories = async () => {
     setLoading(true);
