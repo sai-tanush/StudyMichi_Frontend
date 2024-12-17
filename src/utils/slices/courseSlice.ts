@@ -34,7 +34,7 @@ export interface CourseProps {
   price: number;
   thumbnail: string;
   tag: string[]; // Array of strings
-  category: CategoryProps[];
+  category: CategoryProps;
   studentEnrolled: any[]; // Replace 'any'
   instructions: string[]; // Array of strings
   status: string;
