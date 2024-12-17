@@ -391,7 +391,7 @@ export const getFullDetailsOfCourse = async (
   } catch (error) {
     console.log('COURSE_FULL_DETAILS_API API ERROR............', error);
     result = error.response.data;
-    // toast.error(error.response.data.message);
+    toast.error(error.response.data.message);
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
