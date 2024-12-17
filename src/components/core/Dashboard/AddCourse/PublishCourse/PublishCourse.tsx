@@ -6,15 +6,20 @@ import { useEffect, useState } from 'react';
 import IconBtn from '../../../../common/IconBtn';
 import {
   resetCourseState,
+  setEditCourse,
   setStep,
 } from '../../../../../utils/slices/courseSlice';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { editCourseDetails } from '../../../../../services/operations/courseDetailsAPI';
+import { useNavigate } from 'react-router-dom';
 
 const PublishCourse: React.FC = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
-  const { course } = useSelector((state: RootState) => state.course);
+  const { course, editCourse } = useSelector(
+    (state: RootState) => state.course,
+  );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { token } = useSelector((state: RootState) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -30,7 +35,7 @@ const PublishCourse: React.FC = () => {
 
   const goToCourses = () => {
     dispatch(resetCourseState());
-    // navigate("/dashboard/my-courses");
+    navigate('/dashboard/my-courses');
   };
 
   const onFormSubmit = () => {
@@ -65,6 +70,10 @@ const PublishCourse: React.FC = () => {
       goToCourses();
     }
 
+    if (editCourse) {
+      setEditCourse(false);
+    }
+
     setLoading(false);
   };
 
@@ -92,7 +101,7 @@ const PublishCourse: React.FC = () => {
             disabled={loading}
             type="button"
             onClick={handleGoBack}
-            className="rounded-md bg-richblack-600 py-2 px-8"
+            className="rounded-md bg-richblack-600 text-richblack-5 font-semibold py-2 px-8"
           >
             Back
           </button>
