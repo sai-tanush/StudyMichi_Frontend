@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiChevronDown } from 'react-icons/bi';
 import { RootState } from '../../utils/store/store';
-import ProfileDropDown from '../core/ProfileDropDown';
 import { apiConnector } from '../../services/apisconnector';
 import { categories } from '../../services/apis';
 import { NavbarLinks } from '../../data/navbar-links';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
+import ProfileDropdown from '../core/Auth/ProfileDropDown';
+import useAuth from '../../hooks/useAuth';
 
 interface CategoryProps {
   _id: string;
@@ -18,7 +19,7 @@ interface CategoryProps {
 
 const Navbar: React.FC = () => {
   const location = useLocation();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const { user } = useSelector((state: RootState) => state.profile);
   const { totalItems } = useSelector((state: RootState) => state.cart);
 
@@ -131,7 +132,7 @@ const Navbar: React.FC = () => {
               </button>
             </Link>
           )}
-          {token && <ProfileDropDown />}
+          {token && <ProfileDropdown />}
         </div>
       </div>
     </div>

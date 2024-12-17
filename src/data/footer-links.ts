@@ -1,3 +1,7 @@
+import { FaEarthAsia } from 'react-icons/fa6';
+import { IoIosChatboxes } from 'react-icons/io';
+import { MdCall } from 'react-icons/md';
+
 export const FooterLink2 = [
   {
     title: 'Subjects',
@@ -54,5 +58,27 @@ export const FooterLink2 = [
       { title: 'Full Catalog', link: '/full-catalog' },
       { title: 'Beta Content', link: '/beta-content' },
     ],
+  },
+];
+
+export const FOOTER_INFO_DATA = [
+  {
+    icon: IoIosChatboxes,
+    title: 'Chat on us',
+    header: 'Our friendly team is here to help,',
+    content: 'studymichi@gmail.com',
+  },
+  {
+    icon: FaEarthAsia,
+    title: 'Visit us',
+    header: 'Come and say hello to our office HQ.',
+    content:
+      'Here is the location // Karasuno High School, Miyagi Prefecture, Japan',
+  },
+  {
+    icon: MdCall,
+    title: 'Call us',
+    header: 'Mon - Fri From 8am to 6pm',
+    content: '+81 12345 56789',
   },
 ];
