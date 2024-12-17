@@ -1,7 +1,7 @@
-import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/Logo/Logo-Full-Light.png';
+import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { FooterLink2 } from '../../data/footer-links';
+import Logo from '../../assets/Logo/Logo-Full-Light.png';
 
 const BottomFooter = ['Privacy Policy', 'Cookie Policy', 'Terms'];
 const Resources = [
