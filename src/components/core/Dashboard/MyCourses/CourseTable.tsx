@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../utils/store/store';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
 import { COURSE_STATUS } from '../../../../utils/constants';
@@ -14,6 +13,7 @@ import {
 } from '../../../../services/operations/courseDetailsAPI';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { CourseProps } from '../../../../utils/slices/courseSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface CourseTableProps {
   courses: CourseProps[];
@@ -21,7 +21,7 @@ interface CourseTableProps {
 }
 
 const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { token } = useSelector((state: RootState) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
   const [confirmationModal, setConfirmationModal] =
@@ -84,9 +84,9 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
                 <Td className="">
                   <button
                     disabled={loading}
-                    // onClick={() => {
-                    //     navigate
-                    // }}
+                    onClick={() => {
+                      navigate(`/dashboard/edit-course/${course._id}`);
+                    }}
                     className="mr-3"
                   >
                     <MdEdit className="text-richblack-200" size={22} />
