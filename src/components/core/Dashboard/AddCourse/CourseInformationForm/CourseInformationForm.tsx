@@ -67,7 +67,7 @@ const CourseInformationForm: React.FC = () => {
       currentValues.courseTitle !== course.courseName ||
       currentValues.courseShortDesc !== course.courseDescription ||
       currentValues.coursePrice !== course.price ||
-      currentValues.courseTags.toString() !== course.tags.toString() ||
+      currentValues.courseTags.toString() !== course.tag.toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
       currentValues.courseCategory._id !== course.category._id ||
       currentValues.courseImage !== course.thumbnail ||
@@ -328,6 +328,7 @@ const CourseInformationForm: React.FC = () => {
               errors={errors}
               setValue={setValue}
               clearErrors={clearErrors}
+              editData={editCourse ? course?.thumbnail : null}
             />
           </div>
 
@@ -373,11 +374,11 @@ const CourseInformationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="text-right">
+        <div className="text-right flex justify-between ">
           {editCourse && (
             <button
               onClick={() => dispatch(setStep(2))}
-              className="flex items-center gap-x-2 bg-richblack-300 text-richblack-800"
+              className="flex items-center gap-x-2 py-2 px-4 rounded-lg bg-richblack-600 text-richblack-5"
             >
               Continue without saving
             </button>
@@ -385,7 +386,7 @@ const CourseInformationForm: React.FC = () => {
 
           <IconBtn
             disabled={loading}
-            //onclick={() => dispatch(setStep(2))}
+            //onclick={handleSaveNextFormCheck}
             text={!editCourse ? 'Next' : 'Save Changes'}
           >
             <MdNavigateNext />
