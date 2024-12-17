@@ -319,7 +319,6 @@ const CourseInformationForm: React.FC = () => {
               register={register}
               errors={errors}
               setValue={setValue}
-              getValues={getValues}
             />
           </div>
 
