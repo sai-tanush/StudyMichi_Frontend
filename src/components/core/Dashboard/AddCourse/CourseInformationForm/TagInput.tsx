@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   FieldErrors,
   FieldValues,
-  UseFormGetValues,
   UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form';
@@ -16,7 +15,6 @@ interface TagInputProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
-  getValues?: UseFormGetValues<FieldValues>;
 }
 
 const TagInput: React.FC<TagInputProps> = ({
@@ -26,7 +24,6 @@ const TagInput: React.FC<TagInputProps> = ({
   register,
   errors,
   setValue,
-  getValues,
 }) => {
   const [tags, setTags] = useState<string[]>([]);
   const { editCourse, course } = useSelector(
