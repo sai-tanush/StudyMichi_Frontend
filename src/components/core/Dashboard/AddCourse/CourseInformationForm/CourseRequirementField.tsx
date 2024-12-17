@@ -7,6 +7,8 @@ import {
   UseFormSetValue,
   UseFormClearErrors,
 } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../utils/store/store';
 
 interface CourseRequirementFieldProps {
   label: string;
@@ -28,8 +30,17 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   setValue,
   clearErrors,
 }) => {
+  const { course, editCourse } = useSelector(
+    (state: RootState) => state.course,
+  );
   const [requirementList, setRequirementList] = useState<string[]>([]); // List of added sentences
   const [requirement, setRequirement] = useState<string>(''); // Current input value
+
+  useEffect(() => {
+    if (editCourse) {
+      setRequirementList(JSON.parse(course?.instructions));
+    }
+  }, []);
 
   const handleAddRequirement = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
