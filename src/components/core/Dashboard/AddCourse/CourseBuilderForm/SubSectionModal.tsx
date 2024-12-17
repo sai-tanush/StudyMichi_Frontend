@@ -145,7 +145,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     <div className="border-2 border-richblack-600 p-4 mt-5 rounded-lg">
       <div>
         <div className="flex justify-between my-3">
-          <p className="text-2xl font-semibold">
+          <p className="text-2xl font-semibold text-richblack-5">
             {view && 'Viewing'} {add && 'Adding'} {edit && 'Editing'} Lecture
           </p>
           <button onClick={() => !loading && setModalData(null)}>
