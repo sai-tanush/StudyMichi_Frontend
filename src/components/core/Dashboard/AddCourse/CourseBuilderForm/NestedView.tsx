@@ -86,7 +86,7 @@ const NestedView: React.FC<NestedViewProps> = ({
 
   return (
     <div>
-      <div className="rounded-lg bg-richblack-700 p-6 px-8">
+      <div className="rounded-lg bg-richblack-700 text-richblack-50 p-6 px-8">
         {course?.courseContent?.map((section) => {
           console.log('Section = ', section);
           return (
