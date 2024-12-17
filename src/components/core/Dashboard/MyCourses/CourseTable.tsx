@@ -5,18 +5,27 @@ import { useState } from 'react';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
 import { COURSE_STATUS } from '../../../../utils/constants';
 import { MdDelete, MdEdit } from 'react-icons/md';
-import ConfirmationModal from '../../../common/ConfirmationModal';
+import ConfirmationModal, {
+  ModalDataProps,
+} from '../../../common/ConfirmationModal';
 import {
   deleteCourse,
   fetchInstructorCourses,
 } from '../../../../services/operations/courseDetailsAPI';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import { CourseProps } from '../../../../utils/slices/courseSlice';
 
-const CourseTable: React.FC = ({ courses, setCourses }) => {
+interface CourseTableProps {
+  courses: CourseProps[];
+  setCourses: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
+const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
   const dispatch = useDispatch();
   const { token } = useSelector((state: RootState) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
-  const [confirmationModal, setConfirmationModal] = useState(null);
+  const [confirmationModal, setConfirmationModal] =
+    useState<ModalDataProps | null>(null);
 
   const handleCourseDelete = async (courseId: string) => {
     setLoading(true);
@@ -30,6 +39,7 @@ const CourseTable: React.FC = ({ courses, setCourses }) => {
     setConfirmationModal(null);
     setLoading(false);
   };
+  console.log('courses in courseTable prop = ', courses);
 
   return (
     <div className=" text-richblack-5 p-8 ">
