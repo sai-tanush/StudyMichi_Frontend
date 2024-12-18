@@ -1,15 +1,15 @@
+import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-
 import { setLoading, setUser } from '../../utils/slices/profileSlice';
 import { apiConnector } from '../apisconnector';
 import { profileEndpoints } from '../apis';
 import { logout } from './authAPI';
 import { AppDispatch } from '../../utils/store/store';
-import { NavigateFunction } from 'react-router-dom';
 
 const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API } =
   profileEndpoints;
 
+//fetch User Details function
 export function getUserDetails(
   token: string | null,
   navigate: NavigateFunction,
@@ -44,6 +44,7 @@ export function getUserDetails(
   };
 }
 
+//fetch User Enrolled Courses
 export async function getUserEnrolledCourses(token: string | null) {
   const toastId = toast.loading('Loading...');
   let result = [];
