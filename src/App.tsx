@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './index.css';
 import Homepage from './components/pages/Homepage';
 import Navbar from './components/common/Navbar';
@@ -10,7 +11,6 @@ import UpdatePassword from './components/pages/UpdatePassword';
 import VerifyEmail from './components/pages/VerifyEmail';
 import AboutUs from './components/pages/AboutUs';
 import ContactUs from './components/pages/ContactUs';
-import { useSelector } from 'react-redux';
 import PrivateRoute from './components/core/Auth/PrivateRoute';
 import Dashboard from './components/pages/Dashboard';
 import Error from './components/pages/Error';
