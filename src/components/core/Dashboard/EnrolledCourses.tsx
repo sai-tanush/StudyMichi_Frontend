@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../utils/store/store';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { getUserEnrolledCourses } from '../../../services/operations/profileAPI';
-import Spinner from '../../common/Spinner';
 import ProgressBar from '@ramonak/react-progress-bar';
+import Spinner from '../../common/Spinner';
+import useAuth from '../../../hooks/useAuth';
+import { getUserEnrolledCourses } from '../../../services/operations/profileAPI';
 
 const EnrolledCourses: React.FC = () => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const [enrolledCourses, setEnrolledCourses] = useState(null);
 
   const getEnrolledCourses = async () => {
