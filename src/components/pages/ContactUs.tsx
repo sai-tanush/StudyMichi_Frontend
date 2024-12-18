@@ -1,33 +1,10 @@
 import React from 'react';
-import { FaEarthAsia } from 'react-icons/fa6';
-import { IoIosChatboxes } from 'react-icons/io';
-import { MdCall } from 'react-icons/md';
 import ContactFormSection from '../core/AboutUs/ContactFormSection';
 import ReviewSlider from '../common/ReviewSlider';
 import Footer from '../common/Footer';
+import { FOOTER_INFO_DATA } from '../../data/footer-links';
 
 const ContactUs: React.FC = () => {
-  const INFO_DATA = [
-    {
-      icon: IoIosChatboxes,
-      title: 'Chat on us',
-      header: 'Our friendly team is here to help,',
-      content: 'studymichi@gmail.com',
-    },
-    {
-      icon: FaEarthAsia,
-      title: 'Visit us',
-      header: 'Come and say hello to our office HQ.',
-      content:
-        'Here is the location // Karasuno High School, Miyagi Prefecture, Japan',
-    },
-    {
-      icon: MdCall,
-      title: 'Call us',
-      header: 'Mon - Fri From 8am to 6pm',
-      content: '+81 12345 56789',
-    },
-  ];
   return (
     <div className="mb-5">
       <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[2%]">
@@ -36,7 +13,7 @@ const ContactUs: React.FC = () => {
           <div className="flex justify-around">
             {/* left content section */}
             <div className="w-[30%] h-fit ml-10 p-6 flex flex-col gap-5 bg-richblack-800 rounded-lg">
-              {INFO_DATA.map((element, index) => {
+              {FOOTER_INFO_DATA.map((element, index) => {
                 return (
                   <div key={index} className="flex flex-row gap-2">
                     <div className="text-richblack-25">

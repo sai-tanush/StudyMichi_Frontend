@@ -7,6 +7,7 @@ import { sendOtp } from '../../../services/operations/authAPI';
 import { setSignupData } from '../../../utils/slices/authSlice';
 import { ACCOUNT_TYPE } from '../../../utils/constants';
 import Tab from '../../common/Tab';
+import { TAB_DATA } from '../../../data/signup-tabdata';
 
 const SignupForm: React.FC = () => {
   const navigate = useNavigate();
@@ -66,24 +67,10 @@ const SignupForm: React.FC = () => {
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
 
-  // data to pass to Tab component
-  const tabData = [
-    {
-      id: 1,
-      tabName: 'Student',
-      type: ACCOUNT_TYPE.STUDENT,
-    },
-    {
-      id: 2,
-      tabName: 'Instructor',
-      type: ACCOUNT_TYPE.INSTRUCTOR,
-    },
-  ];
-
   return (
     <div>
       {/* Tab */}
-      <Tab tabData={tabData} field={accountType} setField={setAccountType} />
+      <Tab tabData={TAB_DATA} field={accountType} setField={setAccountType} />
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
