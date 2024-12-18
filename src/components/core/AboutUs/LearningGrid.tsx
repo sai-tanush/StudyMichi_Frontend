@@ -1,6 +1,6 @@
 import learningGridData from '../../../data/learningGridData';
 import { getCardClassName } from '../../../utils/helperFunction';
-import CardContent from './CardContent'; // Adjust the path if needed
+import CardContent from './CardContent';
 
 const LearningGrid: React.FC = () => {
   return (
