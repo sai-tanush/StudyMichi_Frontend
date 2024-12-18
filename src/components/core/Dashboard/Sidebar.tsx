@@ -1,14 +1,14 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { VscSignOut } from 'react-icons/vsc';
 import { AppDispatch, RootState } from '../../../utils/store/store';
 import Spinner from '../../common/Spinner';
 import { sidebarLinks } from '../../../data/dashboard-links';
 import SidebarLink from './SidebarLink';
 import { sidebarSettingData } from '../../../data/dashboard-links';
 import { logout } from '../../../services/operations/authAPI';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { VscSignOut } from 'react-icons/vsc';
 import ConfirmationModal, {
   ModalDataProps,
 } from '../../common/ConfirmationModal';
