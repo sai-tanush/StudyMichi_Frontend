@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { changePassword } from '../../../../services/operations/settingsAPI';
 import IconBtn from '../../../common/IconBtn';
-import { RootState } from '../../../../utils/store/store';
+import useAuth from '../../../../hooks/useAuth';
 
 const UpdateSettingsPassword = () => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const navigate = useNavigate();
 
   const [showOldPassword, setShowOldPassword] = useState(false);
@@ -21,7 +19,7 @@ const UpdateSettingsPassword = () => {
     formState: { errors },
   } = useForm();
 
-  const submitPasswordForm = async (data) => {
+  const submitPasswordForm = async (data: any) => {
     // Add confirmPassword to data
     const updatedData = {
       ...data,
