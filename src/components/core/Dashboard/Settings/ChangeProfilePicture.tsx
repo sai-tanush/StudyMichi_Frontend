@@ -1,13 +1,13 @@
-import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../utils/store/store';
-import { useDispatch } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { FiUpload } from 'react-icons/fi';
+import { AppDispatch, RootState } from '../../../../utils/store/store';
 import { updateDisplayPicture } from '../../../../services/operations/settingsAPI';
 import IconBtn from '../../../common/IconBtn';
-import { FiUpload } from 'react-icons/fi';
+import useAuth from '../../../../hooks/useAuth';
 
 const ChangeProfilePicture = () => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const { user } = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
 
