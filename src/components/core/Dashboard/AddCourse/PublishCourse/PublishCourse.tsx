@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from 'react-hook-form';
-import { RootState } from '../../../../../utils/store/store';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import IconBtn from '../../../../common/IconBtn';
+import { RootState } from '../../../../../utils/store/store';
 import {
   resetCourseState,
   setEditCourse,
@@ -11,7 +13,6 @@ import {
 } from '../../../../../utils/slices/courseSlice';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { editCourseDetails } from '../../../../../services/operations/courseDetailsAPI';
-import { useNavigate } from 'react-router-dom';
 
 const PublishCourse: React.FC = () => {
   const { register, handleSubmit, setValue, getValues } = useForm();
@@ -56,7 +57,9 @@ const PublishCourse: React.FC = () => {
 
     //If form is updated
     const formData = new FormData();
-    formData.append('courseId', course?._id);
+    if (course) {
+      formData.append('courseId', course?._id);
+    }
 
     const courseStatus = getValues('public')
       ? COURSE_STATUS.PUBLISHED
