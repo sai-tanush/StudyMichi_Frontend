@@ -2,21 +2,13 @@ import { Link } from 'react-router-dom';
 import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { FooterLink2 } from '../../data/footer-links';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
-
-const BOTTOM_FOOTER = ['Privacy Policy', 'Cookie Policy', 'Terms'];
-const RESOURCES = [
-  'Articles',
-  'Blog',
-  'Chart Sheet',
-  'Code challenges',
-  'Docs',
-  'Projects',
-  'Videos',
-  'Workspaces',
-];
-const PLANS = ['Paid memberships', 'For students', 'Business solutions'];
-const COMMUNITY = ['Forums', 'Chapters', 'Events'];
-const FOOTER_DATA = ['About', 'Careers', 'Affiliates'];
+import {
+  BOTTOM_FOOTER,
+  FOOTER_COMMUNITY,
+  FOOTER_DATA,
+  FOOTER_PLANS,
+  FOOTER_RESOURCES,
+} from '../../data/footer-data';
 
 const Footer: React.FC = () => {
   return (
@@ -57,7 +49,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {RESOURCES.map((ele, index) => {
+                {FOOTER_RESOURCES.map((ele, index) => {
                   return (
                     <div
                       key={index}
@@ -85,7 +77,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {PLANS.map((ele, index) => {
+                {FOOTER_PLANS.map((ele, index) => {
                   return (
                     <div
                       key={index}
@@ -103,7 +95,7 @@ const Footer: React.FC = () => {
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
-                {COMMUNITY.map((ele, index) => {
+                {FOOTER_COMMUNITY.map((ele, index) => {
                   return (
                     <div
                       key={index}
