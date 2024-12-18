@@ -1,21 +1,24 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../utils/store/store';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { RxDropdownMenu } from 'react-icons/rx';
 import { MdEdit } from 'react-icons/md';
+import { IoAddOutline } from 'react-icons/io5';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { BiSolidDownArrow } from 'react-icons/bi';
 import ConfirmationModal, {
   ModalDataProps,
 } from '../../../../common/ConfirmationModal';
-import { BiSolidDownArrow } from 'react-icons/bi';
-import { IoAddOutline } from 'react-icons/io5';
 import SubSectionModal from './SubSectionModal';
 import {
   deleteSection,
   deleteSubSection,
 } from '../../../../../services/operations/courseDetailsAPI';
-import { setCourse } from '../../../../../utils/slices/courseSlice';
+import {
+  setCourse,
+  SubSectionProps,
+} from '../../../../../utils/slices/courseSlice';
+import useCourse from '../../../../../hooks/useCourse';
+import useAuth from '../../../../../hooks/useAuth';
 
 interface NestedViewProps {
   handleChangeEditSectionName: (sectionId: string, sectionName: string) => void;
@@ -24,13 +27,19 @@ interface NestedViewProps {
 const NestedView: React.FC<NestedViewProps> = ({
   handleChangeEditSectionName,
 }) => {
-  const { course } = useSelector((state: RootState) => state.course);
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { course } = useCourse();
+  const { token } = useAuth();
   const dispatch = useDispatch();
 
-  const [addSubSection, setAddSubSection] = useState(null);
-  const [editSubSection, setEditSubSection] = useState(null);
-  const [viewSubSection, setViewSubSection] = useState(null);
+  const [addSubSection, setAddSubSection] = useState<SubSectionProps | null>(
+    null,
+  );
+  const [editSubSection, setEditSubSection] = useState<SubSectionProps | null>(
+    null,
+  );
+  const [viewSubSection, setViewSubSection] = useState<SubSectionProps | null>(
+    null,
+  );
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
 
@@ -176,7 +185,16 @@ const NestedView: React.FC<NestedViewProps> = ({
                     </div>
                   ))}
                 <button
-                  onClick={() => setAddSubSection(section._id)}
+                  onClick={() =>
+                    setAddSubSection({
+                      _id: '',
+                      sectionId: section._id,
+                      title: '',
+                      description: '',
+                      videoUrl: '',
+                      timeDuration: '',
+                    })
+                  }
                   className="mt-4 flex items-center gap-x-2 text-yellow-50"
                 >
                   <IoAddOutline size={22} />
