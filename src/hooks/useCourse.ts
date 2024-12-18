@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../utils/store/store'; // Adjust the path if needed
+import { RootState } from '../utils/store/store';
 
 const useCourse = () => {
   const { course } = useSelector((state: RootState) => state.course);
