@@ -89,20 +89,3 @@ export const {
 } = courseSlice.actions;
 
 export default courseSlice.reducer;
-
-// interface UpdateCourseDetails {
-//   _id: string;
-//   courseDescription: string;
-//   instructor: string;
-//   whatYouWillLearn: string;
-//   courseContent: Section[]; // Array of Section objects
-//   ratingAndReview: any[]; // Replace `any` with a specific type if available
-//   price: number;
-//   thumbnail: string;
-//   tag: string[]; // Array of strings
-//   category: string;
-//   studentEnrolled: any[]; // Replace `any` with a specific type if available
-//   instructions: string[]; // Array of strings
-//   status: string;
-//   __v: number;
-// }
