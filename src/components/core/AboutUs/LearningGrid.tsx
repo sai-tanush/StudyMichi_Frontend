@@ -1,5 +1,5 @@
 import learningGridData from '../../../data/learningGridData';
-import { getCardClassName } from '../../../utils/helperFunction';
+import { getCardClassName } from '../../../utils/helperFunctions/getCardClassName';
 import CardContent from './CardContent';
 
 const LearningGrid: React.FC = () => {
