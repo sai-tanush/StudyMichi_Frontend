@@ -1,18 +1,19 @@
-import { useSelector } from 'react-redux';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from '../../../../utils/store/store';
 import AddCourseStepForm from '../AddCourse/AddCourseStepForm';
 import Spinner from '../../../common/Spinner';
-import { useEffect, useState } from 'react';
 import { getFullDetailsOfCourse } from '../../../../services/operations/courseDetailsAPI';
 import { setCourse, setEditCourse } from '../../../../utils/slices/courseSlice';
+import useCourse from '../../../../hooks/useCourse';
+import useAuth from '../../../../hooks/useAuth';
 
 const EditCourse: React.FC = () => {
   const dispatch = useDispatch();
   const { courseId } = useParams();
-  const { course } = useSelector((state: RootState) => state.course);
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { course } = useCourse();
+  const { token } = useAuth();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
