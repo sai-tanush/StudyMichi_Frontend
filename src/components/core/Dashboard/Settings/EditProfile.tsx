@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../../../services/operations/settingsAPI';
 import IconBtn from '../../../common/IconBtn';
 import { AppDispatch, RootState } from '../../../../utils/store/store';
-
-const genders = ['Male', 'Female', 'Non-Binary', 'Prefer not to say', 'Other'];
+import { EDIT_PROFILE_GENDERS_DATA } from '../../../../data/edit-profile-data';
 
 const EditProfile = () => {
   const { user } = useSelector((state: RootState) => state.profile);
@@ -19,7 +18,7 @@ const EditProfile = () => {
     formState: { errors },
   } = useForm();
 
-  const submitProfileForm = async (data) => {
+  const submitProfileForm = async (data: any) => {
     // console.log("Form Data - ", data)
     try {
       if (token) {
@@ -106,7 +105,7 @@ const EditProfile = () => {
                     message: 'Date of Birth cannot be in the future.',
                   },
                 })}
-                defaultValue={user?.additionalDetails?.dateOfBirth}
+                defaultValue={user?.additionalDetails?.dateOfBirth ?? ''}
               />
               {errors.dateOfBirth && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -127,9 +126,9 @@ const EditProfile = () => {
                 id="gender"
                 className="form-style w-4/5 rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
                 {...register('gender', { required: true })}
-                defaultValue={user?.additionalDetails?.gender}
+                defaultValue={user?.additionalDetails?.gender ?? ''}
               >
-                {genders.map((ele, i) => {
+                {EDIT_PROFILE_GENDERS_DATA.map((ele, i) => {
                   return (
                     <option key={i} value={ele}>
                       {ele}
@@ -166,7 +165,7 @@ const EditProfile = () => {
                   maxLength: { value: 12, message: 'Invalid Contact Number' },
                   minLength: { value: 10, message: 'Invalid Contact Number' },
                 })}
-                defaultValue={user?.additionalDetails?.contactNumber}
+                defaultValue={user?.additionalDetails?.contactNumber ?? ''}
               />
               {errors.contactNumber && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -189,7 +188,7 @@ const EditProfile = () => {
                 placeholder="Enter Bio Details"
                 className="form-style w-4/5 rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5"
                 {...register('about', { required: true })}
-                defaultValue={user?.additionalDetails?.about}
+                defaultValue={user?.additionalDetails?.about ?? ''}
               />
               {errors.about && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
