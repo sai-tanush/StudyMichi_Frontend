@@ -1,12 +1,11 @@
+import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-
+import { AxiosError } from 'axios';
 import { setUser } from '../../utils/slices/profileSlice';
 import { apiConnector } from '../apisconnector';
 import { settingsEndpoints } from '../apis';
 import { logout } from './authAPI';
 import { AppDispatch } from '../../utils/store/store';
-import { AxiosError } from 'axios';
-import { NavigateFunction } from 'react-router-dom';
 
 const {
   UPDATE_DISPLAY_PICTURE_API,
@@ -15,7 +14,8 @@ const {
   DELETE_PROFILE_API,
 } = settingsEndpoints;
 
-export function updateDisplayPicture(token: string, formData) {
+//display Profile Picture function
+export function updateDisplayPicture(token: string, formData: any) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -46,7 +46,8 @@ export function updateDisplayPicture(token: string, formData) {
   };
 }
 
-export function updateProfile(token: string, formData) {
+//update Profile Details function
+export function updateProfile(token: string, formData: any) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -63,9 +64,7 @@ export function updateProfile(token: string, formData) {
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
-      // const userImage = response.data.updatedUserDetails.image
-      //   ? response.data.updatedUserDetails.image
-      //   : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`;
+
       dispatch(setUser({ ...response.data.updatedUserDetails }));
       toast.success('Profile Updated Successfully');
     } catch (error) {
@@ -76,7 +75,8 @@ export function updateProfile(token: string, formData) {
   };
 }
 
-export async function changePassword(token: string, formData) {
+//change user Password function
+export async function changePassword(token: string, formData: any) {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
@@ -105,6 +105,7 @@ export async function changePassword(token: string, formData) {
   toast.dismiss(toastId);
 }
 
+//Delete User Profile function
 export function deleteProfile(token: string, navigate: NavigateFunction) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
