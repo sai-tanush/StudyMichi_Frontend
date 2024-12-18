@@ -1,5 +1,5 @@
 interface HighlightTextProps {
-  text: string;
+  text: string | undefined;
 }
 
 const HighlightText: React.FC<HighlightTextProps> = ({ text }) => {
