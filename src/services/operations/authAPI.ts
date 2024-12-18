@@ -30,12 +30,9 @@ interface SignUpParams {
   navigate: NavigateFunction;
 }
 
-// Assuming this is your setLoading action
-
-// Define the types for the parameters
 type EmailType = string;
 
-// The sendOtp function with types
+// The sendOtp function
 export function sendOtp(email: EmailType, navigate: NavigateFunction) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
@@ -68,6 +65,7 @@ export function sendOtp(email: EmailType, navigate: NavigateFunction) {
   };
 }
 
+//signUp function
 export function signUp({
   accountType,
   firstName,
@@ -113,6 +111,7 @@ export function signUp({
   };
 }
 
+//login function
 export function login(
   email: emailType,
   password: passwordType,
@@ -155,6 +154,7 @@ export function login(
   };
 }
 
+//PasswordResetToken function
 export function getPasswordResetToken(
   email: emailType,
   setEmailSent: React.Dispatch<React.SetStateAction<boolean>>,
@@ -188,6 +188,7 @@ export function getPasswordResetToken(
   };
 }
 
+//Reset Password function
 export function resetPassword(
   password: passwordType,
   confirmPassword: passwordType,
@@ -225,6 +226,7 @@ export function resetPassword(
   };
 }
 
+//logout function
 export function logout(navigate: NavigateFunction) {
   return (dispatch: AppDispatch) => {
     dispatch(setToken(null));
