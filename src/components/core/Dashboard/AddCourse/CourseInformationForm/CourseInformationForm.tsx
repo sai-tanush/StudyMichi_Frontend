@@ -3,12 +3,15 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { HiOutlineCurrencyRupee } from 'react-icons/hi';
+import toast from 'react-hot-toast';
+import { MdNavigateNext } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import {
   addCourseDetails,
   editCourseDetails,
   fetchCourseCategories,
 } from '../../../../../services/operations/courseDetailsAPI';
-import { HiOutlineCurrencyRupee } from 'react-icons/hi';
 import TagInput from './TagInput';
 import ThumbnailUpload from './ThumbnailUpload';
 import CourseRequirementField from './CourseRequirementField';
@@ -19,11 +22,9 @@ import {
   setStep,
 } from '../../../../../utils/slices/courseSlice';
 import IconBtn from '../../../../common/IconBtn';
-import toast from 'react-hot-toast';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import { RootState } from '../../../../../utils/store/store';
-import { MdNavigateNext } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import useAuth from '../../../../../hooks/useAuth';
 
 const CourseInformationForm: React.FC = () => {
   const {
@@ -37,7 +38,7 @@ const CourseInformationForm: React.FC = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const { course, editCourse } = useSelector(
     (state: RootState) => state.course,
   );
