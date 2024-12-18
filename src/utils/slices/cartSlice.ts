@@ -19,7 +19,9 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const course = action.payload;
-      const index = state.cart.findIndex((item) => item._id === course._id);
+      const index = state.cart.findIndex(
+        (item: any) => item._id === course._id,
+      );
 
       if (index >= 0) {
         // If the course is already in the cart, do not modify the quantity
@@ -40,7 +42,7 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const courseId = action.payload;
-      const index = state.cart.findIndex((item) => item._id === courseId);
+      const index = state.cart.findIndex((item: any) => item._id === courseId);
 
       if (index >= 0) {
         // If the course is found in the cart, remove it
