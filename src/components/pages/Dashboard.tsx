@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import { RootState } from '../../utils/store/store';
 import Spinner from '../common/Spinner';
-import { Outlet } from 'react-router-dom';
 import Sidebar from '../core/Dashboard/Sidebar';
 
 const Dashboard: React.FC = () => {
