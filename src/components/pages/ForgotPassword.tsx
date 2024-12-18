@@ -1,11 +1,10 @@
-import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../utils/store/store';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { AppDispatch, RootState } from '../../utils/store/store';
 import { getPasswordResetToken } from '../../services/operations/authAPI';
 import Spinner from '../common/Spinner';
-import { FaArrowLeftLong } from 'react-icons/fa6';
 
 const ForgotPassword: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
