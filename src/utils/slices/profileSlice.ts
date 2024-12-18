@@ -5,6 +5,7 @@ export interface AdditionalDetailsProps {
   gender: string | null;
   dateOfBirth: string | null;
   about: string | null;
+  contactNumber: string | null;
   __v: number;
 }
 
