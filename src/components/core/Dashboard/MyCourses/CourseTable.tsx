@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../utils/store/store';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
-import { COURSE_STATUS } from '../../../../utils/constants';
 import { MdDelete, MdEdit } from 'react-icons/md';
+import { COURSE_STATUS } from '../../../../utils/constants';
 import ConfirmationModal, {
   ModalDataProps,
 } from '../../../common/ConfirmationModal';
@@ -13,7 +12,7 @@ import {
 } from '../../../../services/operations/courseDetailsAPI';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { CourseProps } from '../../../../utils/slices/courseSlice';
-import { useNavigate } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
 
 interface CourseTableProps {
   courses: CourseProps[];
@@ -22,7 +21,7 @@ interface CourseTableProps {
 
 const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
   const navigate = useNavigate();
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
