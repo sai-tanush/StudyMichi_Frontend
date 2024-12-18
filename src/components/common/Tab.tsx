@@ -1,13 +1,15 @@
 interface tabDataProps {
   id: number;
   tabName: string;
-  type: string;
+  type: 'Student' | 'Instructor' | 'Admin';
 }
 
 interface TabProps {
   tabData: tabDataProps[];
   field: string;
-  setField: React.Dispatch<React.SetStateAction<string>>;
+  setField: React.Dispatch<
+    React.SetStateAction<'Student' | 'Instructor' | 'Admin'>
+  >;
 }
 
 const Tab: React.FC<TabProps> = ({ tabData, field, setField }) => {
