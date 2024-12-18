@@ -8,6 +8,7 @@ type HandlerType = (event: MouseEvent | TouchEvent) => void;
  * @param ref - The React ref to the target element.
  * @param handler - The function to call when a click outside is detected.
  */
+
 export default function useOnClickOutside(ref: RefType, handler: HandlerType) {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
