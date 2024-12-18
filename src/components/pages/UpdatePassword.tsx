@@ -1,12 +1,11 @@
-import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../utils/store/store';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { resetPassword } from '../../services/operations/authAPI';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import Spinner from '../common/Spinner';
 import { FaArrowLeftLong } from 'react-icons/fa6';
+import { AppDispatch, RootState } from '../../utils/store/store';
+import { resetPassword } from '../../services/operations/authAPI';
+import Spinner from '../common/Spinner';
 
 const UpdatePassword: React.FC = () => {
   const [formData, setFormData] = useState({
