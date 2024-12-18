@@ -1,41 +1,41 @@
 import { useForm } from 'react-hook-form';
-import IconBtn from '../../../../common/IconBtn';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { GrAddCircle, GrFormNext } from 'react-icons/gr';
 import { MdModeEditOutline } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 import { RootState } from '../../../../../utils/store/store';
 import NestedView from './NestedView';
-import { useDispatch } from 'react-redux';
+import IconBtn from '../../../../common/IconBtn';
 import {
   setCourse,
   setEditCourse,
   setStep,
 } from '../../../../../utils/slices/courseSlice';
-import toast from 'react-hot-toast';
 import {
   createSection,
   updateSection,
 } from '../../../../../services/operations/courseDetailsAPI';
+import useCourse from '../../../../../hooks/useCourse';
+import useAuth from '../../../../../hooks/useAuth';
 
 const CourseBuilderForm: React.FC = () => {
   const {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
 
-  const [editSectionName, setEditSectionName] = useState<any>(null);
+  const [editSectionName, setEditSectionName] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const { course } = useSelector((state: RootState) => state.course);
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { course } = useCourse();
+  const { token } = useAuth();
 
   const dispatch = useDispatch();
 
   const handleCancelEdit = () => {
-    setEditSectionName(false);
+    setEditSectionName(null);
     setValue('sectionName', '');
   };
 
@@ -45,11 +45,12 @@ const CourseBuilderForm: React.FC = () => {
   };
 
   const handleGoNext = () => {
-    if (course.courseContent.length === 0) {
+    if (course && course.courseContent.length === 0) {
       toast.error('Please add atleast one Section for the course');
       return;
     }
     if (
+      course &&
       course.courseContent.some((section) => section.subSection.length === 0)
     ) {
       toast.error('Please add atleast one lecture in each section');
@@ -60,13 +61,13 @@ const CourseBuilderForm: React.FC = () => {
     dispatch(setStep(3));
   };
 
-  const onFormSubmit = async (data) => {
+  const onFormSubmit = async (data: any) => {
     console.log('data as prop in onFormSubmit in CourseBuilderForm = ', data);
 
     setLoading(true);
     let result;
 
-    if (editSectionName) {
+    if (editSectionName && course) {
       console.log('Update a Section is called');
       console.log('sectionName in onFormSubmit function = ', data.sectionName);
       result = await updateSection(
@@ -173,7 +174,7 @@ const CourseBuilderForm: React.FC = () => {
           )}
         </div>
       </form>
-      {course?.courseContent?.length > 0 && (
+      {course && course?.courseContent?.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
 
