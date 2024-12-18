@@ -1,5 +1,5 @@
-import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import HighlightText from '../core/Homepage/HighlightText';
 import CTAButton from '../common/Button';
 import Banner from '../../assets/Images/banner.mp4';
