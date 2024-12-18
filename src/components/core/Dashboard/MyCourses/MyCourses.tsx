@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../utils/store/store';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { IoIosAdd } from 'react-icons/io';
 import { fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
 import IconBtn from '../../../common/IconBtn';
-import { IoIosAdd } from 'react-icons/io';
 import CourseTable from './CourseTable';
+import useAuth from '../../../../hooks/useAuth';
 
 const MyCourses: React.FC = () => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
