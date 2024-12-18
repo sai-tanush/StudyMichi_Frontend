@@ -2,9 +2,8 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../utils/store/store';
 import toast from 'react-hot-toast';
+import { RxCross1 } from 'react-icons/rx';
 import {
   createSubSection,
   updateSubSection,
@@ -13,10 +12,11 @@ import {
   setCourse,
   SubSectionProps,
 } from '../../../../../utils/slices/courseSlice';
-import { RxCross1 } from 'react-icons/rx';
 import IconBtn from '../../../../common/IconBtn';
 import ThumbnailUpload from '../CourseInformationForm/ThumbnailUpload';
 import Spinner from '../../../../common/Spinner';
+import useCourse from '../../../../../hooks/useCourse';
+import useAuth from '../../../../../hooks/useAuth';
 
 interface SubSectionModalDataProps {
   sectionId: string;
@@ -52,8 +52,8 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
-  const { course } = useSelector((state: RootState) => state.course);
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { course } = useCourse();
+  const { token } = useAuth();
 
   useEffect(() => {
     if (modalData && (view || edit)) {
