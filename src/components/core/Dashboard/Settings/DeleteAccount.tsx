@@ -1,16 +1,16 @@
+import { useState } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { deleteProfile } from '../../../../services/operations/settingsAPI';
-import { AppDispatch, RootState } from '../../../../utils/store/store';
+import { AppDispatch } from '../../../../utils/store/store';
 import ConfirmationModal, {
   ModalDataProps,
 } from '../../../common/ConfirmationModal';
-import { useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
 
 const DeleteAccount = () => {
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [confirmationModal, setConfirmationModal] =
