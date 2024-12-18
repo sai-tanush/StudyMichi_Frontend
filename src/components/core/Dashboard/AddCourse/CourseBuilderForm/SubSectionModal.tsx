@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -8,7 +9,10 @@ import {
   createSubSection,
   updateSubSection,
 } from '../../../../../services/operations/courseDetailsAPI';
-import { setCourse } from '../../../../../utils/slices/courseSlice';
+import {
+  setCourse,
+  SubSectionProps,
+} from '../../../../../utils/slices/courseSlice';
 import { RxCross1 } from 'react-icons/rx';
 import IconBtn from '../../../../common/IconBtn';
 import ThumbnailUpload from '../CourseInformationForm/ThumbnailUpload';
@@ -23,8 +27,8 @@ interface SubSectionModalDataProps {
 }
 
 interface SubSectionModalProps {
-  modalData: any;
-  setModalData: React.Dispatch<React.SetStateAction<null>>;
+  modalData: SubSectionModalDataProps | null;
+  setModalData: React.Dispatch<React.SetStateAction<SubSectionProps | null>>;
   add?: boolean;
   view?: boolean;
   edit?: boolean;
@@ -52,7 +56,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
   const { token } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (view || edit) {
+    if (modalData && (view || edit)) {
       setValue('lectureTitle', modalData.title);
       setValue('lectureDesc', modalData.description);
       setValue('lectureVideo', modalData.videoUrl);
@@ -63,9 +67,10 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     const currentValues = getValues();
 
     if (
-      currentValues.lectureTitle !== modalData.title ||
-      currentValues.lectureDesc !== modalData.description ||
-      currentValues.lectureVideo !== modalData.videoUrl
+      modalData &&
+      (currentValues.lectureTitle !== modalData.title ||
+        currentValues.lectureDesc !== modalData.description ||
+        currentValues.lectureVideo !== modalData.videoUrl)
     ) {
       return true;
     } else {
@@ -77,24 +82,26 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     const currentValues = getValues();
     const formData = new FormData();
 
-    formData.append('sectionId', modalData.sectionId);
-    formData.append('subSectionId', modalData._id);
+    if (modalData) {
+      formData.append('sectionId', modalData.sectionId);
+      formData.append('subSectionId', modalData._id);
 
-    if (currentValues.lectureTitle !== modalData.title) {
-      formData.append('title', currentValues.lectureTitle);
-    }
-    if (currentValues.lectureDesc !== modalData.description) {
-      formData.append('description', currentValues.lectureDesc);
-    }
-    if (currentValues.lectureVideo !== modalData.videoUrl) {
-      formData.append('video', currentValues.lectureVideo);
+      if (currentValues.lectureTitle !== modalData.title) {
+        formData.append('title', currentValues.lectureTitle);
+      }
+      if (currentValues.lectureDesc !== modalData.description) {
+        formData.append('description', currentValues.lectureDesc);
+      }
+      if (currentValues.lectureVideo !== modalData.videoUrl) {
+        formData.append('video', currentValues.lectureVideo);
+      }
     }
 
     setLoading(true);
 
     //API Call
     const result = await updateSubSection(formData, token);
-    if (result) {
+    if (modalData && result) {
       const updatedCourseContent = course?.courseContent.map((section) =>
         section._id === modalData.sectionId ? result : section,
       );
@@ -105,7 +112,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     setLoading(false);
   };
 
-  const onFormSubmit = async (data) => {
+  const onFormSubmit = async (data: any) => {
     if (view) {
       return;
     }
@@ -122,7 +129,9 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
 
     //Add SubSection
     const formData = new FormData();
-    formData.append('sectionId', modalData);
+    if (modalData) {
+      formData.append('sectionId', modalData.sectionId);
+    }
     formData.append('title', data.lectureTitle);
     formData.append('description', data.lectureDesc);
     formData.append('video', data.lectureVideo);
@@ -132,7 +141,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     const result = await createSubSection(formData, token);
     if (result) {
       const updatedCourseContent = course?.courseContent.map((section) =>
-        section._id === modalData ? result : section,
+        section._id === modalData?.sectionId ? result : section,
       );
       const updatedCourse = { ...course, courseContent: updatedCourseContent };
       dispatch(setCourse(updatedCourse));
@@ -161,8 +170,8 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
             errors={errors}
             clearErrors={clearErrors}
             video={true}
-            viewData={view ? modalData.videoUrl : null}
-            editData={edit ? modalData.videoUrl : null}
+            viewData={view && modalData ? modalData.videoUrl : null}
+            editData={edit && modalData ? modalData.videoUrl : null}
           />
           <div>
             <label className="lable-style text-sm text-richblack-200 mt-1">
