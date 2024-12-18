@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../utils/store/store';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../../utils/store/store';
 import IconBtn from '../../common/IconBtn';
 
 const MyProfile: React.FC = () => {
