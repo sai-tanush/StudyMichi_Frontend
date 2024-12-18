@@ -32,8 +32,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-const Dashboard: React.FC = () => {
-  return <div></div>;
-};
-
-export default Dashboard;
