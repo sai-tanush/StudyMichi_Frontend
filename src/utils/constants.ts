@@ -20,7 +20,7 @@ export interface COURSE_STATUS_PROPS {
   PUBLISHED: 'Published';
 }
 
-export const ACCOUNT_TYPE: ACCOUNT_TYPE_PROPS: ACCOUNT_TYPE_PROPS = {
+export const ACCOUNT_TYPE: ACCOUNT_TYPE_PROPS = {
   STUDENT: 'Student',
   INSTRUCTOR: 'Instructor',
   ADMIN: 'Admin',
