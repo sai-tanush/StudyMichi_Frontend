@@ -10,6 +10,7 @@ import { NavbarLinks } from '../../data/navbar-links';
 import Logo from '../../assets/Logo/Logo-Full-Light.png';
 import ProfileDropdown from '../core/Auth/ProfileDropDown';
 import useAuth from '../../hooks/useAuth';
+import Spinner from './Spinner';
 
 interface CategoryProps {
   _id: string;
@@ -24,8 +25,10 @@ const Navbar: React.FC = () => {
   const { totalItems } = useSelector((state: RootState) => state.cart);
 
   const [ssubLinks, setSsubLinks] = useState<CategoryProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchSubLinks = async () => {
+    setLoading(true);
     try {
       const result = await apiConnector({
         method: 'GET',
@@ -36,6 +39,7 @@ const Navbar: React.FC = () => {
     } catch (err) {
       console.log('Could not fetch the category list', err);
     }
+    setLoading(false);
   };
   useEffect(() => {
     fetchSubLinks();
@@ -69,23 +73,42 @@ const Navbar: React.FC = () => {
                       <div>{navElement.title}</div>
                       <BiChevronDown size={25} />
                       <div
-                        className="invisible absolute left-[50%] top-[50%] flex flex-col rounded-md bg-richblack-5
+                        className="invisible absolute left-[50%] top-[-180%] flex flex-col rounded-md bg-richblack-5
                     translate-x-[-50%] translate-y-[60%] 
                     p-4 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100
-                    w-[300px]"
+                    w-[300px] z-50"
                       >
                         <div
-                          className="absolute left-[50%] top-[100px] h-6 w-6 rotate-45 rounded-md bg-richblack-5
+                          className="absolute left-[50%] top-[100px] h-6 w-6 rotate-45 rounded-lg bg-richblack-5
                       translate-y-[-450%] translate-x-[65%]"
                         ></div>
-                        {ssubLinks && ssubLinks.length ? (
-                          ssubLinks.map((subLink, index) => (
-                            <Link to={`${subLink.name}`} key={index}>
-                              <p>{subLink.name}</p>
-                            </Link>
-                          ))
+                        {loading ? (
+                          <div className="flex justify-center items-center">
+                            <Spinner />
+                          </div>
+                        ) : ssubLinks.length ? (
+                          ssubLinks && ssubLinks.length ? (
+                            ssubLinks.map((subLink, index) => (
+                              <Link
+                                to={`/catalog/${subLink.name
+                                  .split(' ')
+                                  .join('-')
+                                  .toLowerCase()}`}
+                                className="rounded-lg text-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
+                                key={index}
+                              >
+                                <p>{subLink.name}</p>
+                              </Link>
+                            ))
+                          ) : (
+                            <p className="text-center text-richblack-900 text-lg font-semibold">
+                              No Courses Found
+                            </p>
+                          )
                         ) : (
-                          <div></div>
+                          <p className="text-center text-richblack-900 text-lg font-semibold">
+                            No Courses Found
+                          </p>
                         )}
                       </div>
                     </div>
