@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../utils/store/store';
 import { GiNinjaStar } from 'react-icons/gi';
+import { useDispatch } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { removeFromCart } from '../../../../utils/slices/cartSlice';
-import { useDispatch } from 'react-redux';
+import { RootState } from '../../../../utils/store/store';
 
 const CartCourses = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
