@@ -21,25 +21,30 @@ const CourseCardFrequent: React.FC<CourseCardFrequentProps> = ({
   }, [course]);
 
   return (
-    <div className="text-richblack-5">
+    <div className="px-2 mx-2 my-5">
       <Link to={`/courses/${course._id}`}>
         <div>
           <div>
             <img
               src={course.thumbnail}
               alt="course Thumbnail"
-              className={`${height} w-full rounded-xl object-cover`}
+              className={`${height} w-full lg:h-[300px] rounded-xl object-cover`}
             />
           </div>
-          <div>
-            <p>{course?.courseName}</p>
+          <div className="px-2 py-3">
+            <p className="text-richblack-5 font-semibold">
+              {course?.courseName}
+            </p>
             {/* <p>{course?.instructor.firstName} {course?.instructor?.lastName}</p> */}
+            <p className="text-sm text-richblue-100">- By Golden Eye</p>
             <div>
-              <span>{avgReviewCount || 0}</span>
+              <span className="text-richblack-5">{avgReviewCount || 0}</span>
               <RatingStars Review_Count={avgReviewCount} />
-              <span>{course?.ratingAndReview?.length} Ratings</span>
+              <span className="text-richblack-5">
+                {course?.ratingAndReview?.length} Ratings
+              </span>
             </div>
-            <p>{course?.price}</p>
+            <p className="text-richblack-5">Rs.{course?.price}</p>
           </div>
         </div>
       </Link>
