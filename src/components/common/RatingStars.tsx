@@ -5,7 +5,15 @@ import {
   TiStarOutline,
 } from 'react-icons/ti';
 
-const RatingStars = ({ Review_Count, Star_Size }) => {
+interface RatingStarsProps {
+  Review_Count: number;
+  Star_Size?: number;
+}
+
+const RatingStars: React.FC<RatingStarsProps> = ({
+  Review_Count,
+  Star_Size,
+}) => {
   const [starCount, SetStarCount] = useState({
     full: 0,
     half: 0,
