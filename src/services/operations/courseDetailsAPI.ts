@@ -3,10 +3,6 @@ import { updateCompletedLectures } from '../../utils/slices/viewCourseSlice';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
 
-type courseIDType = {
-  courseId: string;
-};
-
 const {
   COURSE_DETAILS_API,
   COURSE_CATEGORIES_API,
@@ -48,16 +44,17 @@ export const getAllCourses = async () => {
 };
 
 //fetch particular Course Details function
-export const fetchCourseDetails = async (courseId: courseIDType) => {
+export const fetchCourseDetails = async (courseId: string | undefined) => {
+  console.log('CourseId in fetchCourseDEtails = ', courseId);
   const toastId = toast.loading('Loading...');
   //   dispatch(setLoading(true));
   let result = null;
   try {
     const response = await apiConnector({
-      method: 'POST',
+      method: 'GET',
       url: COURSE_DETAILS_API,
       bodyData: {
-        courseId,
+        courseId: courseId,
       },
     });
     console.log('COURSE_DETAILS_API API RESPONSE............', response);
