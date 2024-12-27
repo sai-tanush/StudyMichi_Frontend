@@ -1,8 +1,11 @@
 import { FaShareFromSquare } from 'react-icons/fa6';
 import Thumbnail from '../../../assets/Images/aboutus1.webp';
-import CTButton from '../../common/Button';
 
 const BuyCourseCard: React.FC = () => {
+  const handleBuyCourse = () => {};
+
+  const handleAddtoCart = () => {};
+
   return (
     <div className="flex flex-col w-full bg-richblack-800 p-5 gap-y-4 rounded-lg lg:mt-[23%]">
       <img
@@ -12,12 +15,19 @@ const BuyCourseCard: React.FC = () => {
       />
       <p className="text-4xl text-richblack-5 font-semibold">Rs. 699</p>
 
-      <CTButton active={true} linkto="">
+      <button
+        onClick={() => handleBuyCourse}
+        className="text-center text-[16px] px-6 py-3 rounded-md font-bold bg-yellow-50 text-black hover:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300"
+      >
         Buy now
-      </CTButton>
-      <CTButton active={false} linkto="">
+      </button>
+      <button
+        onClick={() => handleAddtoCart}
+        className="text-center text-[16px] px-6 py-3 rounded-md font-bold bg-richblack-800 text-white hover:scale-95 
+        transition-all duration-200 shadow-sm shadow-richblack-600 border border-richblack-600"
+      >
         Add to Cart
-      </CTButton>
+      </button>
 
       <p className="text-md text-richblack-100 text-center mt-2">
         30-Day Money-Back Guarantee
