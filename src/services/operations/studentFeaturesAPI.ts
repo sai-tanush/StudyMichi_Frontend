@@ -38,6 +38,7 @@ export async function buyCourse(
   dispatch,
 ) {
   const toastId = toast.loading('Loading...');
+  console.log('token in buyCourse function = ', token);
 
   try {
     //load the script
@@ -50,6 +51,8 @@ export async function buyCourse(
       return;
     }
 
+    console.log('result from API in buyCourse = ', res);
+
     //initiate the order
     const orderResponse = await apiConnector({
       method: 'POST',
@@ -61,6 +64,8 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       },
     });
+
+    console.log('order Response = ', orderResponse);
 
     if (!orderResponse) {
       throw new Error(orderResponse.data.message);
@@ -91,6 +96,13 @@ export async function buyCourse(
         verifyPayment({ ...response, courses }, token, navigate, dispatch);
       },
     };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    paymentObject.on('payment.failed', function (response) {
+      toast.error('Oops, Payment Failed!');
+      console.log('Payment Failed', response.error);
+    });
   } catch (error) {
     console.log('PAYMENT API ERROR....', error);
     toast.error('Could not make Payment');
@@ -100,6 +112,7 @@ export async function buyCourse(
 
 //send successful payment - email
 async function sendPaymentSuccessfullEmail(response, amount, token) {
+  console.log('response in sendPaymentSuccessfullEmail = ', response);
   try {
     await apiConnector({
       method: 'POST',
