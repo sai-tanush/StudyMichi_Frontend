@@ -45,13 +45,13 @@ export const getAllCourses = async () => {
 
 //fetch particular Course Details function
 export const fetchCourseDetails = async (courseId: string | undefined) => {
-  console.log('CourseId in fetchCourseDEtails = ', courseId);
+  console.log('CourseId in fetchCourseDetails = ', courseId);
   const toastId = toast.loading('Loading...');
   //   dispatch(setLoading(true));
   let result = null;
   try {
     const response = await apiConnector({
-      method: 'GET',
+      method: 'POST',
       url: COURSE_DETAILS_API,
       bodyData: {
         courseId: courseId,
