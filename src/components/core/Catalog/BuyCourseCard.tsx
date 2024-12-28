@@ -29,12 +29,6 @@ const BuyCourseCard: React.FC<BuyCourseCardProps> = ({
   const dispatch = useDispatch();
   const { courseId } = useParams();
 
-  // const handleAlreadyBoughtCourse = () => {
-  //   toast.error("Already enrolled in the course");
-  //   toast.success("Navigating back enrolled courses");
-  //   navigate("/dashboard/enrolled-courses")
-  // }
-
   const handleBuyCourse = () => {
     console.log('token in handleBuyCourse = ', token);
     if (token) {
