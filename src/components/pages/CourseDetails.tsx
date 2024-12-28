@@ -18,6 +18,7 @@ const CourseDetails: React.FC = () => {
   const [courseData, setCourseData] = useState<CourseProps | null>(null);
   const [avgReviewCount, setAvgReviewCount] = useState<number>(0);
   const [totalLectures, setTotalLectures] = useState<number>(0);
+  const [totalDuration, setTotalDuration] = useState<string>(0);
   const [confirmationModal, setConfirmationModal] = useState(null);
 
   console.log('courseId in CourseDetails = ', courseId);
@@ -25,8 +26,10 @@ const CourseDetails: React.FC = () => {
   const getCourseDetails = async () => {
     setLoading(true);
     const result = await fetchCourseDetails(courseId);
+    console.log('result in getCourseDetails = ', result);
     console.log('courseDetails = ', result.data.courseDetails[0]);
-    setCourseData(result.data.courseDetails[0]);
+    setCourseData(result.data.courseDetails);
+    setTotalDuration(result?.data?.totalDuration);
     setLoading(false);
   };
 
@@ -116,8 +119,19 @@ const CourseDetails: React.FC = () => {
 
           <div className="flex flex-col gap-y-4">
             <p className="text-3xl text-richblack-50 font-semibold">
-              Course Content
+              Course Content:
             </p>
+            <div className="flex gap-x-3">
+              <span className="text-richblack-50">
+                {courseData?.courseContent.length} section(s)
+              </span>
+              <span className="text-richblack-50">
+                {totalLectures} lectures
+              </span>
+              <span className="text-richblack-50">
+                <span className="text-brown-200">{totalDuration}</span> duration
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -125,7 +139,6 @@ const CourseDetails: React.FC = () => {
       {/* Buy Course */}
       <div className="flex flex-col ">
         <BuyCourseCard
-          confirmationModal={confirmationModal}
           setConfirmationModal={setConfirmationModal}
           courseData={courseData}
         />
