@@ -6,6 +6,7 @@ import useUserDetails from '../../../../hooks/useUserDetails';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { buyCourse } from '../../../../services/operations/studentFeaturesAPI';
+import { CourseProps } from '../../../../utils/slices/courseSlice';
 
 const CartTotalAmount = () => {
   const { total, cart } = useSelector((state: RootState) => state.cart);
@@ -15,7 +16,7 @@ const CartTotalAmount = () => {
   const dispatch = useDispatch();
 
   const handleBuyCourse = () => {
-    const courses = cart.map((course) => course._id);
+    const courses = cart.map((course: CourseProps) => course._id);
     buyCourse(courses, token, user, navigate, dispatch);
     console.log('Courses in cart to be bought = ', courses);
   };
