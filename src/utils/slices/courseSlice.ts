@@ -35,7 +35,7 @@ export interface CourseProps {
   thumbnail: string;
   tag: string[]; // Array of strings
   category: CategoryProps;
-  studentEnrolled: any[]; // Replace 'any'
+  studentEnrolled: string[];
   instructions: string[]; // Array of strings
   status: string;
   createdAt: string;
