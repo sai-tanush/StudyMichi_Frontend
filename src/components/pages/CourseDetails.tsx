@@ -18,7 +18,7 @@ const CourseDetails: React.FC = () => {
   const [courseData, setCourseData] = useState<CourseProps | null>(null);
   const [avgReviewCount, setAvgReviewCount] = useState<number>(0);
   const [totalLectures, setTotalLectures] = useState<number>(0);
-  const [totalDuration, setTotalDuration] = useState<string>(0);
+  const [totalDuration, setTotalDuration] = useState<string>('');
   const [confirmationModal, setConfirmationModal] = useState(null);
 
   console.log('courseId in CourseDetails = ', courseId);
