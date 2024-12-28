@@ -13,7 +13,6 @@ import { ACCOUNT_TYPE } from '../../../utils/constants';
 import { addToCart } from '../../../utils/slices/cartSlice';
 
 interface BuyCourseCardProps {
-  confirmationModal: ModalDataProps;
   setConfirmationModal: React.Dispatch<
     React.SetStateAction<null | ModalDataProps>
   >;
@@ -21,7 +20,6 @@ interface BuyCourseCardProps {
 }
 
 const BuyCourseCard: React.FC<BuyCourseCardProps> = ({
-  confirmationModal,
   setConfirmationModal,
   courseData,
 }) => {
