@@ -5,6 +5,7 @@ import ReactStars from 'react-rating-stars-component';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { removeFromCart } from '../../../../utils/slices/cartSlice';
 import { RootState } from '../../../../utils/store/store';
+import { CourseProps } from '../../../../utils/slices/courseSlice';
 
 const CartCourses = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
@@ -13,7 +14,7 @@ const CartCourses = () => {
 
   return (
     <div className="w-[40%]">
-      {cart.map((course, index) => (
+      {cart.map((course: CourseProps, index: number) => (
         <div className="flex justify-between items-center border border-richblack-600 rounded-lg p-2 mb-6">
           <div key={index} className="flex items-center gap-4 p-4 border-b">
             {/* Course Thumbnail */}
@@ -48,7 +49,7 @@ const CartCourses = () => {
                   fullIcon={<GiNinjaStar />} // Icon for filled star
                 />
                 <span className="text-richblack-300 text-sm">
-                  {course?.ratingAndReviews?.length} Ratings
+                  {course?.ratingAndReview?.length} Ratings
                 </span>
               </div>
               <p className="text-caribbeangreen-50">Rs {course?.price} </p>
