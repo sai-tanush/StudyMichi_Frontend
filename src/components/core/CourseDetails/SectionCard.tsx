@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { SectionProps } from '../../../utils/slices/courseSlice';
+import SubSectionCard from './SubSectionCard';
 
 interface SectionCardProps {
   section?: SectionProps;
@@ -30,12 +31,12 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
   return (
     <div>
       <div
-        className="bg-richblack-700 lg:h-16 flex justify-between"
+        className="bg-richblack-700 lg:h-16 flex justify-between mb-2"
         onClick={() => setSubLectures((val) => !val)}
       >
         <div className="flex items-center gap-x-3 ml-10">
           <div className="text-richblack-200">
-            {subLectures ? (
+            {!subLectures ? (
               <FaChevronDown size={16} />
             ) : (
               <FaChevronUp size={16} />
@@ -48,6 +49,12 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
           <div className="text-yellow-100">{totalSubSections} Lectures</div>
           <div className="text-richblack-100">{totalDuration} mins</div>
         </div>
+      </div>
+      <div>
+        {subLectures &&
+          section?.subSection?.map((subsection, index) => (
+            <SubSectionCard key={index} subsection={subsection} />
+          ))}
       </div>
     </div>
   );
