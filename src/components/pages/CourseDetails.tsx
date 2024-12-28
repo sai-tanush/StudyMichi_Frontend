@@ -6,28 +6,59 @@ import RatingStars from '../common/RatingStars';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 import { CiGlobe } from 'react-icons/ci';
 import BuyCourseCard from '../core/Catalog/BuyCourseCard';
+import { CourseProps } from '../../utils/slices/courseSlice';
+import GetAvgRating from '../../utils/helperFunctions/avgRating';
+import Error from './Error';
+import ConfirmationModal from '../common/ConfirmationModal';
+import { formatDate } from '../../utils/helperFunctions/formatDate';
 
 const CourseDetails: React.FC = () => {
   const { courseId } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
+  const [courseData, setCourseData] = useState<CourseProps | null>(null);
+  const [avgReviewCount, setAvgReviewCount] = useState<number>(0);
+  const [totalLectures, setTotalLectures] = useState<number>(0);
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
   console.log('courseId in CourseDetails = ', courseId);
 
   const getCourseDetails = async () => {
     setLoading(true);
     const result = await fetchCourseDetails(courseId);
-    console.log('courseDetails = ', result);
+    console.log('courseDetails = ', result.data.courseDetails[0]);
+    setCourseData(result.data.courseDetails[0]);
     setLoading(false);
   };
 
   useEffect(() => {
     getCourseDetails();
-  });
+  }, [courseId]);
+
+  useEffect(() => {
+    const count = GetAvgRating(courseData?.ratingAndReview);
+    setAvgReviewCount(count);
+  }, [courseData]);
+
+  useEffect(() => {
+    let lectures = 0;
+    courseData?.courseContent?.forEach((sec) => {
+      lectures += sec.subSection.length || 0;
+    });
+    setTotalLectures(lectures);
+  }, [courseData]);
 
   if (loading) {
     return (
       <div className="w-screen h-screen flex justify-center items-center">
         <Spinner />
+      </div>
+    );
+  }
+
+  if (!courseData) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center">
+        <Error />
       </div>
     );
   }
@@ -38,19 +69,31 @@ const CourseDetails: React.FC = () => {
       <div className="flex flex-col  lg:w-[60%]">
         {/* Course Header */}
         <div className="flex flex-col gap-y-2 p-4 lg:mt-[10%]">
-          <p className="text-4xl text-richblack-5 font-semibold">Course Name</p>
-          <p className="text-lg text-richblack-300">Course Description</p>
+          <p className="text-4xl text-richblack-5 font-semibold">
+            {courseData?.courseName}
+          </p>
+          <p className="text-lg text-richblack-300">
+            {courseData?.courseDescription}
+          </p>
 
           <div className="flex gap-x-2">
-            <span className="text-richblack-100">reviewCount</span>
+            <span className="text-richblack-100">{avgReviewCount}</span>
             <RatingStars Review_Count={4} />
-            <span className="text-richblack-100">Ratings</span>
+            <span className="text-richblack-100">{`(${courseData?.ratingAndReview.length} reviews)`}</span>
+            <span className="text-richblack-100">{`(${courseData?.studentEnrolled.length} students enrolled)`}</span>
+          </div>
+
+          <div>
+            <p className="text-richblack-100">
+              Created by -
+              <span className="text-richblue-100">{` ${courseData?.instructor?.firstName} ${courseData?.instructor?.lastName}`}</span>
+            </p>
           </div>
 
           <div className="flex gap-x-4">
             <div className="flex items-center gap-x-2 text-md text-richblack-100">
               <IoInformationCircleOutline size={22} />
-              <p>Created at Date</p>
+              <p>Created at {formatDate(courseData.createdAt)}</p>
             </div>
 
             <div className="flex items-center gap-x-2 text-md text-richblack-100">
@@ -67,7 +110,7 @@ const CourseDetails: React.FC = () => {
               What you'll learn
             </p>
             <p className="text-lg text-richblack-50 ">
-              Points to learn from course
+              {courseData?.whatYouWillLearn}
             </p>
           </div>
 
@@ -81,8 +124,14 @@ const CourseDetails: React.FC = () => {
 
       {/* Buy Course */}
       <div className="flex flex-col ">
-        <BuyCourseCard />
+        <BuyCourseCard
+          confirmationModal={confirmationModal}
+          setConfirmationModal={setConfirmationModal}
+          courseData={courseData}
+        />
       </div>
+
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   );
 };
