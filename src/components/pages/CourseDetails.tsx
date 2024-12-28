@@ -22,7 +22,7 @@ const CourseDetails: React.FC = () => {
   const [totalDuration, setTotalDuration] = useState<string>('');
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
-  const [isActive, setIsActive] = useState(Array(0));
+  const [collapseSections, setCollapseSections] = useState<boolean>(false);
 
   console.log('courseId in CourseDetails = ', courseId);
 
@@ -36,12 +36,9 @@ const CourseDetails: React.FC = () => {
     setLoading(false);
   };
 
-  const handleActive = (id) => {
-    setIsActive(
-      !isActive.includes(id)
-        ? isActive.concat(id)
-        : isActive.filter((e) => e != id),
-    );
+  const handleCollapseSection = () => {
+    console.log('handleCollapseSection is called');
+    setCollapseSections(true);
   };
 
   useEffect(() => {
@@ -147,7 +144,7 @@ const CourseDetails: React.FC = () => {
               </div>
               <div>
                 <button
-                  onClick={() => setIsActive([])}
+                  onClick={handleCollapseSection}
                   className="text-yellow-50 text-lg cursor-pointer"
                 >
                   Collapse all Sections
@@ -156,7 +153,12 @@ const CourseDetails: React.FC = () => {
             </div>
             <div>
               {courseData?.courseContent?.map((section, index) => (
-                <SectionCard key={index} section={section} />
+                <SectionCard
+                  key={index}
+                  section={section}
+                  collapseSections={collapseSections}
+                  setCollapseSections={setCollapseSections}
+                />
               ))}
             </div>
           </div>
