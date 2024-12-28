@@ -38,6 +38,7 @@ export interface CourseProps {
   studentEnrolled: any[]; // Replace 'any'
   instructions: string[]; // Array of strings
   status: string;
+  createdAt: string;
   _id: string;
   __v: number;
 }
