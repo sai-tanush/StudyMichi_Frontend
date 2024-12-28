@@ -42,7 +42,7 @@ const CartCourses = () => {
                 <ReactStars
                   count={5} // Total stars
                   size={20} // Size of each star
-                  value={4}
+                  value={course?.ratingAndReview?.length}
                   edit={false} // Set to false to make the stars uneditable
                   activeColor="#ffd700" // Active star color (filled star)
                   emptyIcon={<GiNinjaStar />} // Icon for empty star
