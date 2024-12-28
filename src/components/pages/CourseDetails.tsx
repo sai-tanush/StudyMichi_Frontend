@@ -11,6 +11,7 @@ import GetAvgRating from '../../utils/helperFunctions/avgRating';
 import Error from './Error';
 import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 import { formatDate } from '../../utils/helperFunctions/formatDate';
+import SectionCard from '../core/CourseDetails/SectionCard';
 
 const CourseDetails: React.FC = () => {
   const { courseId } = useParams();
@@ -21,6 +22,7 @@ const CourseDetails: React.FC = () => {
   const [totalDuration, setTotalDuration] = useState<string>('');
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
+  const [isActive, setIsActive] = useState(Array(0));
 
   console.log('courseId in CourseDetails = ', courseId);
 
@@ -32,6 +34,14 @@ const CourseDetails: React.FC = () => {
     setCourseData(result.data.courseDetails);
     setTotalDuration(result?.data?.totalDuration);
     setLoading(false);
+  };
+
+  const handleActive = (id) => {
+    setIsActive(
+      !isActive.includes(id)
+        ? isActive.concat(id)
+        : isActive.filter((e) => e != id),
+    );
   };
 
   useEffect(() => {
@@ -118,20 +128,36 @@ const CourseDetails: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4 p-2 ">
             <p className="text-3xl text-richblack-50 font-semibold">
               Course Content:
             </p>
-            <div className="flex gap-x-3">
-              <span className="text-richblack-50">
-                {courseData?.courseContent.length} section(s)
-              </span>
-              <span className="text-richblack-50">
-                {totalLectures} lectures
-              </span>
-              <span className="text-richblack-50">
-                <span className="text-brown-200">{totalDuration}</span> duration
-              </span>
+            <div className="flex gap-x-3 justify-between">
+              <div className="flex gap-x-3">
+                <span className="text-richblack-50 text-lg">
+                  {courseData?.courseContent.length} section(s)
+                </span>
+                <span className="text-richblack-50 text-lg">
+                  {totalLectures} lectures
+                </span>
+                <span className="text-richblack-50 text-lg">
+                  <span className="text-brown-200">{totalDuration}</span>{' '}
+                  duration
+                </span>
+              </div>
+              <div>
+                <button
+                  onClick={() => setIsActive([])}
+                  className="text-yellow-50 text-lg cursor-pointer"
+                >
+                  Collapse all Sections
+                </button>
+              </div>
+            </div>
+            <div>
+              {courseData?.courseContent?.map((section, index) => (
+                <SectionCard key={index} section={section} />
+              ))}
             </div>
           </div>
         </div>
