@@ -9,7 +9,7 @@ import BuyCourseCard from '../core/Catalog/BuyCourseCard';
 import { CourseProps } from '../../utils/slices/courseSlice';
 import GetAvgRating from '../../utils/helperFunctions/avgRating';
 import Error from './Error';
-import ConfirmationModal from '../common/ConfirmationModal';
+import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 import { formatDate } from '../../utils/helperFunctions/formatDate';
 
 const CourseDetails: React.FC = () => {
@@ -19,7 +19,8 @@ const CourseDetails: React.FC = () => {
   const [avgReviewCount, setAvgReviewCount] = useState<number>(0);
   const [totalLectures, setTotalLectures] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<string>('');
-  const [confirmationModal, setConfirmationModal] = useState(null);
+  const [confirmationModal, setConfirmationModal] =
+    useState<ModalDataProps | null>(null);
 
   console.log('courseId in CourseDetails = ', courseId);
 
