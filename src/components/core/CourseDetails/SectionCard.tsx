@@ -5,12 +5,18 @@ import SubSectionCard from './SubSectionCard';
 
 interface SectionCardProps {
   section?: SectionProps;
+  collapseSections: boolean;
+  setCollapseSections: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
-  const [subLectures, setSubLectures] = useState<boolean>(false);
+const SectionCard: React.FC<SectionCardProps> = ({
+  section,
+  collapseSections,
+  setCollapseSections,
+}) => {
   const [totalSubSections, setTotalSubSections] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
+  const [subLectures, setSubLectures] = useState<boolean>(false);
 
   const calculateSubSections = (section: SectionProps | undefined) => {
     let lectures = 0;
@@ -24,6 +30,11 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
     setTotalDuration(timeDuration);
   };
 
+  const handleshowSubLectures = () => {
+    setCollapseSections(false);
+    setSubLectures((val) => !val);
+  };
+
   useEffect(() => {
     calculateSubSections(section);
   }, [section]);
@@ -32,11 +43,11 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
     <div>
       <div
         className="bg-richblack-700 lg:h-16 flex justify-between mb-2"
-        onClick={() => setSubLectures((val) => !val)}
+        onClick={handleshowSubLectures}
       >
         <div className="flex items-center gap-x-3 ml-10">
           <div className="text-richblack-200">
-            {!subLectures ? (
+            {!subLectures && !collapseSections ? (
               <FaChevronDown size={16} />
             ) : (
               <FaChevronUp size={16} />
@@ -53,7 +64,12 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
       <div>
         {subLectures &&
           section?.subSection?.map((subsection, index) => (
-            <SubSectionCard key={index} subsection={subsection} />
+            <SubSectionCard
+              key={index}
+              subsection={subsection}
+              collapseSections={collapseSections}
+              setCollapseSections={setCollapseSections}
+            />
           ))}
       </div>
     </div>
