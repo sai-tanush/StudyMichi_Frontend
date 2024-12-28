@@ -14,7 +14,7 @@ import { addToCart } from '../../../utils/slices/cartSlice';
 
 interface BuyCourseCardProps {
   setConfirmationModal: React.Dispatch<
-    React.SetStateAction<null | ModalDataProps>
+    React.SetStateAction<ModalDataProps | null>
   >;
   courseData: CourseProps;
 }
