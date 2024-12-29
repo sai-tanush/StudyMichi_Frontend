@@ -162,6 +162,27 @@ const CourseDetails: React.FC = () => {
               ))}
             </div>
           </div>
+
+          {/* Author Section */}
+          <div className="flex flex-col gap-y-5 mt-10">
+            <p className="text-3xl text-richblack-5 font-semibold">Author</p>
+            <div className="flex gap-x-5 items-center">
+              <img
+                src={courseData?.instructor?.image}
+                alt="author image"
+                className="h-[100px] w-[100px] rounded-full"
+              />
+              <div>
+                <p className="text-2xl text-richblack-25">
+                  {courseData?.instructor?.firstName}{' '}
+                  {courseData?.instructor?.lastName}
+                </p>
+                <p className="text-lg text-richblack-200">
+                  {courseData?.instructor?.additionalDetails?.about}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
