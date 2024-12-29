@@ -1,17 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCourseDetails } from '../../services/operations/courseDetailsAPI';
+import { CiGlobe } from 'react-icons/ci';
+import { IoInformationCircleOutline } from 'react-icons/io5';
+import Error from './Error';
 import Spinner from '../common/Spinner';
 import RatingStars from '../common/RatingStars';
-import { IoInformationCircleOutline } from 'react-icons/io5';
-import { CiGlobe } from 'react-icons/ci';
 import BuyCourseCard from '../core/Catalog/BuyCourseCard';
+import SectionCard from '../core/CourseDetails/SectionCard';
 import { CourseProps } from '../../utils/slices/courseSlice';
 import GetAvgRating from '../../utils/helperFunctions/avgRating';
-import Error from './Error';
-import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 import { formatDate } from '../../utils/helperFunctions/formatDate';
-import SectionCard from '../core/CourseDetails/SectionCard';
+import { fetchCourseDetails } from '../../services/operations/courseDetailsAPI';
+import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 
 const CourseDetails: React.FC = () => {
   const { courseId } = useParams();
