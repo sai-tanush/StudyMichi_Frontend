@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { SectionProps } from '../../../utils/slices/courseSlice';
 import SubSectionCard from './SubSectionCard';
+import { SectionProps } from '../../../utils/slices/courseSlice';
 
 interface SectionCardProps {
   section?: SectionProps;
