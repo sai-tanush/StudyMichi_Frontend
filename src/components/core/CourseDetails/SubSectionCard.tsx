@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { SubSectionProps } from '../../../utils/slices/courseSlice';
 import { MdVideoLibrary } from 'react-icons/md';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { SubSectionProps } from '../../../utils/slices/courseSlice';
 
 interface SubSectionCardProps {
   subsection: SubSectionProps;
