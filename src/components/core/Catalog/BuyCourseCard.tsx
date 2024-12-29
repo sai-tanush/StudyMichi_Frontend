@@ -1,5 +1,4 @@
 import { FaShareFromSquare } from 'react-icons/fa6';
-import Thumbnail from '../../../assets/Images/aboutus1.webp';
 import { buyCourse } from '../../../services/operations/studentFeaturesAPI';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -73,7 +72,7 @@ const BuyCourseCard: React.FC<BuyCourseCardProps> = ({
   return (
     <div className="flex flex-col w-full bg-richblack-800 p-5 gap-y-4 rounded-lg lg:mt-[23%]">
       <img
-        src={Thumbnail}
+        src={courseData?.thumbnail}
         alt="Course thumbnail"
         className="h-[250px] w-[380px] rounded-lg"
       />
