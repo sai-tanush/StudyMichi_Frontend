@@ -32,7 +32,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ modalData }) => {
             className="h-fit px-6 py-2 bg-richblack-300 text-richblack-900 rounded-lg ml-4"
             onClick={modalData.btn2Handler}
           >
-            {modalData?.btn2Text}
+            {modalData?.btn2Text || 'N/A'}
           </button>
         </div>
       </div>
