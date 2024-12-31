@@ -113,27 +113,23 @@ const Footer: React.FC = () => {
 
           {/* Section 2 */}
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
-            {FooterLink2.map((element, index) => {
-              return (
-                <div key={index} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-                  <h1 className="text-richblack-50 font-semibold text-[16px]">
-                    {element.title}
-                  </h1>
-                  <div className="flex flex-col gap-2 mt-2">
-                    {element.links.map((link, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
-                        >
-                          <Link to={link.link}>{link.title}</Link>
-                        </div>
-                      );
-                    })}
-                  </div>
+            {FooterLink2.map((element, index) => (
+              <div key={index} className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+                <h1 className="text-richblack-50 font-semibold text-[16px]">
+                  {element.title}
+                </h1>
+                <div className="flex flex-col gap-2 mt-2">
+                  {element.links.map((link, index) => (
+                    <div
+                      key={index}
+                      className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                    >
+                      <Link to={link.link}>{link.title}</Link>
+                    </div>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -142,22 +138,20 @@ const Footer: React.FC = () => {
         {/* Section 1 */}
         <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
           <div className="flex flex-row">
-            {BOTTOM_FOOTER.map((ele, i) => {
-              return (
-                <div
-                  key={i}
-                  className={` ${
-                    BOTTOM_FOOTER.length - 1 === i
-                      ? ''
-                      : 'border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200'
-                  } px-3 `}
-                >
-                  <Link to={ele.split(' ').join('-').toLocaleLowerCase()}>
-                    {ele}
-                  </Link>
-                </div>
-              );
-            })}
+            {BOTTOM_FOOTER.map((ele, i) => (
+              <div
+                key={i}
+                className={` ${
+                  BOTTOM_FOOTER.length - 1 === i
+                    ? ''
+                    : 'border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200'
+                } px-3 `}
+              >
+                <Link to={ele.split(' ').join('-').toLocaleLowerCase()}>
+                  {ele}
+                </Link>
+              </div>
+            ))}
           </div>
 
           <div className="text-center">Made with ❤️ StudyMichi © 2024</div>
