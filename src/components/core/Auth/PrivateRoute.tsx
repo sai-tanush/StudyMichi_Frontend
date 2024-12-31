@@ -11,7 +11,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { token } = useAuth();
 
   if (token !== null) return children;
-  else return <Navigate to="/login" />;
+
+  return <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
