@@ -36,9 +36,9 @@ const ViewCourse: React.FC = () => {
 
   return (
     <div>
-      <div>
+      <div className="relative flex min-h-[calc(100vh-3.5rem)]">
         <VideoDetailsSidebar setReviewModal={setReviewModal} />
-        <div>
+        <div className="mx-auto h-full w-screen pb-10">
           <Outlet />
         </div>
       </div>
