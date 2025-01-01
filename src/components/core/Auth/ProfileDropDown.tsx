@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '../../../utils/store/store';
 
 export default function ProfileDropdown() {
   const { user } = useSelector((state: RootState) => state.profile);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);

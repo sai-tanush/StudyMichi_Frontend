@@ -7,7 +7,7 @@ import { AppDispatch } from '../../../utils/store/store';
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState({
     email: '',
     password: '',

@@ -14,7 +14,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
   Review_Count,
   Star_Size,
 }) => {
-  const [starCount, SetStarCount] = useState({
+  const [starCount, setStarCount] = useState({
     full: 0,
     half: 0,
     empty: 0,
@@ -22,7 +22,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
 
   useEffect(() => {
     const wholeStars = Math.floor(Review_Count) || 0;
-    SetStarCount({
+    setStarCount({
       full: wholeStars,
       half: Number.isInteger(Review_Count) ? 0 : 1,
       empty: Number.isInteger(Review_Count) ? 5 - wholeStars : 4 - wholeStars,

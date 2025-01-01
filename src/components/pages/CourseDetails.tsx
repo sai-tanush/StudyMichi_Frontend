@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -14,6 +15,7 @@ import { formatDate } from '../../utils/helperFunctions/formatDate';
 import { fetchCourseDetails } from '../../services/operations/courseDetailsAPI';
 import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 
+
 const CourseDetails: React.FC = () => {
   const { courseId } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,6 +26,7 @@ const CourseDetails: React.FC = () => {
   const [confirmationModal, setConfirmationModal] =
     useState<ModalDataProps | null>(null);
   const [collapseSections, setCollapseSections] = useState<boolean>(false);
+
 
   console.log('courseId in CourseDetails = ', courseId);
 
@@ -100,6 +103,7 @@ const CourseDetails: React.FC = () => {
               Created by -
               <span className="text-richblue-100">{` ${courseData?.instructor?.firstName} ${courseData?.instructor?.lastName}`}</span>
             </p>
+
           </div>
 
           <div className="flex gap-x-4">

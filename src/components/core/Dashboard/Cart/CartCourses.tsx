@@ -7,6 +7,7 @@ import { removeFromCart } from '../../../../utils/slices/cartSlice';
 import { RootState } from '../../../../utils/store/store';
 import { CourseProps } from '../../../../utils/slices/courseSlice';
 
+
 const CartCourses = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const CartCourses = () => {
                   count={5} // Total stars
                   size={20} // Size of each star
                   value={course?.ratingAndReview?.length}
+
                   edit={false} // Set to false to make the stars uneditable
                   activeColor="#ffd700" // Active star color (filled star)
                   emptyIcon={<GiNinjaStar />} // Icon for empty star

@@ -28,6 +28,7 @@ export interface SectionProps {
 export interface CourseProps {
   courseName: string;
   courseDescription: string;
+
   instructor?: UserProps;
   whatYouWillLearn: string;
   courseContent: SectionProps[]; // Replace 'any'
