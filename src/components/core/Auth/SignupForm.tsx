@@ -1,22 +1,31 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { sendOtp } from '../../../services/operations/authAPI';
 import { setSignupData } from '../../../utils/slices/authSlice';
 import { ACCOUNT_TYPE } from '../../../utils/constants';
 import Tab from '../../common/Tab';
 import { TAB_DATA } from '../../../data/signup-tabdata';
 
+interface SignUpFormDataProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 const SignupForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // student or instructor
-  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
+  const [accountType, setAccountType] = useState<
+    'Student' | 'Instructor' | 'Admin'
+  >('Student');
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SignUpFormDataProps>({
     firstName: '',
     lastName: '',
     email: '',
@@ -48,6 +57,8 @@ const SignupForm: React.FC = () => {
     const signupData = {
       ...formData,
       accountType,
+      otp: '',
+      navigate,
     };
 
     // Setting signup data to state

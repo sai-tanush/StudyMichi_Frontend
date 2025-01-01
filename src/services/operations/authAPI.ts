@@ -2,7 +2,6 @@ import { setToken } from '../../utils/slices/authSlice';
 import { resetCart } from '../../utils/slices/cartSlice';
 import { setUser } from '../../utils/slices/profileSlice';
 import { endpoints } from '../apis';
-import { Dispatch } from 'redux';
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector'; // Assuming this is your apiConnector function
 import { setLoading } from '../../utils/slices/authSlice';
@@ -31,12 +30,9 @@ interface SignUpParams {
   navigate: NavigateFunction;
 }
 
-// Assuming this is your setLoading action
-
-// Define the types for the parameters
 type EmailType = string;
 
-// The sendOtp function with types
+// The sendOtp function
 export function sendOtp(email: EmailType, navigate: NavigateFunction) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
@@ -69,6 +65,7 @@ export function sendOtp(email: EmailType, navigate: NavigateFunction) {
   };
 }
 
+//signUp function
 export function signUp({
   accountType,
   firstName,
@@ -114,12 +111,13 @@ export function signUp({
   };
 }
 
+//login function
 export function login(
   email: emailType,
   password: passwordType,
   navigate: NavigateFunction,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -145,6 +143,7 @@ export function login(
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`;
       dispatch(setUser({ ...response.data.user, image: userImage }));
       localStorage.setItem('token', JSON.stringify(response.data.token));
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       navigate('/dashboard/my-profile');
     } catch (error) {
       console.log('LOGIN API ERROR............', error);
@@ -155,11 +154,12 @@ export function login(
   };
 }
 
+//PasswordResetToken function
 export function getPasswordResetToken(
   email: emailType,
   setEmailSent: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -188,13 +188,14 @@ export function getPasswordResetToken(
   };
 }
 
+//Reset Password function
 export function resetPassword(
   password: passwordType,
   confirmPassword: passwordType,
   token: string,
   navigate: NavigateFunction,
 ) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     dispatch(setLoading(true));
     try {
@@ -225,8 +226,9 @@ export function resetPassword(
   };
 }
 
+//logout function
 export function logout(navigate: NavigateFunction) {
-  return (dispatch: Dispatch) => {
+  return (dispatch: AppDispatch) => {
     dispatch(setToken(null));
     dispatch(setUser(null));
     dispatch(resetCart());

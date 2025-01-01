@@ -1,4 +1,5 @@
-// This will prevent authenticated users from accessing this route
+// This component will prevent authenticated users from accessing this route
+
 import { Navigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 import useAuth from '../../../hooks/useAuth';

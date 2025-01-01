@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NavigateFunction } from 'react-router-dom';
 
-type SignupData = {
-  accountType: string;
+export type SignupData = {
+  accountType: 'Student' | 'Instructor' | 'Admin';
   firstName: string;
   lastName: string;
   email: string;

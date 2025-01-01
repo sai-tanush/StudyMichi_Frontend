@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import OTPInput from 'react-otp-input';
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { GiBackwardTime } from 'react-icons/gi';
 import { AppDispatch, RootState } from '../../utils/store/store';
 import Spinner from '../common/Spinner';
-import OTPInput from 'react-otp-input';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaArrowLeftLong } from 'react-icons/fa6';
 import { sendOtp, signUp } from '../../services/operations/authAPI';
 import '../../index.css';
-import { GiBackwardTime } from 'react-icons/gi';
 
 const VerifyEmail: React.FC = () => {
   const [otp, setOtp] = useState<string>('');

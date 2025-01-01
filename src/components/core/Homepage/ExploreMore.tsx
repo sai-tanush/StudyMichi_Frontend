@@ -2,17 +2,10 @@ import { useState } from 'react';
 import HighlightText from './HighlightText';
 import { HomePageExplore } from '../../../data/homepage-explore';
 import CourseCard from './CourseCard';
-
-const tabsName = [
-  'Free',
-  'New to coding',
-  'Most popular',
-  'Skills paths',
-  'Career paths',
-];
+import { HOMEPAGE_TABS_DATA } from '../../../data/homepage-data';
 
 const ExploreMore: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState(tabsName[0]);
+  const [currentTab, setCurrentTab] = useState(HOMEPAGE_TABS_DATA[0]);
   const [courses, setCourses] = useState(HomePageExplore[0].courses);
   const [currentCard, setCurrentCard] = useState(
     HomePageExplore[0].courses[0].heading,
@@ -35,7 +28,7 @@ const ExploreMore: React.FC = () => {
       </div>
 
       <div className="my-5 flex flex-row gap-1 mx-auto bg-richblack-700 rounded-full px-1 py-1">
-        {tabsName.map((element, index) => {
+        {HOMEPAGE_TABS_DATA.map((element, index) => {
           return (
             <div
               key={index}

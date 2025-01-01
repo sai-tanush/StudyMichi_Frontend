@@ -23,9 +23,11 @@ const CardContent: React.FC<CardProps> = ({ card }) => {
         {card.description}
       </p>
       <div className="w-fit lg:mt-8">
-        <CTAButton active={true} linkto={card.BtnLink}>
-          {card.BtnText}
-        </CTAButton>
+        {card.BtnLink && (
+          <CTAButton active={true} linkto={card.BtnLink}>
+            {card.BtnText}
+          </CTAButton>
+        )}
       </div>
     </div>
   ) : (
