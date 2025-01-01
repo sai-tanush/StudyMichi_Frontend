@@ -398,7 +398,10 @@ export const getFullDetailsOfCourse = async (
 };
 
 // mark a lecture as complete
-export const markLectureAsComplete = async (data: any, token: string) => {
+export const markLectureAsComplete = async (
+  data: any,
+  token: string | null,
+) => {
   let result = null;
   console.log('mark complete data', data);
   const toastId = toast.loading('Loading...');
