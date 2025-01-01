@@ -3,9 +3,16 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../utils/store/store';
 import IconBtn from '../../common/IconBtn';
-import { BiChevronDown } from 'react-icons/bi';
+import { BiChevronDown, BiChevronLeft } from 'react-icons/bi';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
-const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
+export interface VideoDetailsSidebarProps {
+  setReviewModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const VideoDetailsSidebar: React.FC<VideoDetailsSidebarProps> = ({
+  setReviewModal,
+}) => {
   const [activeStatus, setActiveStatus] = useState('');
   const [videoBarActive, setVideoBarActive] = useState('');
   const navigate = useNavigate();
@@ -45,17 +52,19 @@ const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
   }, [courseSectionData, courseEntireData, location.pathname]);
 
   return (
-    <div>
+    <div className="lg:min-h-screen w-[20%] border-r border-richblack-25">
       <div>
         {/* for button and headings */}
         <div>
           {/* for buttons */}
-          <div>
+          <div className="flex justify-between px-3 py-5">
             <div
               onClick={() => {
                 navigate('/dashboard/enrolled-courses');
               }}
+              className="text-richblack-5 w-fit px-4 py-2 rounded-lg flex gap-x-2 items-center cursor-pointer hover:underline"
             >
+              <FaArrowLeftLong size={16} />
               Back
             </div>
 
@@ -65,9 +74,11 @@ const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
           </div>
 
           {/* for heading or title */}
-          <div>
-            <p>{courseEntireData?.courseName}</p>
-            <p>
+          <div className="py-5 flex items-center justify-between px-4">
+            <p className="text-richblack-5 text-lg font-semibold ">
+              {courseEntireData?.courseName}
+            </p>
+            <p className="text-richblack-100">
               {completedLectures?.length} / {totalNoOfLectures}
             </p>
           </div>
@@ -76,9 +87,13 @@ const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
         {/* for sections and sub-sections */}
         <div>
           {courseSectionData.map((section, index) => (
-            <div onClick={() => setActiveStatus(section?._id)} key={index}>
+            <div
+              className="px-2"
+              onClick={() => setActiveStatus(section?._id)}
+              key={index}
+            >
               {/* sections */}
-              <div>
+              <div className="bg-richblack-700  text-richblack-5 p-4 flex items-center justify-between">
                 <div>{section?.sectionName}</div>
                 <BiChevronDown />
               </div>
@@ -89,7 +104,7 @@ const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
                   <div>
                     {section?.subSection.map((topic, index) => (
                       <div
-                        className={`flex gap-5 p-5 ${
+                        className={`flex gap-5 p-4 ${
                           videoBarActive === topic?._id
                             ? 'bg-yellow-100 text-richblack-900'
                             : 'bg-richblack-900 text-richblack-5'
@@ -106,7 +121,12 @@ const VideoDetailsSidebar: React.FC = ({ setReviewModal }) => {
                           checked={completedLectures.includes(topic?._id)}
                           onChange={() => {}}
                         />
-                        <span>{topic.title}</span>
+                        <div className="flex justify-between gap-x-10">
+                          <span>{topic.title}</span>
+                          <p className="text-blue-100 text-sm lg:ml-5">
+                            {parseInt(topic?.timeDuration / 60)} mins
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
