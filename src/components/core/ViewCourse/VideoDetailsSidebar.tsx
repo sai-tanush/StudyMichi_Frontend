@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../../utils/store/store';
 import IconBtn from '../../common/IconBtn';
-import { BiChevronDown, BiChevronLeft } from 'react-icons/bi';
+import { BiChevronDown } from 'react-icons/bi';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 export interface VideoDetailsSidebarProps {
