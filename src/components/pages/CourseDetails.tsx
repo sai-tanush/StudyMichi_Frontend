@@ -117,7 +117,7 @@ const CourseDetails: React.FC = () => {
 
         {/* Course Body */}
         <div className="flex flex-col gap-y-4 p-5">
-          <div className="lg:h-[150px] flex flex-col justify-center gap-y-5 px-10 border border-richblack-600">
+          <div className="lg:min-h-[150px] flex flex-col justify-center gap-y-5 px-10 py-5 border border-richblack-600">
             <p className="text-3xl text-richblack-50 font-semibold">
               What you'll learn
             </p>
