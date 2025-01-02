@@ -34,6 +34,8 @@ const ViewCourse: React.FC = () => {
     setCourseSpecificDetails();
   }, []);
 
+  console.log('reviewModal in ViewCourse = ', reviewModal);
+
   return (
     <div>
       <div className="relative flex min-h-[calc(100vh-3.5rem)]">
@@ -42,7 +44,9 @@ const ViewCourse: React.FC = () => {
           <Outlet />
         </div>
       </div>
-      {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
+      <div className="absolute top-[10%] left-[20%] right-0 flex justify-center items-center z-30">
+        {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
+      </div>
     </div>
   );
 };
