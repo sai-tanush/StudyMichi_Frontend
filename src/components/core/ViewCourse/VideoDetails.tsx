@@ -17,7 +17,7 @@ const VideoDetails: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useAuth();
-  const playerRef = useRef<ReactPlayer>();
+  const playerRef = useRef<Player>();
   const location = useLocation();
   const { courseEntireData, courseSectionData, completedLectures } =
     useSelector((state: RootState) => state.viewCourse);
@@ -249,72 +249,6 @@ const VideoDetails: React.FC = () => {
         </div>
       ) : (
         <div className="lg:min-h-screen">
-          {/* <Player
-                ref={playerRef}
-                width='100%'
-                height='100%'
-                onEnded={() => setVideoEnded(true)}
-                url={videoData?.videoUrl}
-              > 
-                <div className="w-full h-full flex items-center justify-center text-richblack-200">
-                    <FaRegCirclePlay size={80} className="lg:mb-[50%]" />
-                    {
-                      videoEnded && (
-                        <div>
-                          { 
-                              !completedLectures.includes(subSectionId) && (
-                                <IconBtn
-                                    disabled={loading}
-                                    onclick={() => handleLectureCompletion()}
-                                    text={!loading? "Mark as completed" : "Loading..."} 
-                                />
-                              )
-                          }
-                          <IconBtn
-                            disabled={loading}
-                            onclick={() => {
-                              if(playerRef?.current) {
-                                playerRef.current?.seek(0);
-                                setVideoEnded(false);
-                              }
-                            }}
-                            text="Rewatch"
-                            customClasses="text-xl"
-                          />
-
-                          <div>
-
-                            {
-                              !isFirstVideo() && (
-                                <button 
-                                  disabled={loading}
-                                  onClick={goToPreviousVideo}
-                                  className="blackButton"
-                                >
-                                  Prev
-                                </button>
-                              )
-                            }
-                            {
-                              !isLastVideo() && (
-                                <button 
-                                  disabled={loading}
-                                  onClick={goToNextVideo}
-                                  className="blackButton"
-                                >
-                                  Next
-                                </button>
-                              )
-                            }
-
-                          </div>                             
-                        </div>
-                      )
-                    }
-                </div>
-
-              </Player> */}
-
           <Player
             playsInline
             ref={playerRef}
@@ -346,12 +280,12 @@ const VideoDetails: React.FC = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="flex justify-between gap-x-5">
                       {!isFirstVideo() && (
                         <button
                           disabled={loading}
                           onClick={goToPreviousVideo}
-                          className="bg-richblack-700 text-richblack-5 text-lg font-semibold rounded-lg px-4 py-2"
+                          className="bg-richblack-700 text-richblack-5 text-lg flex gap-x-3 font-semibold rounded-lg px-4 py-2"
                         >
                           <FaArrowLeft size={22} />
                           Prev
@@ -361,7 +295,7 @@ const VideoDetails: React.FC = () => {
                         <button
                           disabled={loading}
                           onClick={goToNextVideo}
-                          className="bg-richblack-900 text-richblack-5 flex gap-x-3 text-lg font-semibold rounded-lg px-4 py-2"
+                          className="bg-richblack-700 text-richblack-5 flex gap-x-3 text-lg font-semibold rounded-lg px-4 py-2"
                         >
                           Next
                           <FaArrowRight size={22} />
