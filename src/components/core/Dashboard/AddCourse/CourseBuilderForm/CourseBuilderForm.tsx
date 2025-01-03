@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { GrAddCircle, GrFormNext } from 'react-icons/gr';
 import { MdModeEditOutline } from 'react-icons/md';
 import toast from 'react-hot-toast';
-import { RootState } from '../../../../../utils/store/store';
 import NestedView from './NestedView';
 import IconBtn from '../../../../common/IconBtn';
 import {
