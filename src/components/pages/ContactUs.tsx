@@ -7,12 +7,12 @@ import { FOOTER_INFO_DATA } from '../../data/footer-links';
 const ContactUs: React.FC = () => {
   return (
     <div className="mb-5">
-      <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[2%]">
+      <div className=" mt-[30px] lg:mt-[100px] lg:w-11/12 max-w-maxContent text-center flex flex-col lg:ml-[15%] lg:mb-[2%]">
         {/* section 1 */}
         <section>
-          <div className="flex justify-around">
+          <div className="flex flex-col lg:flex-row justify-around">
             {/* left content section */}
-            <div className="w-[30%] h-fit ml-10 p-6 flex flex-col gap-5 bg-richblack-800 rounded-lg">
+            <div className="w-[90%] lg:w-[30%] h-fit mx-auto lg:ml-10 p-4 lg:p-6 flex flex-col gap-5 bg-richblack-800 rounded-lg">
               {FOOTER_INFO_DATA.map((element, index) => {
                 return (
                   <div key={index} className="flex flex-row gap-2">
@@ -37,7 +37,7 @@ const ContactUs: React.FC = () => {
             </div>
 
             {/* right form section */}
-            <div className=" w-[50%]">
+            <div className="w-[90%] lg:w-[50%] mx-auto mt-5">
               <ContactFormSection
                 title={"Got a Idea? We've got the skills, Let's team up"}
                 paragraph={
