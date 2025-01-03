@@ -10,12 +10,13 @@ import {
 } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../utils/store/store';
+import { CourseInformationFormProps } from './CourseInformationForm';
 
 interface CourseRequirementFieldProps {
   label: string;
   name: string;
   placeholder: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<CourseInformationFormProps>;
   errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
   getValues?: UseFormGetValues<FieldValues>;
