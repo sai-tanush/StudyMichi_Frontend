@@ -17,6 +17,7 @@ const DeleteAccount = () => {
     useState<ModalDataProps | null>(null);
 
   const handleDeleteAccount = async () => {
+    console.log('handleDeleteAccount called');
     try {
       if (token) {
         (dispatch as AppDispatch)(deleteProfile(token, navigate));
@@ -38,7 +39,7 @@ const DeleteAccount = () => {
           <h2 className="text-lg font-semibold text-richblack-5">
             Delete Account
           </h2>
-          <div className="w-3/5 text-pink-25">
+          <div className="w-4/5 text-pink-25">
             <p>Would you like to delete account?</p>
             <p>
               This account may contain Paid Courses. Deleting your account is
@@ -54,7 +55,7 @@ const DeleteAccount = () => {
                 text2: 'You account will be permanently deleted',
                 btn1Text: 'Delete',
                 btn2Text: 'Cancel',
-                btn1Handler: () => handleDeleteAccount,
+                btn1Handler: () => handleDeleteAccount(),
                 btn2Handler: () => setConfirmationModal(null),
               })
             }
