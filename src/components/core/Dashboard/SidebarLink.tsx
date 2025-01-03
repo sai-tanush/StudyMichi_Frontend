@@ -1,12 +1,11 @@
 import * as Icons from 'react-icons/vsc';
 import { matchPath, NavLink, useLocation } from 'react-router-dom';
-import { ACCOUNT_TYPE_PROPS } from '../../../utils/constants';
 
 interface LinkProps {
   id?: number;
   name: string;
   path: string;
-  type?: ACCOUNT_TYPE_PROPS | string;
+  type?: 'Instructor' | 'Student';
   icon: keyof typeof Icons;
 }
 
