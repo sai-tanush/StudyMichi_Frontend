@@ -111,13 +111,15 @@ const BuyCourseCard: React.FC<BuyCourseCardProps> = ({
       </p>
 
       <div className="flex flex-col gap-y-1 ml-1">
-        {JSON.parse(courseData?.instructions).map((item, index) => (
-          <p key={index} className="flex gap-2">
-            <span className="text-lg font-semibold text-caribbeangreen-100">
-              {item}
-            </span>
-          </p>
-        ))}
+        {JSON.parse(courseData?.instructions as unknown as string).map(
+          (item: string, index: number) => (
+            <p key={index} className="flex gap-2">
+              <span className="text-lg font-semibold text-caribbeangreen-100">
+                {item}
+              </span>
+            </p>
+          ),
+        )}
       </div>
 
       <div
