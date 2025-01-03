@@ -1,17 +1,34 @@
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+import { FaStar } from 'react-icons/fa';
+import ReactStars from 'react-rating-stars-component';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { useEffect, useState } from 'react';
 import { apiConnector } from '../../services/apisconnector';
 import { ratingsEndpoints } from '../../services/apis';
-import ReactStars from 'react-rating-stars-component';
-import { FaStar } from 'react-icons/fa';
+
+interface ReviewProps {
+  _id: string;
+  user: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    image?: string;
+  };
+  rating: number;
+  review: string;
+  course: {
+    _id: string;
+    courseName: string;
+  };
+  __v: number;
+}
 
 const ReviewSlider: React.FC = () => {
-  const [reviews, setReviews] = useState([]);
-  const truncateWords = 15;
+  const [reviews, setReviews] = useState<ReviewProps[]>([]);
 
   useEffect(() => {
     const fetchAllReviews = async () => {
@@ -34,7 +51,7 @@ const ReviewSlider: React.FC = () => {
 
   return (
     <div>
-      <div className="h-[200px] max-w-maxContent text-richblack-5">
+      <div className="h-[200px] max-w-maxContent text-richblack-5 -mb-20 lg:-mb-0">
         <Swiper
           slidesPerView={2}
           spaceBetween={24}
