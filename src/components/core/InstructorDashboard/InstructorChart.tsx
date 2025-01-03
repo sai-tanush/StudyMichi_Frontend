@@ -4,11 +4,23 @@ import { Pie } from 'react-chartjs-2';
 
 Chart.register(...registerables);
 
-const InstructorChart: React.FC = ({ courses }) => {
-  const [currChart, setCurrChart] = useState('students');
+interface InstructorCourses {
+  courseDescription: string;
+  courseName: string;
+  totalAmountGenerated: number;
+  totalStudentsEnrolled: number;
+  _id: string;
+}
+
+interface InstructorChartProps {
+  courses: InstructorCourses[];
+}
+
+const InstructorChart: React.FC<InstructorChartProps> = ({ courses }) => {
+  const [currChart, setCurrChart] = useState<'students' | 'income'>('students');
 
   //function to generate random colors in rgb values
-  const getRandomColors = (numColors) => {
+  const getRandomColors = (numColors: number) => {
     const colors = [];
     for (let i = 0; i < numColors; i++) {
       const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)},
