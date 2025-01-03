@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -12,6 +13,15 @@ import { Player } from 'video-react';
 import 'video-react/dist/video-react.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
+interface VideoDataProps {
+  description: string;
+  timeDuration: string;
+  title: string;
+  videoUrl: string;
+  __v: number;
+  _id: string;
+}
+
 const VideoDetails: React.FC = () => {
   const { courseId, sectionId, subSectionId } = useParams();
   const navigate = useNavigate();
@@ -22,7 +32,7 @@ const VideoDetails: React.FC = () => {
   const { courseEntireData, courseSectionData, completedLectures } =
     useSelector((state: RootState) => state.viewCourse);
 
-  const [videoData, setVideoData] = useState([]);
+  const [videoData, setVideoData] = useState<VideoDataProps[]>([]);
   const [videoEnded, setVideoEnded] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -240,6 +250,9 @@ const VideoDetails: React.FC = () => {
       </div>
     );
   }
+  console.log('courseSectionData = ', courseSectionData);
+  console.log('courseEntireData = ', courseEntireData);
+  console.log('completedLectures  =', completedLectures);
 
   return (
     <div className="pr-5 border border-pink-200">
