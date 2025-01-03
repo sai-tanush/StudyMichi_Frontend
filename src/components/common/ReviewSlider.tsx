@@ -49,7 +49,7 @@ const ReviewSlider: React.FC = () => {
           {reviews.map((review, index) => (
             <SwiperSlide
               key={index}
-              className="lg:w-[20%] border border-richblack-500 py-2 px-8 mt-3"
+              className="lg:w-[20%] bg-richblack-700 py-2 px-8 mt-3"
             >
               <div className="flex gap-x-4 items-center">
                 <img
@@ -67,7 +67,9 @@ const ReviewSlider: React.FC = () => {
               </div>
 
               <div className="flex flex-col text-left mt-2">
-                <p className="text-richblack-5">{review?.course?.courseName}</p>
+                <p className="text-richblack-100">
+                  {review?.course?.courseName}
+                </p>
                 <p className="text-richblack-300">{review?.review}</p>
               </div>
 
