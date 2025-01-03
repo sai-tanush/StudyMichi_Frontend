@@ -13,13 +13,11 @@ const AddCourse: React.FC = () => {
       <div className="w-1/5 p-6 bg-richblack-800 rounded-lg">
         <p className="text-richblack-5 font-semibold">⚡ Code Upload Tips</p>
         <ul className="list-disc pl-4">
-          {codeUploadTips.map((tip) => {
-            return (
-              <li key={tip.id} className="text-xs my-3 font-medium">
-                {tip.content}
-              </li>
-            );
-          })}
+          {codeUploadTips.map((tip) => (
+            <li key={tip.id} className="text-xs my-3 font-medium">
+              {tip.content}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

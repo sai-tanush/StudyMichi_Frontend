@@ -38,7 +38,6 @@ export async function buyCourse(
   dispatch,
 ) {
   const toastId = toast.loading('Loading...');
-
   try {
     //load the script
     const res = await loadScript(
@@ -49,7 +48,6 @@ export async function buyCourse(
       toast.error('Razorpay SDK failed to load');
       return;
     }
-
     //initiate the order
     const orderResponse = await apiConnector({
       method: 'POST',

@@ -7,6 +7,7 @@ import { getUserEnrolledCourses } from '../../../services/operations/profileAPI'
 import { useNavigate } from 'react-router-dom';
 import { CourseProps } from '../../../utils/slices/courseSlice';
 
+
 const EnrolledCourses: React.FC = () => {
   const { token } = useAuth();
   const navigate = useNavigate();

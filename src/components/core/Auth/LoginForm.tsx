@@ -7,7 +7,7 @@ import { AppDispatch } from '../../../utils/store/store';
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,7 +26,7 @@ const LoginForm: React.FC = () => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    (dispatch as AppDispatch)(login(email, password, navigate));
+    dispatch(login(email, password, navigate));
   };
 
   return (
