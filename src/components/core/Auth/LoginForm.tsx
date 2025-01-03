@@ -26,7 +26,7 @@ const LoginForm: React.FC = () => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    (dispatch as AppDispatch)(login(email, password, navigate));
+    dispatch(login(email, password, navigate));
   };
 
   return (
