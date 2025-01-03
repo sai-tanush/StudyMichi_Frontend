@@ -72,3 +72,28 @@ export async function getUserEnrolledCourses(token: string | null) {
   toast.dismiss(toastId);
   return result;
 }
+
+//fetch instructor data
+export async function getInstructorData(token: string | null) {
+  const toastId = toast.loading('Loading...');
+  let result = [];
+
+  try {
+    const response = await apiConnector({
+      method: 'GET',
+      url: profileEndpoints.GET_INSTRUCTOR_DATA_API,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('GET_INSTRUCTOR_API_RESPONSE  = ', response);
+    result = response?.data?.courses;
+  } catch (error) {
+    console.log('GET_INSTRUCTOR_API ERROR', error);
+    toast.error('Could not Get Instructor Data');
+  }
+
+  toast.dismiss(toastId);
+  return result;
+}
