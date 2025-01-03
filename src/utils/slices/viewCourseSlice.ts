@@ -5,7 +5,7 @@ interface initalDataTypes {
   courseSectionData: SectionProps[];
   courseEntireData: CourseProps;
   completedLectures: string[];
-  totalNoofLectures: number;
+  totalNoOfLectures: number;
 }
 
 const initialState: initalDataTypes = {
