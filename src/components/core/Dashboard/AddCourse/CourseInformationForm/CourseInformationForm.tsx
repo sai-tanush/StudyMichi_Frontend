@@ -26,6 +26,17 @@ import { COURSE_STATUS } from '../../../../../utils/constants';
 import { RootState } from '../../../../../utils/store/store';
 import useAuth from '../../../../../hooks/useAuth';
 
+export interface CourseInformationFormProps {
+  courseBenefits: string;
+  courseCategory: string;
+  courseImage: string;
+  coursePrice: number;
+  courseRequirements: string[];
+  courseShortDesc: string;
+  courseTags: string[];
+  courseTitle: string;
+}
+
 const CourseInformationForm: React.FC = () => {
   const {
     register,
@@ -34,7 +45,7 @@ const CourseInformationForm: React.FC = () => {
     getValues,
     formState: { errors },
     clearErrors,
-  } = useForm();
+  } = useForm<CourseInformationFormProps>();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -63,7 +74,7 @@ const CourseInformationForm: React.FC = () => {
       setValue('coursePrice', course.price);
       setValue('courseTags', course.tag);
       setValue('courseBenefits', course.whatYouWillLearn);
-      setValue('courseCategory', course.category);
+      setValue('courseCategory', course.category._id);
       setValue('courseRequirements', course.instructions);
       setValue('courseImage', course.thumbnail);
     }
@@ -96,7 +107,8 @@ const CourseInformationForm: React.FC = () => {
     navigate('/dashboard/my-courses');
   };
 
-  const onFormSubmit = async (data: any) => {
+  const onFormSubmit = async (data: CourseInformationFormProps) => {
+    console.log('Form Data in CourseInformationForm = ', data);
     console.log('Current courseTags: ', getValues('courseTags'));
     if (editCourse) {
       if (isFormUpdated()) {
@@ -115,7 +127,7 @@ const CourseInformationForm: React.FC = () => {
           }
 
           if (currentValues.coursePrice !== course.price) {
-            formData.append('price', data.coursePrice);
+            formData.append('price', `${data.coursePrice}`);
           }
 
           if (currentValues.courseBenefits !== course.whatYouWillLearn) {
@@ -173,7 +185,7 @@ const CourseInformationForm: React.FC = () => {
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
-    formData.append('price', data.coursePrice);
+    formData.append('price', `${data.coursePrice}`);
     formData.append('whatYouWillLearn', data.courseBenefits);
     formData.append('category', data.courseCategory);
     formData.append('tag', JSON.stringify(data.courseTags));
