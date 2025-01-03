@@ -124,7 +124,7 @@ const CourseInformationForm: React.FC = () => {
           }
 
           if (currentValues.coursePrice !== course.price) {
-            formData.append('price', `${data.coursePrice}`);
+            formData.append('price', data.coursePrice);
           }
 
           if (currentValues.courseBenefits !== course.whatYouWillLearn) {
@@ -175,7 +175,7 @@ const CourseInformationForm: React.FC = () => {
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
-    formData.append('price', `${data.coursePrice}`);
+    formData.append('price', data.coursePrice);
     formData.append('whatYouWillLearn', data.courseBenefits);
     formData.append('category', data.courseCategory);
     formData.append('tag', JSON.stringify(data.courseTags));

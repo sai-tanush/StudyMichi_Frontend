@@ -10,6 +10,7 @@ import { CourseProps } from '../../../../utils/slices/courseSlice';
 const CartCourses = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+  console.log('cart Details = ', cart);
 
   return (
     <div className="w-[40%]">

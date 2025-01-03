@@ -49,7 +49,6 @@ export async function buyCourse(
       toast.error('Razorpay SDK failed to load');
       return;
     }
-
     //initiate the order
     const orderResponse = await apiConnector({
       method: 'POST',
@@ -61,7 +60,6 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (!orderResponse) {
       throw new Error(orderResponse.data.message);
     }

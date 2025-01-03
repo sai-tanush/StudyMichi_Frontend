@@ -10,6 +10,7 @@ import { CourseProps } from '../../../utils/slices/courseSlice';
 const EnrolledCourses: React.FC = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
+
   const [enrolledCourses, setEnrolledCourses] = useState<CourseProps[]>([]);
 
   const getEnrolledCourses = async () => {
