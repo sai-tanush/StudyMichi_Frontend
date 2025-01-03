@@ -69,7 +69,15 @@ const Navbar: React.FC = () => {
               return (
                 <li key={index}>
                   {navElement.title === 'Catalog' ? (
-                    <div className="relative flex justify-center items-center cursor-pointer group">
+                    <div
+                      className={`relative flex justify-center items-center cursor-pointer group gap-1 
+                      ${
+                        matchRoute({ route: '/catalog/:catalogName' })
+                          ? 'text-yellow-25'
+                          : 'text-richblack-25'
+                      }
+                    `}
+                    >
                       <div>{navElement.title}</div>
                       <BiChevronDown size={25} />
                       <div
