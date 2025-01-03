@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { CourseProps, SectionProps } from './courseSlice';
 
-const initialState = {
+interface initalDataTypes {
+  courseSectionData: SectionProps[];
+  courseEntireData: CourseProps;
+  completedLectures: string[];
+  totalNoofLectures: number;
+}
+
+const initialState: initalDataTypes = {
   courseSectionData: [],
   courseEntireData: [],
   completedLectures: [],
