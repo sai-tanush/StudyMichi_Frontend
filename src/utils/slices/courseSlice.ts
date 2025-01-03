@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { UserProps } from './profileSlice';
 
 export interface CategoryProps {
   _id: string;
@@ -27,7 +28,8 @@ export interface SectionProps {
 export interface CourseProps {
   courseName: string;
   courseDescription: string;
-  instructor: string;
+
+  instructor?: UserProps;
   whatYouWillLearn: string;
   courseContent: SectionProps[]; // Replace 'any'
   ratingAndReview: any[]; // Replace 'any'
@@ -35,9 +37,10 @@ export interface CourseProps {
   thumbnail: string;
   tag: string[]; // Array of strings
   category: CategoryProps;
-  studentEnrolled: any[]; // Replace 'any'
+  studentEnrolled: string[];
   instructions: string[]; // Array of strings
   status: string;
+  createdAt: string;
   _id: string;
   __v: number;
 }

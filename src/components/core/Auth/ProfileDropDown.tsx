@@ -42,7 +42,7 @@ export default function ProfileDropdown() {
           </Link>
           <div
             onClick={() => {
-              dispatch(logout(navigate));
+              (dispatch as AppDispatch)(logout(navigate));
               setOpen(false);
             }}
             className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25"
