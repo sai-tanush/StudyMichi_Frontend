@@ -41,18 +41,13 @@ const Sidebar = () => {
         <div className="flex flex-col mx-1">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null;
-            return (
-              <SidebarLink key={link.id} link={link} iconName={link.icon} />
-            );
+            return <SidebarLink key={link.id} link={link} />;
           })}
         </div>
         <div className="mx-auto mt-6 mb-1 h-[1px] w-10/12 bg-richblack-600"></div>
 
         <div className="w-full lex flex-col justify-center items-start gap-y-3 text-richblack-300 mb-2">
-          <SidebarLink
-            link={sidebarSettingData}
-            iconName={sidebarSettingData.icon}
-          />
+          <SidebarLink link={sidebarSettingData} />
 
           <button
             onClick={() =>

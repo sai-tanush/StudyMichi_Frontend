@@ -13,16 +13,16 @@ import Footer from '../common/Footer';
 const AboutUs: React.FC = () => {
   return (
     <div>
-      <div className="mt-[100px] w-11/12 max-w-maxContent text-center flex flex-col ml-[15%] mb-[2%]">
+      <div className="mt-10 lg:mt-[100px] lg:w-11/12 max-w-maxContent text-center flex flex-col px-4 lg:px-0 lg:ml-[15%] mb-[2%]">
         {/* section 1 */}
         <section>
           <div className="flex flex-col justify-center items-center">
             <header>
-              <h1 className="text-richblack-5 text-4xl font-bold">
+              <h1 className="text-richblack-5 text-lg lg:text-4xl font-bold">
                 Driving Innovation in Online Education for a <br></br>
                 <HighlightText text={'Brighter Future'} />
               </h1>
-              <p className="mt-3 text-richblack-100 text-lg">
+              <p className="mt-3 text-richblack-100 text-sm lg:text-lg">
                 Studynotion is at the forefront of driving innovation in online
                 education. We're passionate about creating a <br></br>
                 brighter future by offering cutting-edge courses, leveraging
@@ -47,10 +47,10 @@ const AboutUs: React.FC = () => {
 
         {/* section 3 */}
         <section>
-          <div className="flex flex-col mt-32 justify-between items-center ml-[5rem] mb-[100px]">
-            <div className="flex justify-center items-center gap-x-36">
-              <div className="w-1/3 flex flex-col">
-                <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-200">
+          <div className="flex flex-col mt-10 lg:mt-32 justify-between items-center lg:ml-[5rem] mb-[100px]">
+            <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-x-36 px-4 lg:px-0">
+              <div className="w-full lg:w-1/3 flex flex-col ">
+                <h1 className="text-xl lg:text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-200">
                   Our Founding Story
                 </h1>
                 <p className="text-richblack-100 text-left mt-10">
@@ -74,16 +74,16 @@ const AboutUs: React.FC = () => {
                 <img
                   src={foundingStoryImage}
                   alt="Founding Story Image"
-                  className="mr-20"
+                  className="mt-5 lg:mt-0 lg:mr-20"
                 />
               </div>
             </div>
-            <div className="flex justify-center items-center gap-x-36 mt-32">
-              <div className="w-2/5 flex flex-col -ml-20">
-                <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#E65C00] to-[#ffa600]">
+            <div className="flex flex-col lg:flex-row justify-center items-center mt-10 lg:mt-32 mx-auto">
+              <div className="w-[90%] mx-auto lg:w-2/5 flex flex-col lg:ml-10">
+                <h1 className="text-xl lg:text-4xl text-center lg:text-left font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#E65C00] to-[#ffa600]">
                   Our Vision
                 </h1>
-                <p className="w-4/5 text-richblack-100 text-left mt-5 ">
+                <p className="lg:w-4/5 text-richblack-100 text-left mt-5 ">
                   With this vision in mind, we set out on a journey to create an
                   e-learning platform that would revolutionize the way people
                   learn. Our team of dedicated experts worked tirelessly to
@@ -93,11 +93,11 @@ const AboutUs: React.FC = () => {
                   technology in understanding needs of student.
                 </p>
               </div>
-              <div className="w-2/5 flex flex-col -ml-20">
-                <h1 className="text-4xl text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39b5c5] to-[#02e1ff]">
+              <div className="lg:w-2/5 flex flex-col px-4 lg:px-0 lg:-ml-20">
+                <h1 className="text-xl lg:text-4xl text-center mt-5 lg:mt-0 lg:text-left font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#39b5c5] to-[#02e1ff]">
                   Our Mission
                 </h1>
-                <p className="w-4/5 text-richblack-100 text-left mt-5">
+                <p className="w-full lg:w-4/5 text-richblack-100 text-left mt-5">
                   our mission goes beyond just delivering courses online. We
                   wanted to create a vibrant community of learners, where
                   individuals can connect, collaborate, and learn from one
@@ -125,8 +125,8 @@ const AboutUs: React.FC = () => {
 
         {/* section 7 */}
         <section>
-          <div className="flex flex-col justify-center items-center">
-            <h1 className="text-4xl font-bold text-richblack-5">
+          <div className="flex flex-col justify-center items-center -mt-16 lg:-mt-0">
+            <h1 className="text-xl lg:text-4xl font-bold text-richblack-5">
               Reviews from other learners
             </h1>
             <ReviewSlider />

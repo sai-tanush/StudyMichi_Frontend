@@ -19,20 +19,20 @@ const ExploreMore: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-3 text-center">
-      <div className="text-4xl font-semibold">
+    <div className="mx-auto flex flex-col gap-3 text-center mt-10 lg:mt-0">
+      <div className="text-xl lg:text-4xl font-semibold">
         Unlock the <HighlightText text={'Power of Code'} />
       </div>
-      <div className="text-base font-medium text-richblack-200">
+      <div className="text-sm lg:text-base font-medium text-richblack-200">
         Learn To Build Anything You Can Imagine
       </div>
 
-      <div className="my-5 flex flex-row gap-1 mx-auto bg-richblack-700 rounded-full px-1 py-1">
+      <div className="my-5 lg:flex flex-row gap-1 mx-auto bg-richblack-700 rounded-full px-1 py-1 hidden ">
         {HOMEPAGE_TABS_DATA.map((element, index) => {
           return (
             <div
               key={index}
-              className={`text-[16px] flex flex-row items-center gap-2 
+              className={`text-xs lg:text-[16px] flex flex-row items-center gap-2 
                         ${
                           currentTab === element
                             ? 'bg-richblack-900 text-richblack-5 font-medium'
@@ -48,10 +48,10 @@ const ExploreMore: React.FC = () => {
         })}
       </div>
 
-      <div className="lg:h-[150px]"></div>
+      <div className=" lg:h-[150px]"></div>
 
       {/* Course Card */}
-      <div className="absolute bottom-[60%] flex flex-row gap-10 justify-between w-full ">
+      <div className="absolute bottom-[60%] hidden lg:flex flex-row gap-10 justify-between w-full ">
         {courses.map((element, index) => {
           return (
             <CourseCard

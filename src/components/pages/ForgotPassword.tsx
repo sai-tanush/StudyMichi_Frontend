@@ -21,7 +21,7 @@ const ForgotPassword: React.FC = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col w-1/4 mt-[-100px]">
+        <div className="flex flex-col px-5 w-full lg:w-1/4 mt-[-200px] lg:mt-[-100px]">
           <h1 className="text-richblack-5 text-3xl font-semibold mb-3">
             {emailSent ? 'Check your email' : 'Reset your password'}
           </h1>

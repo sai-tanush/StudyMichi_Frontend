@@ -33,8 +33,6 @@ const SubSectionCard: React.FC<SubSectionCardProps> = ({
     convertIntoMin(lectureTimeDuration);
   }, [subsection]);
 
-  console.log('subSection in SubSectionCard = ', subsection);
-
   return (
     <>
       {!collapseSections && (

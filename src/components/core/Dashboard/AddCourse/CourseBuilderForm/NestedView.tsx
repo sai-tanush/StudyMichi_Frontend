@@ -44,18 +44,12 @@ const NestedView: React.FC<NestedViewProps> = ({
     useState<ModalDataProps | null>(null);
 
   const handleDeleteSection = async (sectionId: string) => {
-    console.log('Entered handleDeleteSection ');
     const result = await deleteSection(
       {
         sectionId,
         courseId: course?._id,
       },
       token,
-    );
-
-    console.log(
-      'Result after deleting section in handleDeleteSection = ',
-      result,
     );
 
     if (result) {
@@ -87,17 +81,10 @@ const NestedView: React.FC<NestedViewProps> = ({
     setConfirmationModal(null);
   };
 
-  console.log('Course = ', course);
-  console.log(
-    'Course re-rendered, Course coureContent sub-section Content = ',
-    course?.courseContent,
-  );
-
   return (
     <div>
       <div className="rounded-lg bg-richblack-700 text-richblack-50 p-6 px-8">
         {course?.courseContent?.map((section) => {
-          console.log('Section = ', section);
           return (
             <details key={section._id} open>
               <summary className="flex items-center justify-between gap-x-3 border-b-2 border-richblack-400 p-2">

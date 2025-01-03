@@ -8,7 +8,6 @@ import PublishCourse from './PublishCourse/PublishCourse';
 
 const AddCourseStepForm: React.FC = () => {
   const { step } = useSelector((state: RootState) => state.course);
-  console.log('Step now in AddCourseStepForm = ', step);
   return (
     <>
       <div className="relative flex justify-around items-center mt-5 mb-[5%] ml-[25%]">

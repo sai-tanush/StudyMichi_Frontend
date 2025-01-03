@@ -14,7 +14,7 @@ interface CardProps {
 
 const CardContent: React.FC<CardProps> = ({ card }) => {
   return card.order < 0 ? (
-    <div className="lg:w-[80%] flex flex-col pb-5 gap-3 ml-20">
+    <div className="lg:w-[80%] flex flex-col pb-5 gap-3 lg:ml-20">
       <div className="text-4xl text-left font-semibold text-richblack-5">
         {card.heading} <br />
         <HighlightText text={card.highlightText} />
@@ -31,7 +31,7 @@ const CardContent: React.FC<CardProps> = ({ card }) => {
       </div>
     </div>
   ) : (
-    <div className="flex flex-col items-center gap-5 py-8 lg:w-[80%] mx-auto lg:mt-2">
+    <div className="flex flex-col items-center gap-5 py-8 lg:w-[80%] mx-auto lg:mt-2 px-4">
       <h1 className="text-richblack-5 font-semibold text-left">
         {card.heading}
       </h1>

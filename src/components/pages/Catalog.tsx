@@ -8,6 +8,7 @@ import { getCatalogPageData } from '../../services/operations/pageAndComponentDa
 import CourseCardFrequent from '../core/Catalog/CourseCardFrequent';
 import { CourseProps } from '../../utils/slices/courseSlice';
 import Spinner from '../common/Spinner';
+import toast from 'react-hot-toast';
 
 interface Categories {
   description: string;
@@ -48,14 +49,12 @@ const Catalog: React.FC = () => {
         method: 'GET',
         url: categories.CATEGORIES_API,
       });
-      console.log('result in useEffect in getCategories = ', result);
 
       const category_id = result?.data?.allCategories?.filter(
         (ct: Categories) =>
           ct.name.split(' ').join('-').toLowerCase() === catalogName,
       )[0]._id;
       setCategoryId(category_id);
-      console.log('categoryId in getCategories = ', category_id);
     };
     getCategories();
   }, [catalogName]);
@@ -67,7 +66,7 @@ const Catalog: React.FC = () => {
         const result = await getCatalogPageData(categoryId);
         setCatalogPageData(result);
       } catch (error) {
-        console.log(error);
+        toast.error('Could not fetch Categories');
       }
       setLoading(false);
     };
@@ -75,8 +74,6 @@ const Catalog: React.FC = () => {
       getCategoryDetails();
     }
   }, [categoryId]);
-
-  console.log('CatalogPageData = ', catalogPageData);
 
   if (loading) {
     return (

@@ -8,12 +8,13 @@ import {
 } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../utils/store/store';
+import { CourseInformationFormProps } from './CourseInformationForm';
 
 interface TagInputProps {
   label: string;
   name: string;
   placeholder: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<CourseInformationFormProps>;
   errors: FieldErrors<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
 }
@@ -49,7 +50,6 @@ const TagInput: React.FC<TagInputProps> = ({
   useEffect(() => {
     if (editCourse && course?.tag) {
       const convertedTags = convertToTags(course?.tag);
-      console.log('convertedTags = ', convertedTags);
       setTags(convertedTags);
     }
   }, [editCourse, course?.tag]);
@@ -62,7 +62,6 @@ const TagInput: React.FC<TagInputProps> = ({
         const updatedTags = [...tags, inputValue];
         setTags(updatedTags);
         e.currentTarget.value = '';
-        console.log('Updated Tags = ', updatedTags);
       }
     }
   };
@@ -76,7 +75,6 @@ const TagInput: React.FC<TagInputProps> = ({
   useEffect(() => {
     if (editCourse && course?.tag) {
       const tagsArray = course?.tag[0].replace(/"/g, '').split(',');
-      console.log('converted TagsArray = ', tagsArray);
       setTags(tagsArray);
     }
   }, []);

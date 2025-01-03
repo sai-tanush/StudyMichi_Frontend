@@ -11,6 +11,7 @@ import Logo from '../../assets/Logo/Logo-Full-Light.png';
 import ProfileDropdown from '../core/Auth/ProfileDropDown';
 import useAuth from '../../hooks/useAuth';
 import Spinner from './Spinner';
+import toast from 'react-hot-toast';
 
 interface CategoryProps {
   _id: string;
@@ -34,10 +35,9 @@ const Navbar: React.FC = () => {
         method: 'GET',
         url: categories.CATEGORIES_API,
       });
-      console.log('Printing SubLinks result = ', result.data.allCategories);
       setSsubLinks(result.data.allCategories);
     } catch (err) {
-      console.log('Could not fetch the category list', err);
+      toast.error('Could not fetch the category list');
     }
     setLoading(false);
   };
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
   };
   return (
     <div className="w-full h-14 flex justify-center items-center border-b-[1px] border-b-richblack-700">
-      <div className="w-11/12 max-w-maxContent flex items-center justify-between">
+      <div className="w-11/12 max-w-maxContent flex items-center justify-between ">
         {/* Logo */}
         <Link to="/">
           <img
@@ -69,8 +69,18 @@ const Navbar: React.FC = () => {
               return (
                 <li key={index}>
                   {navElement.title === 'Catalog' ? (
-                    <div className="relative flex justify-center items-center cursor-pointer group">
-                      <div>{navElement.title}</div>
+                    <div
+                      className={`relative flex justify-center items-center cursor-pointer group gap-1
+                      ${
+                        matchRoute({ route: '/catalog/:catalogName' })
+                          ? 'text-yellow-25'
+                          : 'text-richblack-25'
+                      }
+                    `}
+                    >
+                      <div className="text-xs lg:text-lg">
+                        {navElement.title}
+                      </div>
                       <BiChevronDown size={25} />
                       <div
                         className="invisible absolute left-[50%] top-[-180%] flex flex-col rounded-md bg-richblack-5
@@ -115,7 +125,7 @@ const Navbar: React.FC = () => {
                   ) : (
                     <Link to={navElement?.path || '/'}>
                       <p
-                        className={`${matchRoute({ route: navElement?.path }) ? 'text-yellow-300' : 'text-richblack-25'}`}
+                        className={`text-xs lg:text-lg ${matchRoute({ route: navElement?.path }) ? 'text-yellow-300' : 'text-richblack-25'}`}
                       >
                         {navElement.title}
                       </p>
@@ -128,7 +138,7 @@ const Navbar: React.FC = () => {
         </nav>
 
         {/* Login/SignUp/Dashboard */}
-        <div className="flex gap-x-3 text-richblack-25">
+        <div className="flex gap-x-3 items-center text-richblack-25 ml-2">
           {user && user?.accountType != 'Instructor' && (
             <Link to="/dashboard/cart" className="relative mr-1">
               <AiOutlineShoppingCart size={26} />
@@ -138,8 +148,8 @@ const Navbar: React.FC = () => {
           {!token && (
             <Link to="/login">
               <button
-                className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px]
-                 text-richblack-100 rounded-md hover:scale-105 hover:text-richblack-5"
+                className="flex items-center border border-richblack-700 bg-richblack-800 px-2 py-1 lg:px-[12px] lg:py-[8px] text-xs lg:text-lg
+                 text-richblack-5 rounded-md hover:scale-105 hover:text-richblack-5"
               >
                 Log in
               </button>
@@ -148,7 +158,7 @@ const Navbar: React.FC = () => {
           {!token && (
             <Link to="/signup">
               <button
-                className="border border-richblack-700 bg-richblack-800 px-[12px] py-[8px]
+                className="border border-richblack-700 bg-richblack-800 px-2 py-1 lg:px-[12px] lg:py-[8px] text-xs lg:text-lg
                  text-richblack-100 rounded-md hover:scale-105 hover:text-richblack-5"
               >
                 Sign up

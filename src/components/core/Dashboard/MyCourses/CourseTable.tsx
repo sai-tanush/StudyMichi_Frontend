@@ -38,7 +38,6 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
     setConfirmationModal(null);
     setLoading(false);
   };
-  console.log('courses in courseTable prop = ', courses);
 
   return (
     <div className=" text-richblack-5 p-8 ">
