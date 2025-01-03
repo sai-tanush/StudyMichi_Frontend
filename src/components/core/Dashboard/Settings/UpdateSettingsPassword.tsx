@@ -19,7 +19,7 @@ const UpdateSettingsPassword = () => {
     formState: { errors },
   } = useForm();
 
-  const submitPasswordForm = async (data: any) => {
+  const submitPasswordForm = async (data) => {
     // Add confirmPassword to data
     const updatedData = {
       ...data,
