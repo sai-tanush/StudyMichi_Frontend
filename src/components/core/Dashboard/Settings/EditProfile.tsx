@@ -18,7 +18,7 @@ const EditProfile = () => {
     formState: { errors },
   } = useForm();
 
-  const submitProfileForm = async (data: any) => {
+  const submitProfileForm = async (data) => {
     // console.log("Form Data - ", data)
     try {
       if (token) {
