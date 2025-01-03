@@ -15,7 +15,7 @@ const {
 } = settingsEndpoints;
 
 //display Profile Picture function
-export function updateDisplayPicture(token: string, formData: any) {
+export function updateDisplayPicture(token: string, formData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -47,7 +47,7 @@ export function updateDisplayPicture(token: string, formData: any) {
 }
 
 //update Profile Details function
-export function updateProfile(token: string, formData: any) {
+export function updateProfile(token: string, formData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -76,7 +76,7 @@ export function updateProfile(token: string, formData: any) {
 }
 
 //change user Password function
-export async function changePassword(token: string, formData: any) {
+export async function changePassword(token: string, formData) {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
