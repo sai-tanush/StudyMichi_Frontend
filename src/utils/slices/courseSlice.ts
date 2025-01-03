@@ -25,19 +25,41 @@ export interface SectionProps {
   subSection: SubSectionProps[];
 }
 
+interface ReviewCourse {
+  courseName: string;
+  _id: string;
+}
+
+interface ReviewUser {
+  email: string;
+  firstName: string;
+  image: string;
+  lastName: string;
+  _id: string;
+}
+
+export interface ReviewAndRatingProps {
+  course: ReviewCourse;
+  rating: number;
+  review: string;
+  user: ReviewUser;
+  __v: number;
+  _id: string;
+}
+
 export interface CourseProps {
   courseName: string;
   courseDescription: string;
   instructor?: UserProps;
   whatYouWillLearn: string;
-  courseContent: SectionProps[]; // Replace 'any'
-  ratingAndReview: any[]; // Replace 'any'
+  courseContent: SectionProps[];
+  ratingAndReview: ReviewAndRatingProps[];
   price: number;
   thumbnail: string;
-  tag: string[]; // Array of strings
+  tag: string[];
   category: CategoryProps;
   studentEnrolled: string[];
-  instructions: string[]; // Array of strings
+  instructions: string[];
   status: string;
   createdAt: string;
   _id: string;
