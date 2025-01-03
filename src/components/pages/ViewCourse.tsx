@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import VideoDetailsSidebar from '../core/ViewCourse/VideoDetailsSidebar';
 import { Outlet, useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ import {
   setEntireCourseData,
   setTotalNoOfLectures,
 } from '../../utils/slices/viewCourseSlice';
+import { SectionProps } from '../../utils/slices/courseSlice';
 
 const ViewCourse: React.FC = () => {
   const [reviewModal, setReviewModal] = useState(false);
@@ -24,7 +26,7 @@ const ViewCourse: React.FC = () => {
     dispatch(setEntireCourseData(courseData?.courseDetails));
     dispatch(setCompletedLectures(courseData?.completedVideos));
     let lectures = 0;
-    courseData?.courseDetails?.courseContent?.forEach((sec) => {
+    courseData?.courseDetails?.courseContent?.forEach((sec: SectionProps) => {
       lectures += sec.subSection.length;
     });
     dispatch(setTotalNoOfLectures(lectures));
