@@ -20,7 +20,6 @@ export interface UserProps {
   additionalDetails: AdditionalDetailsProps;
   courses: string[]; // Array of course IDs
   image: string; // URL to the user's image
-  courseProgress: any[]; // Replace `any`
   createdAt: string; // ISO date string
   updatedAt: string; // ISO date string
   __v: number;
