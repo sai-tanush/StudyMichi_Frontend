@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { getInstructorData } from '../../../services/operations/profileAPI';
@@ -5,13 +6,24 @@ import { fetchInstructorCourses } from '../../../services/operations/courseDetai
 import useUserDetails from '../../../hooks/useUserDetails';
 import { Link } from 'react-router-dom';
 import InstructorChart from './InstructorChart';
+import { CourseProps } from '../../../utils/slices/courseSlice';
+
+export interface InstructorCourses {
+  courseDescription: string;
+  courseName: string;
+  totalAmountGenerated: number;
+  totalStudentsEnrolled: number;
+  _id: string;
+}
+
+export type InstructorDataProps = InstructorCourses[];
 
 const InstructorDashboard = () => {
   const { token } = useAuth();
   const { user } = useUserDetails();
   const [loading, setLoading] = useState(false);
-  const [instructorData, setInstructorData] = useState(null);
-  const [courses, setCourses] = useState([]);
+  const [instructorData, setInstructorData] = useState<InstructorCourses[]>([]);
+  const [courses, setCourses] = useState<CourseProps[]>([]);
 
   useEffect(() => {
     const getCourseDataWithStats = async () => {
@@ -21,6 +33,7 @@ const InstructorDashboard = () => {
       const result = await fetchInstructorCourses(token);
 
       console.log('instructorApiData = ', instructorApiData);
+      console.log('instructorCourses = ', result);
 
       if (instructorApiData.length) {
         setInstructorData(instructorApiData);
@@ -35,14 +48,16 @@ const InstructorDashboard = () => {
     getCourseDataWithStats();
   }, []);
 
-  const totalAmount = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalAmountGenerated,
-    0,
-  );
-  const totalStudents = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalStudentsEnrolled,
-    0,
-  );
+  const totalAmount =
+    instructorData?.reduce((acc, curr) => acc + curr.totalAmountGenerated, 0) ||
+    0;
+  const totalStudents =
+    instructorData?.reduce(
+      (acc, curr) => acc + curr.totalStudentsEnrolled,
+      0,
+    ) || 0;
+
+  console.log('instructorData = ', instructorData);
 
   return (
     <div className="text-white w-[60%] ml-[10%]">
