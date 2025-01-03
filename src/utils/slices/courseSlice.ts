@@ -55,6 +55,8 @@ export interface CourseProps {
   courseContent: SectionProps[];
   ratingAndReview: ReviewAndRatingProps[];
   price: number;
+  totalDuration?: string;
+  progressPercentage?: number;
   thumbnail: string;
   tag: string[];
   category: CategoryProps;
