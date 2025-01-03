@@ -156,7 +156,7 @@ const ContactUsForm: React.FC = () => {
               <div>
                 <select
                   id="dropdown"
-                  className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[120px]"
+                  className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[70px] lg:w-[120px]"
                   defaultValue="+91-India"
                   {...register('countryCode', { required: true })}
                 >
@@ -175,7 +175,7 @@ const ContactUsForm: React.FC = () => {
                 type="text"
                 id="phonenumber"
                 placeholder="12345 56789"
-                className="bg-richblack-800 p-3 rounded-lg text-richblack-100"
+                className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[80%] lg:w-full"
                 {...register('phoneNumber', {
                   required: 'Phone Number is required',
                   minLength: { value: 8, message: 'Invalid Phone Number' },
