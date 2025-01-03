@@ -61,13 +61,16 @@ const ContactUsForm: React.FC = () => {
     }
   };
   return (
-    <div>
+    <div className="w-full">
       {loading ? (
         <div className="w-[20%] flex justify-center items-center mx-auto lg:-mt-[200px]">
           <Spinner />
         </div>
       ) : (
-        <form onSubmit={handleSubmit(submitContactForm)}>
+        <form
+          onSubmit={handleSubmit(submitContactForm)}
+          className="w-[170%] lg:w-auto "
+        >
           {/* name  */}
           <div className="flex justify-between gap-x-5 mb-5">
             <div className="flex flex-col gap-y-2 w-[48%] ">
