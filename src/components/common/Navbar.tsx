@@ -11,6 +11,7 @@ import Logo from '../../assets/Logo/Logo-Full-Light.png';
 import ProfileDropdown from '../core/Auth/ProfileDropDown';
 import useAuth from '../../hooks/useAuth';
 import Spinner from './Spinner';
+import toast from 'react-hot-toast';
 
 interface CategoryProps {
   _id: string;
@@ -34,10 +35,9 @@ const Navbar: React.FC = () => {
         method: 'GET',
         url: categories.CATEGORIES_API,
       });
-      console.log('Printing SubLinks result = ', result.data.allCategories);
       setSsubLinks(result.data.allCategories);
     } catch (err) {
-      console.log('Could not fetch the category list', err);
+      toast.error('Could not fetch the category list');
     }
     setLoading(false);
   };

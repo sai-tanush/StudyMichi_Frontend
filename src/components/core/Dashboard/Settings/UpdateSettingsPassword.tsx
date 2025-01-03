@@ -5,6 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { changePassword } from '../../../../services/operations/settingsAPI';
 import IconBtn from '../../../common/IconBtn';
 import useAuth from '../../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const UpdateSettingsPassword = () => {
   const { token } = useAuth();
@@ -26,16 +27,12 @@ const UpdateSettingsPassword = () => {
       confirmNewPassword: data.newPassword,
     };
 
-    console.log('Password Data = ', updatedData);
-
     try {
       if (token) {
         await changePassword(token, updatedData);
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('ERROR MESSAGE - ', error.message);
-      }
+      toast.error('Could not submit password, please try again later');
     }
   };
 

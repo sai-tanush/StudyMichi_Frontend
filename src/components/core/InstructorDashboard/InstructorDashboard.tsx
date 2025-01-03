@@ -32,9 +32,6 @@ const InstructorDashboard = () => {
       const instructorApiData = await getInstructorData(token);
       const result = await fetchInstructorCourses(token);
 
-      console.log('instructorApiData = ', instructorApiData);
-      console.log('instructorCourses = ', result);
-
       if (instructorApiData.length) {
         setInstructorData(instructorApiData);
       }
@@ -56,8 +53,6 @@ const InstructorDashboard = () => {
       (acc, curr) => acc + curr.totalStudentsEnrolled,
       0,
     ) || 0;
-
-  console.log('instructorData = ', instructorData);
 
   return (
     <div className="text-white w-[60%] ml-[10%]">

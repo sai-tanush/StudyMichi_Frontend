@@ -16,9 +16,8 @@ const EnrolledCourses: React.FC = () => {
     try {
       const response = await getUserEnrolledCourses(token);
       setEnrolledCourses(response);
-      console.log('response in getEnrolledCourses = ', response);
     } catch (error) {
-      console.log('Unable to fetch Enrolled course ', error);
+      toast.error('Unable to fetch Enrolled course ');
     }
   };
 
@@ -26,7 +25,6 @@ const EnrolledCourses: React.FC = () => {
     getEnrolledCourses();
   }, []);
 
-  console.log('courseData = ', enrolledCourses);
   return (
     <div className="lg:w-[60%] ml-[10%]">
       <div className="text-4xl text-richblack-50 font-semibold">

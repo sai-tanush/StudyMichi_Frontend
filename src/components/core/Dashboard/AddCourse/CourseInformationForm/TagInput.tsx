@@ -50,7 +50,6 @@ const TagInput: React.FC<TagInputProps> = ({
   useEffect(() => {
     if (editCourse && course?.tag) {
       const convertedTags = convertToTags(course?.tag);
-      console.log('convertedTags = ', convertedTags);
       setTags(convertedTags);
     }
   }, [editCourse, course?.tag]);
@@ -63,7 +62,6 @@ const TagInput: React.FC<TagInputProps> = ({
         const updatedTags = [...tags, inputValue];
         setTags(updatedTags);
         e.currentTarget.value = '';
-        console.log('Updated Tags = ', updatedTags);
       }
     }
   };
@@ -77,7 +75,6 @@ const TagInput: React.FC<TagInputProps> = ({
   useEffect(() => {
     if (editCourse && course?.tag) {
       const tagsArray = course?.tag[0].replace(/"/g, '').split(',');
-      console.log('converted TagsArray = ', tagsArray);
       setTags(tagsArray);
     }
   }, []);

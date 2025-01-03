@@ -48,8 +48,6 @@ const CourseReviewModal: React.FC<CourseReviewModalProps> = ({
     setValue('courseRating', 0);
   }, []);
 
-  console.log('courseId in CourseReviewModal = ', courseId);
-
   return (
     <div className="text-richblack-5 lg:w-[40%] border border-richblack-500 rounded-lg mx-auto">
       <div>

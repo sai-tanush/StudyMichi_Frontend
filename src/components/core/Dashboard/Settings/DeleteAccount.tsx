@@ -8,6 +8,7 @@ import ConfirmationModal, {
   ModalDataProps,
 } from '../../../common/ConfirmationModal';
 import useAuth from '../../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const DeleteAccount = () => {
   const { token } = useAuth();
@@ -17,15 +18,12 @@ const DeleteAccount = () => {
     useState<ModalDataProps | null>(null);
 
   const handleDeleteAccount = async () => {
-    console.log('handleDeleteAccount called');
     try {
       if (token) {
         (dispatch as AppDispatch)(deleteProfile(token, navigate));
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('ERROR MESSAGE - ', error.message);
-      }
+      toast.error('Could not delete your account, please try later');
     }
   };
 

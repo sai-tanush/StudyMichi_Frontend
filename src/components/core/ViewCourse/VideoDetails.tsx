@@ -12,6 +12,7 @@ import { markLectureAsComplete } from '../../../services/operations/courseDetail
 import { updateCompletedLectures } from '../../../utils/slices/viewCourseSlice';
 import Spinner from '../../common/Spinner';
 import IconBtn from '../../common/IconBtn';
+import toast from 'react-hot-toast';
 
 interface VideoDataProps {
   description: string;
@@ -46,23 +47,8 @@ const VideoDetails: React.FC = () => {
           (course) => course._id === sectionId,
         );
 
-        console.log('courseId = ', courseId);
-        console.log('sectionId = ', sectionId);
-        console.log('subSectionId = ', subSectionId);
-        console.log('courseSectionData = ', courseSectionData);
-
-        console.log(
-          'filteredData in setVideoSpecificDaetails = ',
-          filteredData,
-        );
-
         const filteredVideoData = filteredData[0]?.subSection.filter(
           (data) => data._id === subSectionId,
-        );
-
-        console.log(
-          'filteredVideoData in setVideoSpecificDaetails = ',
-          filteredVideoData,
         );
 
         setVideoData(filteredVideoData);
@@ -74,17 +60,8 @@ const VideoDetails: React.FC = () => {
   }, [courseSectionData, courseEntireData, location.pathname]);
 
   const isFirstVideo = () => {
-    console.log('isFirstVideo is called');
-    console.log('courseSectionData = ', courseSectionData);
-
     const currentSectionIndex = courseSectionData.findIndex(
       (data) => data._id === sectionId,
-    );
-
-    console.log('CurrentSectionIndex = ', currentSectionIndex);
-    console.log(
-      'courseData of CurrentIndex in isFirstVideo = ',
-      courseSectionData[currentSectionIndex],
     );
 
     const currentSubSectionIndex = courseSectionData[
@@ -106,7 +83,7 @@ const VideoDetails: React.FC = () => {
 
     // Check if section is found
     if (currentSectionIndex === -1) {
-      console.error(`Section with id ${sectionId} not found`);
+      toast.error('Section not found');
       return false;
     }
 
@@ -122,7 +99,7 @@ const VideoDetails: React.FC = () => {
 
     // Check if subsection is found
     if (currentSubSectionIndex === -1) {
-      console.error(`Subsection with id ${subSectionId} not found`);
+      toast.error(`Subsection not found`);
       return false;
     }
 
@@ -138,7 +115,6 @@ const VideoDetails: React.FC = () => {
   };
 
   const goToNextVideo = () => {
-    console.log('GoToNextVideo called');
     if (isLastVideo()) return;
 
     const currentSectionIndex = courseSectionData.findIndex(
@@ -234,14 +210,11 @@ const VideoDetails: React.FC = () => {
   };
 
   const handleRewatchVideo = () => {
-    console.log('Clicked Rewatch');
     if (playerRef?.current) {
       playerRef.current?.seek(0);
       setVideoEnded(false);
     }
   };
-
-  console.log('videoData = ', videoData);
 
   if (loading) {
     return (
@@ -250,9 +223,6 @@ const VideoDetails: React.FC = () => {
       </div>
     );
   }
-  console.log('courseSectionData = ', courseSectionData);
-  console.log('courseEntireData = ', courseEntireData);
-  console.log('completedLectures  =', completedLectures);
 
   return (
     <div className="pr-5 border border-pink-200">

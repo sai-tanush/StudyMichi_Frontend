@@ -59,7 +59,6 @@ const CourseInformationForm: React.FC = () => {
   const getCategories = async () => {
     setLoading(true);
     const categories = await fetchCourseCategories();
-    console.log('All categories = ', categories);
     if (categories.length > 0) {
       setCourseCategories(categories);
     }
@@ -108,8 +107,6 @@ const CourseInformationForm: React.FC = () => {
   };
 
   const onFormSubmit = async (data: CourseInformationFormProps) => {
-    console.log('Form Data in CourseInformationForm = ', data);
-    console.log('Current courseTags: ', getValues('courseTags'));
     if (editCourse) {
       if (isFormUpdated()) {
         const currentValues = getValues();
@@ -167,9 +164,6 @@ const CourseInformationForm: React.FC = () => {
           setStep(2);
           dispatch(setCourse(result));
         }
-
-        console.log('formData for editing course = ', formData);
-        console.log('Printing result for editCourse', result);
       } else {
         toast.error('No changes made to form!');
       }
@@ -178,10 +172,6 @@ const CourseInformationForm: React.FC = () => {
     }
 
     //create a new course
-    console.log(
-      'Course Tags before appending in form ',
-      JSON.stringify(data.courseTags),
-    );
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
@@ -200,9 +190,6 @@ const CourseInformationForm: React.FC = () => {
       dispatch(setCourse(result));
     }
     setLoading(false);
-
-    console.log('formData for creating new Course = ', formData);
-    console.log('Printing result for creating new Course = ', result);
   };
 
   return (

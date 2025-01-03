@@ -40,14 +40,10 @@ const ReviewSlider: React.FC = () => {
       if (response?.data?.success) {
         setReviews(response?.data?.data);
       }
-
-      console.log('response in fetchAllReviews  = ', response);
     };
 
     fetchAllReviews();
   }, []);
-
-  console.log('reviews in Review Slider = ', reviews);
 
   return (
     <div>

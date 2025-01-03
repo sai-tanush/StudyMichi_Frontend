@@ -25,20 +25,15 @@ const CourseDetails: React.FC = () => {
     useState<ModalDataProps | null>(null);
   const [collapseSections, setCollapseSections] = useState<boolean>(false);
 
-  console.log('courseId in CourseDetails = ', courseId);
-
   const getCourseDetails = async () => {
     setLoading(true);
     const result = await fetchCourseDetails(courseId);
-    console.log('result in getCourseDetails = ', result);
-    console.log('courseDetails = ', result.data.courseDetails[0]);
     setCourseData(result.data.courseDetails);
     setTotalDuration(result?.data?.totalDuration);
     setLoading(false);
   };
 
   const handleCollapseSection = () => {
-    console.log('handleCollapseSection is called');
     setCollapseSections(true);
   };
 

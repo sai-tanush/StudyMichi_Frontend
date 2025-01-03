@@ -61,14 +61,10 @@ const CourseBuilderForm: React.FC = () => {
   };
 
   const onFormSubmit = async (data) => {
-    console.log('data as prop in onFormSubmit in CourseBuilderForm = ', data);
-
     setLoading(true);
     let result;
 
     if (editSectionName && course) {
-      console.log('Update a Section is called');
-      console.log('sectionName in onFormSubmit function = ', data.sectionName);
       result = await updateSection(
         {
           sectionName: data.sectionName,
@@ -77,10 +73,7 @@ const CourseBuilderForm: React.FC = () => {
         },
         token,
       );
-      console.log('Result in API call while updateSection = ', result);
     } else {
-      console.log('Create a Section is called');
-      console.log('sectionName in onFormSubmit function = ', data.sectionName);
       result = await createSection(
         {
           sectionName: data.sectionName,
@@ -88,7 +81,6 @@ const CourseBuilderForm: React.FC = () => {
         },
         token,
       );
-      console.log('Result in API call while createSection = ', result);
     }
 
     //update values in course
@@ -99,10 +91,6 @@ const CourseBuilderForm: React.FC = () => {
     }
 
     setLoading(false);
-    console.log(
-      'Result in courseBuilderForm to be updated in course = ',
-      result,
-    );
   };
 
   const handleChangeEditSectionName = (

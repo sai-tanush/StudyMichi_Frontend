@@ -37,7 +37,6 @@ const ContactUsForm: React.FC = () => {
   }, [reset, isSubmitSuccessful]);
 
   const submitContactForm = async (data: FormData) => {
-    console.log('About Us Form Data = ', data);
     try {
       setLoading(true);
       const response = await apiConnector({
@@ -45,18 +44,9 @@ const ContactUsForm: React.FC = () => {
         url: contactusEndpoint.CONTACT_US_API,
         bodyData: data,
       });
-      console.log('Logging AboutUs Page response = ', response);
       setLoading(false);
     } catch (error) {
-      if (error instanceof Error) {
-        console.log('Error occurred = ', error.message);
-      } else {
-        console.log(
-          'An unexpected Error occured in AboutUs page componrnt submitCantactForm function',
-          error,
-        );
-      }
-
+      toast.error('Form could not be submitted');
       setLoading(false);
     }
   };

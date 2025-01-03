@@ -29,7 +29,6 @@ const BuyCourseCard: React.FC<BuyCourseCardProps> = ({
   const { courseId } = useParams();
 
   const handleBuyCourse = () => {
-    console.log('token in handleBuyCourse = ', token);
     if (token) {
       buyCourse([courseId], token, user, navigate, dispatch);
       return;

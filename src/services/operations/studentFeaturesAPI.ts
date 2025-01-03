@@ -38,7 +38,6 @@ export async function buyCourse(
   dispatch,
 ) {
   const toastId = toast.loading('Loading...');
-  console.log('token in buyCourse function = ', token);
 
   try {
     //load the script
@@ -51,8 +50,6 @@ export async function buyCourse(
       return;
     }
 
-    console.log('result from API in buyCourse = ', res);
-
     //initiate the order
     const orderResponse = await apiConnector({
       method: 'POST',
@@ -64,8 +61,6 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       },
     });
-
-    console.log('order Response = ', orderResponse);
 
     if (!orderResponse) {
       throw new Error(orderResponse.data.message);
@@ -101,10 +96,8 @@ export async function buyCourse(
     paymentObject.open();
     paymentObject.on('payment.failed', function (response) {
       toast.error('Oops, Payment Failed!');
-      console.log('Payment Failed', response.error);
     });
   } catch (error) {
-    console.log('PAYMENT API ERROR....', error);
     toast.error('Could not make Payment');
   }
   toast.dismiss(toastId);
@@ -112,7 +105,6 @@ export async function buyCourse(
 
 //send successful payment - email
 async function sendPaymentSuccessfullEmail(response, amount, token) {
-  console.log('response in sendPaymentSuccessfullEmail = ', response);
   try {
     await apiConnector({
       method: 'POST',
@@ -127,7 +119,7 @@ async function sendPaymentSuccessfullEmail(response, amount, token) {
       },
     });
   } catch (error) {
-    console.log('PAYMENT SUCCESS EMAIL ERROR....', error);
+    toast.error('Could not send email');
   }
 }
 
@@ -156,7 +148,6 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     navigate('/dashboard/enrolled-courses');
     dispatch(resetCart());
   } catch (error) {
-    console.log('PAYMENT VERIFY ERROR....', error);
     toast.error('Could not verify Payment');
   }
   toast.dismiss(toastId);

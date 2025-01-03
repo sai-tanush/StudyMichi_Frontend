@@ -18,7 +18,6 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({ link }) => {
   const location = useLocation();
 
   if (!Icon) {
-    console.error(`Icon "${link.icon}" not found in react-icons/vsc.`);
     return null;
   }
 

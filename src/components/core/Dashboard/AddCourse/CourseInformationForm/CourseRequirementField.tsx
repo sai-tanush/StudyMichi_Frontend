@@ -76,7 +76,6 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   useEffect(() => {
     if (editCourse && course?.instructions) {
       const requirementArray = JSON.parse(course?.instructions);
-      console.log('requirementArray = ', requirementArray);
       setRequirementList(requirementArray);
     }
   }, []);
