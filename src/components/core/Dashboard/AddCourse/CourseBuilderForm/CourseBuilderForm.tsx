@@ -60,7 +60,7 @@ const CourseBuilderForm: React.FC = () => {
     dispatch(setStep(3));
   };
 
-  const onFormSubmit = async (data: any) => {
+  const onFormSubmit = async (data) => {
     console.log('data as prop in onFormSubmit in CourseBuilderForm = ', data);
 
     setLoading(true);
