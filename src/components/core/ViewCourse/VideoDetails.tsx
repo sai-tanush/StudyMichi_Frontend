@@ -2,16 +2,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import useAuth from '../../../hooks/useAuth';
 import { useSelector } from 'react-redux';
+import { Player } from 'video-react';
+import 'video-react/dist/video-react.css';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import useAuth from '../../../hooks/useAuth';
 import { RootState } from '../../../utils/store/store';
 import { markLectureAsComplete } from '../../../services/operations/courseDetailsAPI';
 import { updateCompletedLectures } from '../../../utils/slices/viewCourseSlice';
 import Spinner from '../../common/Spinner';
 import IconBtn from '../../common/IconBtn';
-import { Player } from 'video-react';
-import 'video-react/dist/video-react.css';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 interface VideoDataProps {
   description: string;
