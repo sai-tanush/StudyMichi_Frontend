@@ -70,22 +70,8 @@ function App() {
             </OpenRoute>
           }
         />
-        <Route
-          path="about"
-          element={
-            <OpenRoute>
-              <AboutUs />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="contact"
-          element={
-            <OpenRoute>
-              <ContactUs />
-            </OpenRoute>
-          }
-        />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route
           path="update-password/:id"
           element={
