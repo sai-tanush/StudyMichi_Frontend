@@ -33,7 +33,6 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ modalData }) => {
             onClick={modalData.btn2Handler}
           >
             {modalData?.btn2Text || 'N/A'}
-
           </button>
         </div>
       </div>

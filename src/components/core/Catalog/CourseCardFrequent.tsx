@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RatingStars from '../../common/RatingStars';
-import { useEffect, useState } from 'react';
 import GetAvgRating from '../../../utils/helperFunctions/avgRating';
 import { CourseProps } from '../../../utils/slices/courseSlice';
 

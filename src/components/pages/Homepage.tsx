@@ -13,12 +13,12 @@ import Footer from '../common/Footer';
 
 const Homepage: React.FC = () => {
   return (
-    <div className="relative mx-auto flex flex-col w-11/12 max-w-maxContent items-center justify-between text-white">
+    <div className="relative mx-auto flex flex-col w-screen lg:w-11/12 max-w-maxContent items-center justify-between text-white">
       {/* Section 1 */}
       <div>
         <Link to={'/signup'}>
           <div
-            className="group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-300 transition-all duration-200
+            className="group mt-10 lg:mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-300 transition-all duration-200
           hover:scale-95 w-fit"
           >
             <div className="flex items-center space-x-1 rounded-full px-10 py-[5px] group-hover:bg-richblack-900 shadow-richblack-500 shadow-sm">
@@ -28,11 +28,11 @@ const Homepage: React.FC = () => {
           </div>
         </Link>
 
-        <div className="text-center text-4xl font-semibold mt-7">
+        <div className="text-center text-lg lg:text-4xl font-semibold mt-7">
           Empower Your Future with <HighlightText text={'Coding Skills'} />
         </div>
 
-        <div className="mt-4 mx-auto w-[90%] text-center text-lg font-bold text-richblack-300">
+        <div className="mt-4 mx-auto w-[60%] lg:w-[90%] px-10 lg:px-0 text-left lg:text-center text-sm lg:text-lg font-bold text-richblack-300">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
@@ -51,14 +51,14 @@ const Homepage: React.FC = () => {
           </div>
         </div>
 
-        <div className="mx-3 my-12 shadow-blue-200 shadow-xl">
+        <div className="mx-3 my-12 shadow-blue-200 shadow-xl hidden lg:block">
           <video muted loop autoPlay>
             <source src={Banner} type="video/mp4" />
           </video>
         </div>
 
         {/* Code Section 1 */}
-        <div>
+        <div className="hidden lg:block">
           <CodeBlocks
             position={'lg: flex-row'}
             heading={
@@ -88,7 +88,7 @@ const Homepage: React.FC = () => {
           />
         </div>
         {/* Code Section 2 */}
-        <div>
+        <div className="hidden lg:block">
           <CodeBlocks
             position={'lg: flex-row-reverse'}
             heading={
@@ -126,7 +126,7 @@ const Homepage: React.FC = () => {
         <div className="homepage_bg h-[333px] w-screen">
           <div className="w-11/12 max-w-maxContent flex items-center gap-5 mx-auto">
             <div className="w-full flex justify-center mt-[150px]">
-              <div className="mt-20 gap-7 flex flex-row items-center">
+              <div className="-mt-24 lg:mt-20 gap-7 flex flex-row items-center">
                 <CTAButton active={true} linkto={'/signup'}>
                   <div className="flex flex-row gap-2 items-center">
                     Explore Full Catalog
@@ -141,9 +141,9 @@ const Homepage: React.FC = () => {
           </div>
         </div>
 
-        <div className="mx-auto mt-[100px] w-11/12 max-w-maxContent flex flex-col items-center justify-center gap-7">
+        <div className="mx-auto -mt-36 lg:mt-[100px] w-11/12 max-w-maxContent flex flex-col items-center justify-center gap-7">
           <div className="flex flex-row justify-between">
-            <div className="text-4xl font-semibold w-[45%]">
+            <div className="text-3xl lg:text-4xl font-semibold w-[45%]">
               Get the skills you need for a
               <HighlightText text={` job that is in demand.`} />
             </div>

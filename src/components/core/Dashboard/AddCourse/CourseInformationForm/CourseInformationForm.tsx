@@ -26,6 +26,17 @@ import { COURSE_STATUS } from '../../../../../utils/constants';
 import { RootState } from '../../../../../utils/store/store';
 import useAuth from '../../../../../hooks/useAuth';
 
+export interface CourseInformationFormProps {
+  courseBenefits: string;
+  courseCategory: string;
+  courseImage: string;
+  coursePrice: number;
+  courseRequirements: string[];
+  courseShortDesc: string;
+  courseTags: string[];
+  courseTitle: string;
+}
+
 const CourseInformationForm: React.FC = () => {
   const {
     register,
@@ -34,7 +45,7 @@ const CourseInformationForm: React.FC = () => {
     getValues,
     formState: { errors },
     clearErrors,
-  } = useForm();
+  } = useForm<CourseInformationFormProps>();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,7 +59,6 @@ const CourseInformationForm: React.FC = () => {
   const getCategories = async () => {
     setLoading(true);
     const categories = await fetchCourseCategories();
-    console.log('All categories = ', categories);
     if (categories.length > 0) {
       setCourseCategories(categories);
     }
@@ -63,7 +73,7 @@ const CourseInformationForm: React.FC = () => {
       setValue('coursePrice', course.price);
       setValue('courseTags', course.tag);
       setValue('courseBenefits', course.whatYouWillLearn);
-      setValue('courseCategory', course.category);
+      setValue('courseCategory', course.category._id);
       setValue('courseRequirements', course.instructions);
       setValue('courseImage', course.thumbnail);
     }
@@ -96,8 +106,7 @@ const CourseInformationForm: React.FC = () => {
     navigate('/dashboard/my-courses');
   };
 
-  const onFormSubmit = async (data: any) => {
-    console.log('Current courseTags: ', getValues('courseTags'));
+  const onFormSubmit = async (data: CourseInformationFormProps) => {
     if (editCourse) {
       if (isFormUpdated()) {
         const currentValues = getValues();
@@ -155,9 +164,6 @@ const CourseInformationForm: React.FC = () => {
           setStep(2);
           dispatch(setCourse(result));
         }
-
-        console.log('formData for editing course = ', formData);
-        console.log('Printing result for editCourse', result);
       } else {
         toast.error('No changes made to form!');
       }
@@ -166,10 +172,6 @@ const CourseInformationForm: React.FC = () => {
     }
 
     //create a new course
-    console.log(
-      'Course Tags before appending in form ',
-      JSON.stringify(data.courseTags),
-    );
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
@@ -188,9 +190,6 @@ const CourseInformationForm: React.FC = () => {
       dispatch(setCourse(result));
     }
     setLoading(false);
-
-    console.log('formData for creating new Course = ', formData);
-    console.log('Printing result for creating new Course = ', result);
   };
 
   return (

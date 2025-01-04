@@ -37,7 +37,6 @@ const ContactUsForm: React.FC = () => {
   }, [reset, isSubmitSuccessful]);
 
   const submitContactForm = async (data: FormData) => {
-    console.log('About Us Form Data = ', data);
     try {
       setLoading(true);
       const response = await apiConnector({
@@ -45,29 +44,23 @@ const ContactUsForm: React.FC = () => {
         url: contactusEndpoint.CONTACT_US_API,
         bodyData: data,
       });
-      console.log('Logging AboutUs Page response = ', response);
       setLoading(false);
     } catch (error) {
-      if (error instanceof Error) {
-        console.log('Error occurred = ', error.message);
-      } else {
-        console.log(
-          'An unexpected Error occured in AboutUs page componrnt submitCantactForm function',
-          error,
-        );
-      }
-
+      toast.error('Form could not be submitted');
       setLoading(false);
     }
   };
   return (
-    <div>
+    <div className="w-full">
       {loading ? (
         <div className="w-[20%] flex justify-center items-center mx-auto lg:-mt-[200px]">
           <Spinner />
         </div>
       ) : (
-        <form onSubmit={handleSubmit(submitContactForm)}>
+        <form
+          onSubmit={handleSubmit(submitContactForm)}
+          className="w-[170%] lg:w-auto "
+        >
           {/* name  */}
           <div className="flex justify-between gap-x-5 mb-5">
             <div className="flex flex-col gap-y-2 w-[48%] ">
@@ -156,7 +149,7 @@ const ContactUsForm: React.FC = () => {
               <div>
                 <select
                   id="dropdown"
-                  className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[120px]"
+                  className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[70px] lg:w-[120px]"
                   defaultValue="+91-India"
                   {...register('countryCode', { required: true })}
                 >
@@ -175,7 +168,7 @@ const ContactUsForm: React.FC = () => {
                 type="text"
                 id="phonenumber"
                 placeholder="12345 56789"
-                className="bg-richblack-800 p-3 rounded-lg text-richblack-100"
+                className="bg-richblack-800 p-3 rounded-lg text-richblack-100 w-[80%] lg:w-full"
                 {...register('phoneNumber', {
                   required: 'Phone Number is required',
                   minLength: { value: 8, message: 'Invalid Phone Number' },

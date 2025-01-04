@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '../../../../utils/store/store';
 import { updateDisplayPicture } from '../../../../services/operations/settingsAPI';
 import IconBtn from '../../../common/IconBtn';
 import useAuth from '../../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const ChangeProfilePicture = () => {
   const { token } = useAuth();
@@ -25,13 +26,12 @@ const ChangeProfilePicture = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    // console.log(file)
     if (files && files[0]) {
       const file = files[0]; // Access the first file
       setImageFile(file);
       previewFile(file);
     } else {
-      console.error('No file selected');
+      toast.error('No file selected');
     }
   };
 
@@ -45,7 +45,6 @@ const ChangeProfilePicture = () => {
 
   const handleFileUpload = async () => {
     try {
-      console.log('uploading...');
       setLoading(true);
       const formData = new FormData();
       if (!imageFile) throw new Error('No file selected for upload');
@@ -53,15 +52,10 @@ const ChangeProfilePicture = () => {
       if (token) {
         await (dispatch as AppDispatch)(updateDisplayPicture(token, formData));
       }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('ERROR MESSAGE - ', error.message);
-      } else {
-        console.error('ERROR MESSAGE - ', error); // Handle the case where error is not an instance of Error
-      }
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      toast.error('could not upload file');
     }
+    setLoading(false);
   };
 
   useEffect(() => {

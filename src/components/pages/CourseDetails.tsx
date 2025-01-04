@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -15,7 +14,6 @@ import { formatDate } from '../../utils/helperFunctions/formatDate';
 import { fetchCourseDetails } from '../../services/operations/courseDetailsAPI';
 import ConfirmationModal, { ModalDataProps } from '../common/ConfirmationModal';
 
-
 const CourseDetails: React.FC = () => {
   const { courseId } = useParams();
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,21 +25,15 @@ const CourseDetails: React.FC = () => {
     useState<ModalDataProps | null>(null);
   const [collapseSections, setCollapseSections] = useState<boolean>(false);
 
-
-  console.log('courseId in CourseDetails = ', courseId);
-
   const getCourseDetails = async () => {
     setLoading(true);
     const result = await fetchCourseDetails(courseId);
-    console.log('result in getCourseDetails = ', result);
-    console.log('courseDetails = ', result.data.courseDetails[0]);
     setCourseData(result.data.courseDetails);
     setTotalDuration(result?.data?.totalDuration);
     setLoading(false);
   };
 
   const handleCollapseSection = () => {
-    console.log('handleCollapseSection is called');
     setCollapseSections(true);
   };
 
@@ -103,7 +95,6 @@ const CourseDetails: React.FC = () => {
               Created by -
               <span className="text-richblue-100">{` ${courseData?.instructor?.firstName} ${courseData?.instructor?.lastName}`}</span>
             </p>
-
           </div>
 
           <div className="flex gap-x-4">
@@ -121,7 +112,7 @@ const CourseDetails: React.FC = () => {
 
         {/* Course Body */}
         <div className="flex flex-col gap-y-4 p-5">
-          <div className="lg:h-[150px] flex flex-col justify-center gap-y-5 px-10 border border-richblack-600">
+          <div className="lg:min-h-[150px] flex flex-col justify-center gap-y-5 px-10 py-5 border border-richblack-600">
             <p className="text-3xl text-richblack-50 font-semibold">
               What you'll learn
             </p>

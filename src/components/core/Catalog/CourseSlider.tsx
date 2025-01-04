@@ -1,10 +1,10 @@
-import { CourseProps } from '../../../utils/slices/courseSlice';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import CourseCardFrequent from './CourseCardFrequent';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import { CourseProps } from '../../../utils/slices/courseSlice';
+import CourseCardFrequent from './CourseCardFrequent';
 
 interface CourseSliderProps {
   courses: CourseProps[];

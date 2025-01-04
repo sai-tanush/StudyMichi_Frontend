@@ -15,7 +15,7 @@ const {
 } = settingsEndpoints;
 
 //display Profile Picture function
-export function updateDisplayPicture(token: string, formData: any) {
+export function updateDisplayPicture(token: string, formData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -28,10 +28,6 @@ export function updateDisplayPicture(token: string, formData: any) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(
-        'UPDATE_DISPLAY_PICTURE_API API RESPONSE............',
-        response,
-      );
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -39,7 +35,6 @@ export function updateDisplayPicture(token: string, formData: any) {
       toast.success('Display Picture Updated Successfully');
       dispatch(setUser(response.data.data));
     } catch (error) {
-      console.log('UPDATE_DISPLAY_PICTURE_API API ERROR............', error);
       toast.error('Could Not Update Display Picture');
     }
     toast.dismiss(toastId);
@@ -47,7 +42,7 @@ export function updateDisplayPicture(token: string, formData: any) {
 }
 
 //update Profile Details function
-export function updateProfile(token: string, formData: any) {
+export function updateProfile(token: string, formData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -59,7 +54,6 @@ export function updateProfile(token: string, formData: any) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('UPDATE_PROFILE_API API RESPONSE............', response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -68,7 +62,6 @@ export function updateProfile(token: string, formData: any) {
       dispatch(setUser({ ...response.data.updatedUserDetails }));
       toast.success('Profile Updated Successfully');
     } catch (error) {
-      console.log('UPDATE_PROFILE_API API ERROR............', error);
       toast.error('Could Not Update Profile');
     }
     toast.dismiss(toastId);
@@ -76,7 +69,7 @@ export function updateProfile(token: string, formData: any) {
 }
 
 //change user Password function
-export async function changePassword(token: string, formData: any) {
+export async function changePassword(token: string, formData) {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
@@ -87,15 +80,12 @@ export async function changePassword(token: string, formData: any) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('CHANGE_PASSWORD_API API RESPONSE............', response);
 
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
     toast.success('Password Changed Successfully');
   } catch (error) {
-    console.log('CHANGE_PASSWORD_API API ERROR............', error);
-
     if (error instanceof AxiosError && error.response?.data?.message) {
       toast.error(error.response.data.message);
     } else {
@@ -117,7 +107,6 @@ export function deleteProfile(token: string, navigate: NavigateFunction) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('DELETE_PROFILE_API API RESPONSE............', response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -125,7 +114,6 @@ export function deleteProfile(token: string, navigate: NavigateFunction) {
       toast.success('Profile Deleted Successfully');
       dispatch(logout(navigate));
     } catch (error) {
-      console.log('DELETE_PROFILE_API API ERROR............', error);
       toast.error('Could Not Delete Profile');
     }
     toast.dismiss(toastId);

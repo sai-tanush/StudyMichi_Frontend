@@ -7,8 +7,6 @@ const MyProfile: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.profile);
   const navigate = useNavigate();
 
-  console.log('user details = ', user);
-
   return (
     <div className=" mx-5">
       <h1 className="text-4xl text-richblack-5">My Profile</h1>

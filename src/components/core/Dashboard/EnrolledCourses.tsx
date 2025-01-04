@@ -5,18 +5,20 @@ import Spinner from '../../common/Spinner';
 import useAuth from '../../../hooks/useAuth';
 import { getUserEnrolledCourses } from '../../../services/operations/profileAPI';
 import { useNavigate } from 'react-router-dom';
+import { CourseProps } from '../../../utils/slices/courseSlice';
 
 const EnrolledCourses: React.FC = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
-  const [enrolledCourses, setEnrolledCourses] = useState(null);
+
+  const [enrolledCourses, setEnrolledCourses] = useState<CourseProps[]>([]);
 
   const getEnrolledCourses = async () => {
     try {
       const response = await getUserEnrolledCourses(token);
       setEnrolledCourses(response);
     } catch (error) {
-      console.log('Unable to fetch Enrolled course ', error);
+      toast.error('Unable to fetch Enrolled course ');
     }
   };
 
