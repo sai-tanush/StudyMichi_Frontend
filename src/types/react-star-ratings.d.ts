@@ -8,6 +8,7 @@ declare module 'react-rating-stars-component' {
     activeColor: string;
     emptyIcon: JSX.Element;
     fullIcon: JSX.Element;
+    value?: number;
   }
 
   const ReactStars: FC<ReactStarsProps>;
