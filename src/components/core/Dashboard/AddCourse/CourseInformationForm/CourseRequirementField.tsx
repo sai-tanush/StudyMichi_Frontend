@@ -14,13 +14,15 @@ import { CourseInformationFormProps } from './CourseInformationForm';
 
 interface CourseRequirementFieldProps {
   label: string;
-  name: string;
+  name: keyof CourseInformationFormProps;
   placeholder: string;
   register: UseFormRegister<CourseInformationFormProps>;
   errors: FieldErrors<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
+  setValue: UseFormSetValue<CourseInformationFormProps>;
   getValues?: UseFormGetValues<FieldValues>;
-  clearErrors: UseFormClearErrors<FieldValues>;
+  clearErrors:
+    | UseFormClearErrors<FieldValues>
+    | UseFormClearErrors<CourseInformationFormProps>;
 }
 
 const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
@@ -65,7 +67,14 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   useEffect(() => {
     register(name, {
       required: true,
-      validate: (value) => value.length > 0,
+      validate: (value) => {
+        if (Array.isArray(value)) {
+          return value.length > 0; // Validate if it's an array and has items
+        } else if (typeof value === 'string') {
+          return value.length > 0; // Validate if it's a string and not empty
+        }
+        return false; // Return false if value is neither an array nor a string
+      },
     });
   }, []);
 
@@ -74,11 +83,16 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
   }, [requirementList]);
 
   useEffect(() => {
-    if (editCourse && course?.instructions) {
-      const requirementArray = JSON.parse(course?.instructions);
+    if (editCourse && Array.isArray(course?.instructions)) {
+      const requirementArray = JSON.parse(course.instructions.toString());
       setRequirementList(requirementArray);
     }
   }, []);
+
+  console.log('requirement List = ', requirementList);
+
+  console.log('courseInstructions = ', course?.instructions);
+  // console.log("JSON.parse courseInstructions = ", JSON.parse(course?.instructions));
 
   return (
     <div className="w-full">
