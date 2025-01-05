@@ -34,8 +34,8 @@ export const getAllCourses = async () => {
       throw new Error('Could Not Fetch Course Categories');
     }
     result = response?.data?.data;
-  } catch (error) {
-    //toast.error(error.message)
+  } catch {
+    toast.error('Could not fetch Courses');
   }
   toast.dismiss(toastId);
   return result;
@@ -59,9 +59,8 @@ export const fetchCourseDetails = async (courseId: string | undefined) => {
       throw new Error(response.data.message);
     }
     result = response.data;
-  } catch (error) {
-    result = error.response.data;
-    // toast.error(error.response.data.message);
+  } catch {
+    toast.error('Could not fetch ');
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
@@ -80,8 +79,8 @@ export const fetchCourseCategories = async () => {
       throw new Error('Could Not Fetch Course Categories');
     }
     result = response?.data?.allCategories;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Cannot fetch course categories');
   }
   return result;
 };
@@ -105,8 +104,8 @@ export const addCourseDetails = async (data, token: string | null) => {
     }
     toast.success('Course Details Added Successfully');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to add course');
   }
   toast.dismiss(toastId);
   return result;
@@ -131,8 +130,8 @@ export const editCourseDetails = async (data, token: string | null) => {
     }
     toast.success('Course Details Updated Successfully');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to edit course');
   }
   toast.dismiss(toastId);
   return result;
@@ -157,8 +156,8 @@ export const createSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Created');
     result = response?.data?.updateCourseDetails;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to create section');
   }
   toast.dismiss(toastId);
   return result;
@@ -183,8 +182,8 @@ export const createSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Added');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to create sub-section');
   }
   toast.dismiss(toastId);
   return result;
@@ -209,8 +208,8 @@ export const updateSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Updated');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('unable to update section');
   }
   toast.dismiss(toastId);
   return result;
@@ -234,8 +233,8 @@ export const updateSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Updated');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to update sub-section');
   }
   toast.dismiss(toastId);
   return result;
@@ -260,8 +259,8 @@ export const deleteSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Deleted');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete section');
   }
   toast.dismiss(toastId);
   return result;
@@ -284,8 +283,8 @@ export const deleteSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Deleted');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete sub-section');
   }
   toast.dismiss(toastId);
   return result;
@@ -307,8 +306,8 @@ export const fetchInstructorCourses = async (token: string | null) => {
       throw new Error('Could Not Fetch Instructor Courses');
     }
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to fetch instructor courses');
   }
   toast.dismiss(toastId);
   return result;
@@ -330,8 +329,8 @@ export const deleteCourse = async (data, token: string | null) => {
       throw new Error('Could Not Delete Course');
     }
     toast.success('Course Deleted');
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete a course');
   }
   toast.dismiss(toastId);
 };
@@ -360,9 +359,8 @@ export const getFullDetailsOfCourse = async (
       throw new Error(response.data.message);
     }
     result = response?.data?.data;
-  } catch (error) {
-    result = error.response.data;
-    toast.error(error.response.data.message);
+  } catch {
+    toast.error('Unable to fetch Course Details');
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
@@ -388,8 +386,8 @@ export const markLectureAsComplete = async (data, token: string | null) => {
     }
     toast.success('Lecture Completed');
     result = true;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to mark lecture as completed');
     result = false;
   }
   toast.dismiss(toastId);
@@ -415,9 +413,9 @@ export const createRating = async (data, token: string | null) => {
     }
     toast.success('Rating Created');
     success = true;
-  } catch (error) {
+  } catch {
     success = false;
-    toast.error(error.message);
+    toast.error('Rating cannot be created');
   }
   toast.dismiss(toastId);
   return success;
