@@ -9,21 +9,23 @@ import {
   UseFormRegister,
   UseFormSetValue,
   UseFormClearErrors,
+  Path,
+  PathValue,
 } from 'react-hook-form';
 
-interface ThumbnailUploadProps {
-  name: string;
+interface ThumbnailUploadProps<T extends FieldValues> {
+  name: Path<T>;
   label: string;
-  register: UseFormRegister<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
-  errors: FieldErrors<FieldValues>;
-  clearErrors: UseFormClearErrors<FieldValues>;
+  register: UseFormRegister<T>;
+  setValue: UseFormSetValue<T>;
+  errors: FieldErrors<T>;
+  clearErrors: UseFormClearErrors<T>;
   video?: boolean;
-  viewData?: any | null;
-  editData?: any | null;
+  viewData?: string | null;
+  editData?: string | null;
 }
 
-const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
+const ThumbnailUpload = <T extends FieldValues>({
   name,
   label,
   register,
@@ -33,7 +35,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
   video = false,
   viewData = null,
   editData = null,
-}) => {
+}: ThumbnailUploadProps<T>) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewSource, setPreviewSource] = useState<string>(
     viewData ? viewData : editData ? editData : '',
@@ -45,7 +47,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
     if (file) {
       previewFile(file);
       setSelectedFile(file);
-      clearErrors(name);
+      clearErrors(name); // Type assertion ensures compatibility
     }
   };
 
@@ -73,7 +75,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
   }, [register, name]);
 
   useEffect(() => {
-    setValue(name, selectedFile);
+    setValue(name, selectedFile as PathValue<T, Path<T>>);
   }, [selectedFile, setValue, name]);
 
   return (
@@ -112,7 +114,7 @@ const ThumbnailUpload: React.FC<ThumbnailUploadProps> = ({
                 onClick={() => {
                   setPreviewSource('');
                   setSelectedFile(null);
-                  setValue(name, null);
+                  setValue(name, null as unknown as PathValue<T, Path<T>>);
                 }}
                 className="mt-3 text-richblack-400 underline"
               >
