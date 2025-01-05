@@ -90,7 +90,7 @@ const CourseInformationForm: React.FC = () => {
         currentValues.coursePrice !== course.price ||
         currentValues.courseTags.toString() !== course.tag.toString() ||
         currentValues.courseBenefits !== course.whatYouWillLearn ||
-        currentValues.courseCategory._id !== course.category._id ||
+        currentValues.courseCategory !== course.category._id ||
         currentValues.courseImage !== course.thumbnail ||
         currentValues.courseRequirements.toString() !==
           course.instructions.toString())
@@ -124,14 +124,14 @@ const CourseInformationForm: React.FC = () => {
           }
 
           if (currentValues.coursePrice !== course.price) {
-            formData.append('price', data.coursePrice);
+            formData.append('price', `${data.coursePrice}`);
           }
 
           if (currentValues.courseBenefits !== course.whatYouWillLearn) {
             formData.append('whatYouWillLearn', data.courseBenefits);
           }
 
-          if (currentValues.courseCategory._id !== course?.category._id) {
+          if (currentValues.courseCategory !== course?.category._id) {
             formData.append('category', data.courseCategory);
           }
 
@@ -175,7 +175,7 @@ const CourseInformationForm: React.FC = () => {
     const formData = new FormData();
     formData.append('courseName', data.courseTitle);
     formData.append('courseDescription', data.courseShortDesc);
-    formData.append('price', data.coursePrice);
+    formData.append('price', `${data.coursePrice}`);
     formData.append('whatYouWillLearn', data.courseBenefits);
     formData.append('category', data.courseCategory);
     formData.append('tag', JSON.stringify(data.courseTags));
