@@ -89,11 +89,6 @@ const CourseRequirementField: React.FC<CourseRequirementFieldProps> = ({
     }
   }, []);
 
-  console.log('requirement List = ', requirementList);
-
-  console.log('courseInstructions = ', course?.instructions);
-  // console.log("JSON.parse courseInstructions = ", JSON.parse(course?.instructions));
-
   return (
     <div className="w-full">
       <label
