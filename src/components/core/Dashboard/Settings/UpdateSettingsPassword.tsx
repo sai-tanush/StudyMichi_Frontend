@@ -27,7 +27,6 @@ const UpdateSettingsPassword = () => {
   } = useForm<UpdatePasswordDataProps>();
 
   const submitPasswordForm = async (data: UpdatePasswordDataProps) => {
-    console.log('submitPasswordForm = ', data);
     const updatedData = {
       ...data,
       confirmNewPassword: data.newPassword,
