@@ -29,7 +29,6 @@ const EditProfile = () => {
   } = useForm<ProfileDataProps>();
 
   const submitProfileForm = async (data: ProfileDataProps) => {
-    console.log('submitProfileForm data = ', data);
     try {
       if (token) {
         (dispatch as AppDispatch)(updateProfile(token, data));
