@@ -7,6 +7,12 @@ import IconBtn from '../../../common/IconBtn';
 import useAuth from '../../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
+interface UpdatePasswordDataProps {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+
 const UpdateSettingsPassword = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -18,10 +24,10 @@ const UpdateSettingsPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<UpdatePasswordDataProps>();
 
-  const submitPasswordForm = async (data) => {
-    // Add confirmPassword to data
+  const submitPasswordForm = async (data: UpdatePasswordDataProps) => {
+    console.log('submitPasswordForm = ', data);
     const updatedData = {
       ...data,
       confirmNewPassword: data.newPassword,
@@ -31,7 +37,7 @@ const UpdateSettingsPassword = () => {
       if (token) {
         await changePassword(token, updatedData);
       }
-    } catch (error) {
+    } catch {
       toast.error('Could not submit password, please try again later');
     }
   };
