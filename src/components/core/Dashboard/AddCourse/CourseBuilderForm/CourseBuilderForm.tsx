@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import NestedView from './NestedView';
 import IconBtn from '../../../../common/IconBtn';
 import {
+  SectionProps,
   setCourse,
   setEditCourse,
   setStep,
@@ -24,7 +25,7 @@ const CourseBuilderForm: React.FC = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<SectionProps>();
 
   const [editSectionName, setEditSectionName] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -60,7 +61,7 @@ const CourseBuilderForm: React.FC = () => {
     dispatch(setStep(3));
   };
 
-  const onFormSubmit = async (data) => {
+  const onFormSubmit = async (data: SectionProps) => {
     setLoading(true);
     let result;
 
@@ -108,7 +109,7 @@ const CourseBuilderForm: React.FC = () => {
 
   return (
     <div className="relative rounded-md border-richblack-700 bg-richblack-800 p-6 space-y-8 w-full">
-      <p>Course Builder</p>
+      <p className="text-richblack-5">Add your Sections and Lectures</p>
 
       <form onSubmit={handleSubmit(onFormSubmit)}>
         {/* Course Section */}
@@ -124,13 +125,13 @@ const CourseBuilderForm: React.FC = () => {
             placeholder="Enter Course Section"
             {...register('sectionName', { required: true })}
             className={`w-full border ${
-              errors.courseSection ? 'border-red-500' : 'border-richblack-700'
+              errors.sectionName ? 'border-red-500' : 'border-richblack-700'
             } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
           />
-          {errors.courseSection &&
-            typeof errors.courseSection.message === 'string' && (
+          {errors.sectionName &&
+            typeof errors.sectionName.message === 'string' && (
               <p className="text-red-300 text-sm">
-                {(errors.courseSection?.message as string) ||
+                {(errors.sectionName?.message as string) ||
                   `Course title is required`}
               </p>
             )}
