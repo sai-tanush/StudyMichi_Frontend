@@ -6,6 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import { getUserEnrolledCourses } from '../../../services/operations/profileAPI';
 import { useNavigate } from 'react-router-dom';
 import { CourseProps } from '../../../utils/slices/courseSlice';
+import toast from 'react-hot-toast';
 
 const EnrolledCourses: React.FC = () => {
   const { token } = useAuth();
@@ -17,7 +18,7 @@ const EnrolledCourses: React.FC = () => {
     try {
       const response = await getUserEnrolledCourses(token);
       setEnrolledCourses(response);
-    } catch (error) {
+    } catch {
       toast.error('Unable to fetch Enrolled course ');
     }
   };
