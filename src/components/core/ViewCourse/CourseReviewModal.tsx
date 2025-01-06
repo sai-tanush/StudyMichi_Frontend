@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 import useUserDetails from '../../../hooks/useUserDetails';
@@ -11,6 +12,10 @@ import { useParams } from 'react-router-dom';
 interface CourseReviewModalProps {
   setReviewModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface CourseReviewDataPRops {
+  courseRating: number;
+  courseExperience: string;
+}
 
 const CourseReviewModal: React.FC<CourseReviewModalProps> = ({
   setReviewModal,
@@ -23,13 +28,13 @@ const CourseReviewModal: React.FC<CourseReviewModalProps> = ({
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<CourseReviewDataPRops>();
 
   const ratingChanged = (newRating: number) => {
     setValue('courseRating', newRating);
   };
 
-  const handleFormSubmit = async (data) => {
+  const handleFormSubmit = async (data: CourseReviewDataPRops) => {
     await createRating(
       {
         data: {
