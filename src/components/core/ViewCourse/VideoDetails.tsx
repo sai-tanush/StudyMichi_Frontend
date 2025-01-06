@@ -157,9 +157,6 @@ const VideoDetails: React.FC = () => {
       (data) => data._id === sectionId,
     );
 
-    const noOfSubSections =
-      courseSectionData[currentSectionIndex].subSection.length;
-
     const currentSubSectionIndex = courseSectionData[
       currentSectionIndex
     ].subSection.findIndex((data) => data._id === subSectionId);
@@ -247,7 +244,7 @@ const VideoDetails: React.FC = () => {
                 {videoEnded && (
                   <div className="flex flex-col gap-y-5">
                     <div className="flex items-center justify-center gap-x-5">
-                      {!completedLectures.includes(subSectionId) && (
+                      {!completedLectures.includes(subSectionId ?? '') && (
                         <IconBtn
                           disabled={loading}
                           onclick={() => handleLectureCompletion()}
@@ -293,8 +290,8 @@ const VideoDetails: React.FC = () => {
         </div>
       )}
 
-      <h1 className="text-richblack-5 text-xl">{videoData?.title}</h1>
-      <p className="text-richblack-100 text-lg">{videoData?.description}</p>
+      <h1 className="text-richblack-5 text-xl">{videoData[0].title}</h1>
+      <p className="text-richblack-100 text-lg">{videoData[0].description}</p>
     </div>
   );
 };
