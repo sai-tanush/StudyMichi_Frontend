@@ -20,9 +20,8 @@ export const getCatalogPageData = async (categoryId: string) => {
     }
 
     result = response?.data;
-  } catch (error) {
-    toast.error(error.message);
-    result = error.response;
+  } catch {
+    toast.error('Could not fetch current catalog data');
   }
   toast.dismiss(toastId);
   return result;
