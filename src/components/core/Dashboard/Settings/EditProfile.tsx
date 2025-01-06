@@ -7,6 +7,15 @@ import { AppDispatch, RootState } from '../../../../utils/store/store';
 import { EDIT_PROFILE_GENDERS_DATA } from '../../../../data/edit-profile-data';
 import toast from 'react-hot-toast';
 
+interface ProfileDataProps {
+  about: string;
+  contactNumber: string;
+  dateOfBirth: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+}
+
 const EditProfile = () => {
   const { user } = useSelector((state: RootState) => state.profile);
   const { token } = useSelector((state: RootState) => state.auth);
@@ -17,14 +26,15 @@ const EditProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<ProfileDataProps>();
 
-  const submitProfileForm = async (data) => {
+  const submitProfileForm = async (data: ProfileDataProps) => {
+    console.log('submitProfileForm data = ', data);
     try {
       if (token) {
         (dispatch as AppDispatch)(updateProfile(token, data));
       }
-    } catch (error: unknown) {
+    } catch {
       toast.error('Could not submit the form, please try later');
     }
   };
