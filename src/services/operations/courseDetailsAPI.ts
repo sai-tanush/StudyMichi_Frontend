@@ -26,6 +26,11 @@ const {
   LECTURE_COMPLETION_API,
 } = courseEndpoints;
 
+interface DeleteSectionProps {
+  courseId: string | undefined;
+  sectionId: string;
+}
+
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -264,7 +269,10 @@ export const updateSubSection = async (
 };
 
 // delete a section
-export const deleteSection = async (data, token: string | null) => {
+export const deleteSection = async (
+  data: DeleteSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
