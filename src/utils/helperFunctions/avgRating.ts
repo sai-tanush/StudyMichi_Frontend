@@ -1,10 +1,8 @@
 import { ReviewAndRatingProps } from '../slices/courseSlice';
 
-interface RatingArrProps {
-  ratingArr: ReviewAndRatingProps[];
-}
-
-export default function GetAvgRating({ ratingArr }: RatingArrProps): number {
+export default function GetAvgRating(
+  ratingArr: ReviewAndRatingProps[],
+): number {
   if (ratingArr.length === 0) return 0;
 
   const totalReviewCount = ratingArr.reduce(
