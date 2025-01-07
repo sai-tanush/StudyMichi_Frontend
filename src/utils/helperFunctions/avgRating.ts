@@ -1,9 +1,10 @@
 import { ReviewAndRatingProps } from '../slices/courseSlice';
 
 export default function GetAvgRating(
-  ratingArr: ReviewAndRatingProps[],
+  ratingArr: ReviewAndRatingProps[] | undefined,
 ): number {
-  if (ratingArr.length === 0) return 0;
+  // If ratingArr is undefined or empty, return 0
+  if (!ratingArr || ratingArr.length === 0) return 0;
 
   const totalReviewCount = ratingArr.reduce(
     (acc: number, curr: ReviewAndRatingProps) => {
