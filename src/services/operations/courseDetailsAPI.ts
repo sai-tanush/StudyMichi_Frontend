@@ -41,8 +41,8 @@ interface DeleteCourseProps {
 }
 
 interface MarkLectureAsCompleteProps {
-  courseId: string;
-  subSectionId: string;
+  courseId: string | undefined;
+  subSectionId: string | undefined;
 }
 
 interface CreateRatingProps {
