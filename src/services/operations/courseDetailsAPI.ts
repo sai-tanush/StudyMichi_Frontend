@@ -36,6 +36,10 @@ interface DeleteSubSectionProps {
   subSectionId: string;
 }
 
+interface DeleteCourseProps {
+  courseId: string;
+}
+
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -353,7 +357,10 @@ export const fetchInstructorCourses = async (token: string | null) => {
 };
 
 // delete a course
-export const deleteCourse = async (data, token: string | null) => {
+export const deleteCourse = async (
+  data: DeleteCourseProps,
+  token: string | null,
+) => {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
