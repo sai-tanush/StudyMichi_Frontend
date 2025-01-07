@@ -34,6 +34,12 @@ interface SubSectionModalProps {
   edit?: boolean;
 }
 
+interface SubSectionOnFormSubmitProps {
+  lectureTitle: string;
+  lectureDesc: string;
+  lectureVideo: string;
+}
+
 const SubSectionModal: React.FC<SubSectionModalProps> = ({
   modalData,
   setModalData,
@@ -48,7 +54,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     formState: { errors },
     getValues,
     clearErrors,
-  } = useForm();
+  } = useForm<SubSectionOnFormSubmitProps>();
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
@@ -112,7 +118,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
     setLoading(false);
   };
 
-  const onFormSubmit = async (data: any) => {
+  const onFormSubmit = async (data: SubSectionOnFormSubmitProps) => {
     if (view) {
       return;
     }
@@ -182,7 +188,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
               placeholder="Enter Lecture Title"
               {...register('lectureTitle', { required: true })}
               className={`w-full border mb-3 ${
-                errors.courseSection ? 'border-red-500' : 'border-richblack-700'
+                errors.lectureTitle ? 'border-red-500' : 'border-richblack-700'
               } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
             />
             {errors.lectureTitle &&
@@ -203,7 +209,7 @@ const SubSectionModal: React.FC<SubSectionModalProps> = ({
               placeholder="Enter Lecture Description"
               {...register('lectureDesc', { required: true })}
               className={`w-full border lg: min-h-[140px] ${
-                errors.courseSection ? 'border-red-500' : 'border-richblack-700'
+                errors.lectureDesc ? 'border-red-500' : 'border-richblack-700'
               } form-style rounded-[0.5rem] bg-richblack-700 p-[12px] text-richblack-5 `}
             />
             {errors.lectureDesc &&
