@@ -31,6 +31,11 @@ interface DeleteSectionProps {
   sectionId: string;
 }
 
+interface DeleteSubSectionProps {
+  sectionId: string;
+  subSectionId: string;
+}
+
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -297,7 +302,10 @@ export const deleteSection = async (
   return result;
 };
 // delete a subsection
-export const deleteSubSection = async (data, token: string | null) => {
+export const deleteSubSection = async (
+  data: DeleteSubSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
