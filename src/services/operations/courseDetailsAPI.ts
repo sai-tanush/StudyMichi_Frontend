@@ -1,7 +1,7 @@
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
-import { CourseProps } from '../../utils/slices/courseSlice';
+import { CourseProps, SectionProps } from '../../utils/slices/courseSlice';
 
 const {
   COURSE_DETAILS_API,
@@ -145,7 +145,10 @@ export const editCourseDetails = async (
 };
 
 // create a section
-export const createSection = async (data, token: string | null) => {
+export const createSection = async (
+  data: SectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
