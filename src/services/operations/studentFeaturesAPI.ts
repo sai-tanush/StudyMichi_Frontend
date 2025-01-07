@@ -13,7 +13,7 @@ const {
 } = studentEndpoints;
 
 //the following line is equivalent to linking script tag in html
-function loadScript(src) {
+function loadScript(src: string) {
   return new Promise((resolve) => {
     const script = document.createElement('script');
     script.src = src;
