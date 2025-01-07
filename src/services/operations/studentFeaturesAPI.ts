@@ -3,8 +3,11 @@ import { studentEndpoints } from '../apis';
 import { apiConnector } from '../apisconnector';
 const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY;
 import rzpLogo from '../../assets/Logo/rzp_logo.png';
-import { setPaymentLoading } from '../../utils/slices/courseSlice';
+import { CourseProps, setPaymentLoading } from '../../utils/slices/courseSlice';
 import { resetCart } from '../../utils/slices/cartSlice';
+import { UserProps } from '../../utils/slices/profileSlice';
+import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from '../../utils/store/store';
 
 const {
   COURSE_PAYMENT_API,
@@ -31,11 +34,11 @@ function loadScript(src: string) {
 }
 
 export async function buyCourse(
-  courses,
-  token,
-  userDetails,
-  navigate,
-  dispatch,
+  courses: (string | undefined)[],
+  token: string,
+  userDetails: UserProps,
+  navigate: NavigateFunction,
+  dispatch: AppDispatch,
 ) {
   const toastId = toast.loading('Loading...');
 
