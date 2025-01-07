@@ -20,7 +20,7 @@ const EditProfile = () => {
   const { user } = useSelector((state: RootState) => state.profile);
   const { token } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     register,
@@ -31,7 +31,7 @@ const EditProfile = () => {
   const submitProfileForm = async (data: ProfileDataProps) => {
     try {
       if (token) {
-        (dispatch as AppDispatch)(updateProfile(token, data));
+        dispatch(updateProfile(token, data));
       }
     } catch {
       toast.error('Could not submit the form, please try later');
