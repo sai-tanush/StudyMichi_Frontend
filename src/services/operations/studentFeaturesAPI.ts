@@ -15,6 +15,19 @@ const {
   SEND_PAYMENT_SUCCESS_EMAIL_API,
 } = studentEndpoints;
 
+export interface RazorpayResponseProps {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
+interface RazorpayAndCourseResponseProps {
+  courses: (string | undefined)[];
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
 //the following line is equivalent to linking script tag in html
 function loadScript(src: string) {
   return new Promise((resolve) => {
@@ -80,8 +93,9 @@ export async function buyCourse(
         name: `${userDetails.firstName}`,
         email: userDetails.email,
       },
-      handler: function (response) {
+      handler: function (response: RazorpayResponseProps) {
         //send successfull mail
+        console.log('response in buyCourse handler function = ', response);
         sendPaymentSuccessfullEmail(
           response,
           orderResponse.data.data.amount,
@@ -95,7 +109,7 @@ export async function buyCourse(
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-    paymentObject.on('payment.failed', function (response) {
+    paymentObject.on('payment.failed', function () {
       toast.error('Oops, Payment Failed!');
     });
   } catch {
@@ -105,8 +119,13 @@ export async function buyCourse(
 }
 
 //send successful payment - email
-async function sendPaymentSuccessfullEmail(response, amount, token: string) {
+async function sendPaymentSuccessfullEmail(
+  response: RazorpayResponseProps,
+  amount: number,
+  token: string | null,
+) {
   try {
+    console.log('response in sendPaymentSuccessfullEmail = ', response);
     await apiConnector({
       method: 'POST',
       url: SEND_PAYMENT_SUCCESS_EMAIL_API,
@@ -126,11 +145,12 @@ async function sendPaymentSuccessfullEmail(response, amount, token: string) {
 
 //verify Payment
 async function verifyPayment(
-  bodyData,
-  token: string,
+  bodyData: RazorpayAndCourseResponseProps,
+  token: string | null,
   navigate: NavigateFunction,
   dispatch: AppDispatch,
 ) {
+  console.log('bodyData in verifyPayment = ', bodyData);
   const toastId = toast.loading('Verifying Payment....');
   dispatch(setPaymentLoading(true));
 
