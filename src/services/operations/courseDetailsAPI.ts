@@ -40,6 +40,11 @@ interface DeleteCourseProps {
   courseId: string;
 }
 
+interface MarkLectureAsCompleteProp {
+  courseId: string;
+  subSectionId: string;
+}
+
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -414,7 +419,11 @@ export const getFullDetailsOfCourse = async (
 };
 
 // mark a lecture as complete
-export const markLectureAsComplete = async (data, token: string | null) => {
+export const markLectureAsComplete = async (
+  data: MarkLectureAsCompleteProp,
+  token: string | null,
+) => {
+  console.log('data in markLectureAsComplete = ', data);
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
