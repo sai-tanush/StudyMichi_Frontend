@@ -290,8 +290,16 @@ const VideoDetails: React.FC = () => {
         </div>
       )}
 
-      <h1 className="text-richblack-5 text-xl">{videoData[0].title}</h1>
-      <p className="text-richblack-100 text-lg">{videoData[0].description}</p>
+      {videoData.length > 0 ? (
+        <>
+          <h1 className="text-richblack-5 text-xl">{videoData[0].title}</h1>
+          <p className="text-richblack-100 text-lg">
+            {videoData[0].description}
+          </p>
+        </>
+      ) : (
+        <p className="text-richblack-100 text-lg">No video data available.</p>
+      )}
     </div>
   );
 };
