@@ -3,7 +3,7 @@ import { studentEndpoints } from '../apis';
 import { apiConnector } from '../apisconnector';
 const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY;
 import rzpLogo from '../../assets/Logo/rzp_logo.png';
-import { CourseProps, setPaymentLoading } from '../../utils/slices/courseSlice';
+import { setPaymentLoading } from '../../utils/slices/courseSlice';
 import { resetCart } from '../../utils/slices/cartSlice';
 import { UserProps } from '../../utils/slices/profileSlice';
 import { NavigateFunction } from 'react-router-dom';
@@ -98,14 +98,14 @@ export async function buyCourse(
     paymentObject.on('payment.failed', function (response) {
       toast.error('Oops, Payment Failed!');
     });
-  } catch (error) {
+  } catch {
     toast.error('Could not make Payment');
   }
   toast.dismiss(toastId);
 }
 
 //send successful payment - email
-async function sendPaymentSuccessfullEmail(response, amount, token) {
+async function sendPaymentSuccessfullEmail(response, amount, token: string) {
   try {
     await apiConnector({
       method: 'POST',
@@ -119,13 +119,18 @@ async function sendPaymentSuccessfullEmail(response, amount, token) {
         Authorization: `Bearer ${token}`,
       },
     });
-  } catch (error) {
+  } catch {
     toast.error('Could not send email');
   }
 }
 
 //verify Payment
-async function verifyPayment(bodyData, token, navigate, dispatch) {
+async function verifyPayment(
+  bodyData,
+  token: string,
+  navigate: NavigateFunction,
+  dispatch: AppDispatch,
+) {
   const toastId = toast.loading('Verifying Payment....');
   dispatch(setPaymentLoading(true));
 
@@ -148,7 +153,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     toast.success('Payment successful, you are added to the course');
     navigate('/dashboard/enrolled-courses');
     dispatch(resetCart());
-  } catch (error) {
+  } catch {
     toast.error('Could not verify Payment');
   }
   toast.dismiss(toastId);
