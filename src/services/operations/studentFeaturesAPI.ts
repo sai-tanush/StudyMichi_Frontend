@@ -77,7 +77,7 @@ export async function buyCourse(
       },
     });
     if (!orderResponse) {
-      throw new Error(orderResponse.data.message);
+      toast.error('Could not initiate payment order');
     }
 
     //options
