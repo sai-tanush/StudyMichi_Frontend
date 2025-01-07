@@ -169,7 +169,7 @@ export const addCourseDetails = async (
 
 // edit the course details
 export const editCourseDetails = async (
-  data: CourseProps,
+  data: FormData,
   token: string | null,
 ) => {
   let result = null;
