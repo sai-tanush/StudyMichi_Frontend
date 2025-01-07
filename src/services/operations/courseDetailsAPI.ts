@@ -1,7 +1,6 @@
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
-import { CourseProps } from '../../utils/slices/courseSlice';
 
 const {
   COURSE_DETAILS_API,
@@ -140,7 +139,7 @@ export const fetchCourseCategories = async () => {
 
 // add the course details
 export const addCourseDetails = async (
-  data: CourseProps,
+  data: FormData,
   token: string | null,
 ) => {
   let result = null;
