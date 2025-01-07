@@ -1,7 +1,10 @@
 import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import { setUser } from '../../utils/slices/profileSlice';
+import {
+  AdditionalDetailsProps,
+  setUser,
+} from '../../utils/slices/profileSlice';
 import { apiConnector } from '../apisconnector';
 import { settingsEndpoints } from '../apis';
 import { logout } from './authAPI';
@@ -42,7 +45,7 @@ export function updateDisplayPicture(token: string, formData) {
 }
 
 //update Profile Details function
-export function updateProfile(token: string, formData) {
+export function updateProfile(token: string, formData: AdditionalDetailsProps) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
