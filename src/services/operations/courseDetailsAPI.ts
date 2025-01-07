@@ -1,7 +1,7 @@
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
-import { CourseProps, SubSectionProps } from '../../utils/slices/courseSlice';
+import { CourseProps } from '../../utils/slices/courseSlice';
 
 const {
   COURSE_DETAILS_API,
@@ -56,6 +56,20 @@ interface UpdateSectionProps {
 interface CreateSectionProps {
   sectionName: string;
   courseId: string | undefined;
+}
+
+interface UpdateSubSectionProps {
+  title: string;
+  sectionId: string;
+  description: string;
+  subSectionId: string;
+  video: string;
+}
+
+interface CreateSubSectionProps {
+  sectionId: string;
+  title: string;
+  description: string;
 }
 
 //fetch All courses function
@@ -211,9 +225,10 @@ export const createSection = async (
 
 // create a subsection
 export const createSubSection = async (
-  data: SubSectionProps,
+  data: CreateSubSectionProps,
   token: string | null,
 ) => {
+  console.log('formData in createSubSection = ', data);
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -269,7 +284,7 @@ export const updateSection = async (
 
 // update a subsection
 export const updateSubSection = async (
-  data: SubSectionProps,
+  data: UpdateSubSectionProps | undefined,
   token: string | null,
 ) => {
   let result = null;
