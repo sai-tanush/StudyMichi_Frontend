@@ -1,6 +1,7 @@
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
+import { CourseProps } from '../../utils/slices/courseSlice';
 
 const {
   COURSE_DETAILS_API,
@@ -86,7 +87,10 @@ export const fetchCourseCategories = async () => {
 };
 
 // add the course details
-export const addCourseDetails = async (data, token: string | null) => {
+export const addCourseDetails = async (
+  data: CourseProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -112,7 +116,10 @@ export const addCourseDetails = async (data, token: string | null) => {
 };
 
 // edit the course details
-export const editCourseDetails = async (data, token: string | null) => {
+export const editCourseDetails = async (
+  data: CourseProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
