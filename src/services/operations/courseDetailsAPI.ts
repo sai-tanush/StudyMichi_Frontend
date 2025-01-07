@@ -207,7 +207,10 @@ export const createSubSection = async (
 };
 
 // update a section
-export const updateSection = async (data, token: string | null) => {
+export const updateSection = async (
+  data: SectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
