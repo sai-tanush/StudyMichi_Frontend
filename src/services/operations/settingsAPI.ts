@@ -24,7 +24,7 @@ interface ChangePasswordProps {
 }
 
 //display Profile Picture function
-export function updateDisplayPicture(token: string, formData) {
+export function updateDisplayPicture(token: string, formData: FormData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
