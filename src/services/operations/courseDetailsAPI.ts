@@ -1,11 +1,7 @@
 import { toast } from 'react-hot-toast';
 import { apiConnector } from '../apisconnector';
 import { courseEndpoints } from '../apis';
-import {
-  CourseProps,
-  SectionProps,
-  SubSectionProps,
-} from '../../utils/slices/courseSlice';
+import { CourseProps, SubSectionProps } from '../../utils/slices/courseSlice';
 
 const {
   COURSE_DETAILS_API,
@@ -49,6 +45,17 @@ interface CreateRatingProps {
   courseId: string;
   rating: number;
   review: string;
+}
+
+interface UpdateSectionProps {
+  sectionName: string;
+  sectionId: string;
+  courseId: string;
+}
+
+interface CreateSectionProps {
+  sectionName: string;
+  courseId: string | undefined;
 }
 
 //fetch All courses function
@@ -175,7 +182,7 @@ export const editCourseDetails = async (
 
 // create a section
 export const createSection = async (
-  data: SectionProps,
+  data: CreateSectionProps,
   token: string | null,
 ) => {
   let result = null;
@@ -233,7 +240,7 @@ export const createSubSection = async (
 
 // update a section
 export const updateSection = async (
-  data: SectionProps,
+  data: UpdateSectionProps,
   token: string | null,
 ) => {
   let result = null;
