@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AdditionalDetailsProps {
-  _id: string;
+  _id?: string;
   gender: string | null;
   dateOfBirth: string | null;
   about: string | null;
   contactNumber: string | null;
-  __v: number;
+  __v?: number;
 }
 
 export interface UserProps {
