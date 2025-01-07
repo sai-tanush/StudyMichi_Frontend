@@ -59,20 +59,6 @@ interface CreateSectionProps {
   courseId: string | undefined;
 }
 
-interface UpdateSubSectionProps {
-  title: string;
-  sectionId: string;
-  description: string;
-  subSectionId: string;
-  video: string;
-}
-
-interface CreateSubSectionProps {
-  sectionId: string;
-  title: string;
-  description: string;
-}
-
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -226,7 +212,7 @@ export const createSection = async (
 
 // create a subsection
 export const createSubSection = async (
-  data: CreateSubSectionProps,
+  data: FormData,
   token: string | null,
 ) => {
   console.log('formData in createSubSection = ', data);
@@ -285,7 +271,7 @@ export const updateSection = async (
 
 // update a subsection
 export const updateSubSection = async (
-  data: UpdateSubSectionProps | undefined,
+  data: FormData,
   token: string | null,
 ) => {
   let result = null;
