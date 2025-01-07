@@ -180,6 +180,7 @@ const NestedView: React.FC<NestedViewProps> = ({
                       description: '',
                       videoUrl: '',
                       timeDuration: '',
+                      __v: 1,
                     })
                   }
                   className="mt-4 flex items-center gap-x-2 text-yellow-50"
