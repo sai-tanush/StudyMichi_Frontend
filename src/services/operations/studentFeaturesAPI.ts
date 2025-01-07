@@ -35,7 +35,7 @@ function loadScript(src: string) {
 
 export async function buyCourse(
   courses: (string | undefined)[],
-  token: string,
+  token: string | null,
   userDetails: UserProps,
   navigate: NavigateFunction,
   dispatch: AppDispatch,
