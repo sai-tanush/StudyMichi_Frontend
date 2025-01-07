@@ -40,9 +40,15 @@ interface DeleteCourseProps {
   courseId: string;
 }
 
-interface MarkLectureAsCompleteProp {
+interface MarkLectureAsCompleteProps {
   courseId: string;
   subSectionId: string;
+}
+
+interface CreateRatingProps {
+  courseId: string;
+  rating: number;
+  review: string;
 }
 
 //fetch All courses function
@@ -420,7 +426,7 @@ export const getFullDetailsOfCourse = async (
 
 // mark a lecture as complete
 export const markLectureAsComplete = async (
-  data: MarkLectureAsCompleteProp,
+  data: MarkLectureAsCompleteProps,
   token: string | null,
 ) => {
   console.log('data in markLectureAsComplete = ', data);
@@ -450,7 +456,10 @@ export const markLectureAsComplete = async (
 };
 
 // create a rating for course
-export const createRating = async (data, token: string | null) => {
+export const createRating = async (
+  data: CreateRatingProps,
+  token: string | null,
+) => {
   const toastId = toast.loading('Loading...');
   let success = false;
   try {
