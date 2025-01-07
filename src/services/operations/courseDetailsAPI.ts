@@ -42,9 +42,11 @@ interface MarkLectureAsCompleteProps {
 }
 
 interface CreateRatingProps {
-  courseId: string;
-  rating: number;
-  review: string;
+  data: {
+    courseId: string | undefined;
+    rating: number;
+    review: string;
+  };
 }
 
 interface UpdateSectionProps {
