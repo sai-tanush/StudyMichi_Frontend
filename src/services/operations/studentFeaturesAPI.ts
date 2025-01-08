@@ -107,7 +107,8 @@ export async function buyCourse(
       },
     };
 
-    const paymentObject = new window.Razorpay(options);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();
     paymentObject.on('payment.failed', function () {
       toast.error('Oops, Payment Failed!');
