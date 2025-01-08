@@ -12,11 +12,11 @@ import { CourseInformationFormProps } from './CourseInformationForm';
 
 interface TagInputProps {
   label: string;
-  name: string;
+  name: keyof CourseInformationFormProps;
   placeholder: string;
   register: UseFormRegister<CourseInformationFormProps>;
   errors: FieldErrors<FieldValues>;
-  setValue: UseFormSetValue<FieldValues>;
+  setValue: UseFormSetValue<CourseInformationFormProps>;
 }
 
 const TagInput: React.FC<TagInputProps> = ({
@@ -36,7 +36,15 @@ const TagInput: React.FC<TagInputProps> = ({
     if (editCourse) {
       setTags(course?.tag || []);
     }
-    register(name, { required: true, validate: (value) => value.length > 0 });
+    register(name, {
+      required: true,
+      validate: (value) => {
+        if (typeof value === 'string' || Array.isArray(value)) {
+          return value.length > 0; // Check length
+        }
+        return false;
+      },
+    });
   }, []);
 
   useEffect(() => {

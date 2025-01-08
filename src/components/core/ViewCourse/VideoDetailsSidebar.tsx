@@ -77,7 +77,7 @@ const VideoDetailsSidebar: React.FC<VideoDetailsSidebarProps> = ({
           {/* for heading or title */}
           <div className="py-5 flex items-center justify-between px-4">
             <p className="text-richblack-5 text-lg font-semibold ">
-              {courseEntireData?.courseName}
+              {courseEntireData[0]?.courseName}
             </p>
             <p className="text-richblack-100">
               {completedLectures?.length} / {totalNoOfLectures}
@@ -112,7 +112,7 @@ const VideoDetailsSidebar: React.FC<VideoDetailsSidebarProps> = ({
                         }`}
                         key={index}
                         onClick={() => {
-                          navigate(`/view-course/${courseEntireData?._id}/section/${section?._id}/
+                          navigate(`/view-course/${courseEntireData[0]?._id}/section/${section?._id}/
                                       sub-section/${topic?._id}`);
                           setVideoBarActive(topic?._id);
                         }}
@@ -125,7 +125,7 @@ const VideoDetailsSidebar: React.FC<VideoDetailsSidebarProps> = ({
                         <div className="flex justify-between gap-x-10">
                           <span>{topic.title}</span>
                           <p className="text-blue-100 text-sm lg:ml-5">
-                            {parseInt(topic?.timeDuration / 60)} mins
+                            {parseInt(topic?.timeDuration) / 60} mins
                           </p>
                         </div>
                       </div>

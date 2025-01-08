@@ -16,6 +16,7 @@ export interface SubSectionProps {
   description: string;
   videoUrl: string;
   timeDuration: string;
+  __v: number;
 }
 
 export interface SectionProps {

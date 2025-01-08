@@ -8,6 +8,7 @@ import { setSignupData } from '../../../utils/slices/authSlice';
 import { ACCOUNT_TYPE } from '../../../utils/constants';
 import Tab from '../../common/Tab';
 import { TAB_DATA } from '../../../data/signup-tabdata';
+import { AppDispatch } from '../../../utils/store/store';
 
 interface SignUpFormDataProps {
   firstName: string;
@@ -18,7 +19,7 @@ interface SignUpFormDataProps {
 }
 const SignupForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // student or instructor
   const [accountType, setAccountType] = useState<

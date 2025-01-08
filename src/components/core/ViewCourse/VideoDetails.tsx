@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Player } from 'video-react';
+import { Player, PlayerReference } from 'video-react';
 import 'video-react/dist/video-react.css';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import useAuth from '../../../hooks/useAuth';
@@ -28,7 +28,7 @@ const VideoDetails: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useAuth();
-  const playerRef = useRef<Player>();
+  const playerRef = useRef<PlayerReference>(null);
   const location = useLocation();
   const { courseEntireData, courseSectionData, completedLectures } =
     useSelector((state: RootState) => state.viewCourse);
@@ -157,9 +157,6 @@ const VideoDetails: React.FC = () => {
       (data) => data._id === sectionId,
     );
 
-    const noOfSubSections =
-      courseSectionData[currentSectionIndex].subSection.length;
-
     const currentSubSectionIndex = courseSectionData[
       currentSectionIndex
     ].subSection.findIndex((data) => data._id === subSectionId);
@@ -247,7 +244,7 @@ const VideoDetails: React.FC = () => {
                 {videoEnded && (
                   <div className="flex flex-col gap-y-5">
                     <div className="flex items-center justify-center gap-x-5">
-                      {!completedLectures.includes(subSectionId) && (
+                      {!completedLectures.includes(subSectionId ?? '') && (
                         <IconBtn
                           disabled={loading}
                           onclick={() => handleLectureCompletion()}
@@ -293,8 +290,16 @@ const VideoDetails: React.FC = () => {
         </div>
       )}
 
-      <h1 className="text-richblack-5 text-xl">{videoData?.title}</h1>
-      <p className="text-richblack-100 text-lg">{videoData?.description}</p>
+      {videoData.length > 0 ? (
+        <>
+          <h1 className="text-richblack-5 text-xl">{videoData[0].title}</h1>
+          <p className="text-richblack-100 text-lg">
+            {videoData[0].description}
+          </p>
+        </>
+      ) : (
+        <p className="text-richblack-100 text-lg">No video data available.</p>
+      )}
     </div>
   );
 };

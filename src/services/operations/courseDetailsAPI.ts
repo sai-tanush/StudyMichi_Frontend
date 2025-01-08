@@ -21,6 +21,44 @@ const {
   LECTURE_COMPLETION_API,
 } = courseEndpoints;
 
+interface DeleteSectionProps {
+  courseId: string | undefined;
+  sectionId: string;
+}
+
+interface DeleteSubSectionProps {
+  sectionId: string;
+  subSectionId: string;
+}
+
+interface DeleteCourseProps {
+  courseId: string;
+}
+
+interface MarkLectureAsCompleteProps {
+  courseId: string | undefined;
+  subSectionId: string | undefined;
+}
+
+interface CreateRatingProps {
+  data: {
+    courseId: string | undefined;
+    rating: number;
+    review: string;
+  };
+}
+
+interface UpdateSectionProps {
+  sectionName: string;
+  sectionId: string;
+  courseId: string;
+}
+
+interface CreateSectionProps {
+  sectionName: string;
+  courseId: string | undefined;
+}
+
 //fetch All courses function
 export const getAllCourses = async () => {
   const toastId = toast.loading('Loading...');
@@ -34,8 +72,8 @@ export const getAllCourses = async () => {
       throw new Error('Could Not Fetch Course Categories');
     }
     result = response?.data?.data;
-  } catch (error) {
-    //toast.error(error.message)
+  } catch {
+    toast.error('Could not fetch Courses');
   }
   toast.dismiss(toastId);
   return result;
@@ -59,9 +97,8 @@ export const fetchCourseDetails = async (courseId: string | undefined) => {
       throw new Error(response.data.message);
     }
     result = response.data;
-  } catch (error) {
-    result = error.response.data;
-    // toast.error(error.response.data.message);
+  } catch {
+    toast.error('Could not fetch ');
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
@@ -80,14 +117,17 @@ export const fetchCourseCategories = async () => {
       throw new Error('Could Not Fetch Course Categories');
     }
     result = response?.data?.allCategories;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Cannot fetch course categories');
   }
   return result;
 };
 
 // add the course details
-export const addCourseDetails = async (data, token: string | null) => {
+export const addCourseDetails = async (
+  data: FormData,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -105,15 +145,18 @@ export const addCourseDetails = async (data, token: string | null) => {
     }
     toast.success('Course Details Added Successfully');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to add course');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // edit the course details
-export const editCourseDetails = async (data, token: string | null) => {
+export const editCourseDetails = async (
+  data: FormData,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -131,15 +174,18 @@ export const editCourseDetails = async (data, token: string | null) => {
     }
     toast.success('Course Details Updated Successfully');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to edit course');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // create a section
-export const createSection = async (data, token: string | null) => {
+export const createSection = async (
+  data: CreateSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -157,15 +203,19 @@ export const createSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Created');
     result = response?.data?.updateCourseDetails;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to create section');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // create a subsection
-export const createSubSection = async (data, token: string | null) => {
+export const createSubSection = async (
+  data: FormData,
+  token: string | null,
+) => {
+  console.log('formData in createSubSection = ', data);
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -183,15 +233,18 @@ export const createSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Added');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to create sub-section');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // update a section
-export const updateSection = async (data, token: string | null) => {
+export const updateSection = async (
+  data: UpdateSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -209,15 +262,18 @@ export const updateSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Updated');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('unable to update section');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // update a subsection
-export const updateSubSection = async (data, token: string | null) => {
+export const updateSubSection = async (
+  data: FormData,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -234,15 +290,18 @@ export const updateSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Updated');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to update sub-section');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // delete a section
-export const deleteSection = async (data, token: string | null) => {
+export const deleteSection = async (
+  data: DeleteSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -260,14 +319,17 @@ export const deleteSection = async (data, token: string | null) => {
     }
     toast.success('Course Section Deleted');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete section');
   }
   toast.dismiss(toastId);
   return result;
 };
 // delete a subsection
-export const deleteSubSection = async (data, token: string | null) => {
+export const deleteSubSection = async (
+  data: DeleteSubSectionProps,
+  token: string | null,
+) => {
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -284,8 +346,8 @@ export const deleteSubSection = async (data, token: string | null) => {
     }
     toast.success('Lecture Deleted');
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete sub-section');
   }
   toast.dismiss(toastId);
   return result;
@@ -307,15 +369,18 @@ export const fetchInstructorCourses = async (token: string | null) => {
       throw new Error('Could Not Fetch Instructor Courses');
     }
     result = response?.data?.data;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to fetch instructor courses');
   }
   toast.dismiss(toastId);
   return result;
 };
 
 // delete a course
-export const deleteCourse = async (data, token: string | null) => {
+export const deleteCourse = async (
+  data: DeleteCourseProps,
+  token: string | null,
+) => {
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
@@ -330,8 +395,8 @@ export const deleteCourse = async (data, token: string | null) => {
       throw new Error('Could Not Delete Course');
     }
     toast.success('Course Deleted');
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to delete a course');
   }
   toast.dismiss(toastId);
 };
@@ -360,9 +425,8 @@ export const getFullDetailsOfCourse = async (
       throw new Error(response.data.message);
     }
     result = response?.data?.data;
-  } catch (error) {
-    result = error.response.data;
-    toast.error(error.response.data.message);
+  } catch {
+    toast.error('Unable to fetch Course Details');
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
@@ -370,7 +434,11 @@ export const getFullDetailsOfCourse = async (
 };
 
 // mark a lecture as complete
-export const markLectureAsComplete = async (data, token: string | null) => {
+export const markLectureAsComplete = async (
+  data: MarkLectureAsCompleteProps,
+  token: string | null,
+) => {
+  console.log('data in markLectureAsComplete = ', data);
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
@@ -388,8 +456,8 @@ export const markLectureAsComplete = async (data, token: string | null) => {
     }
     toast.success('Lecture Completed');
     result = true;
-  } catch (error) {
-    toast.error(error.message);
+  } catch {
+    toast.error('Unable to mark lecture as completed');
     result = false;
   }
   toast.dismiss(toastId);
@@ -397,7 +465,10 @@ export const markLectureAsComplete = async (data, token: string | null) => {
 };
 
 // create a rating for course
-export const createRating = async (data, token: string | null) => {
+export const createRating = async (
+  data: CreateRatingProps,
+  token: string | null,
+) => {
   const toastId = toast.loading('Loading...');
   let success = false;
   try {
@@ -415,9 +486,9 @@ export const createRating = async (data, token: string | null) => {
     }
     toast.success('Rating Created');
     success = true;
-  } catch (error) {
+  } catch {
     success = false;
-    toast.error(error.message);
+    toast.error('Rating cannot be created');
   }
   toast.dismiss(toastId);
   return success;

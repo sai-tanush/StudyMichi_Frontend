@@ -4,6 +4,7 @@ import { callingCountries } from 'country-data';
 import { apiConnector } from '../../services/apisconnector';
 import { contactusEndpoint } from '../../services/apis';
 import Spinner from './Spinner';
+import toast from 'react-hot-toast';
 
 interface FormData {
   firstName: string;
@@ -39,13 +40,14 @@ const ContactUsForm: React.FC = () => {
   const submitContactForm = async (data: FormData) => {
     try {
       setLoading(true);
-      const response = await apiConnector({
+      await apiConnector({
         method: 'POST',
         url: contactusEndpoint.CONTACT_US_API,
         bodyData: data,
       });
+      toast.success('Email sent');
       setLoading(false);
-    } catch (error) {
+    } catch {
       toast.error('Form could not be submitted');
       setLoading(false);
     }

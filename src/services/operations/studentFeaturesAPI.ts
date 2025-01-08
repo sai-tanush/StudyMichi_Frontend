@@ -5,6 +5,9 @@ const RAZORPAY_KEY = import.meta.env.VITE_RAZORPAY_KEY;
 import rzpLogo from '../../assets/Logo/rzp_logo.png';
 import { setPaymentLoading } from '../../utils/slices/courseSlice';
 import { resetCart } from '../../utils/slices/cartSlice';
+import { UserProps } from '../../utils/slices/profileSlice';
+import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from '../../utils/store/store';
 
 const {
   COURSE_PAYMENT_API,
@@ -12,8 +15,21 @@ const {
   SEND_PAYMENT_SUCCESS_EMAIL_API,
 } = studentEndpoints;
 
+export interface RazorpayResponseProps {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
+interface RazorpayAndCourseResponseProps {
+  courses: (string | undefined)[];
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
 //the following line is equivalent to linking script tag in html
-function loadScript(src) {
+function loadScript(src: string) {
   return new Promise((resolve) => {
     const script = document.createElement('script');
     script.src = src;
@@ -31,11 +47,11 @@ function loadScript(src) {
 }
 
 export async function buyCourse(
-  courses,
-  token,
-  userDetails,
-  navigate,
-  dispatch,
+  courses: (string | undefined)[],
+  token: string | null,
+  userDetails: UserProps,
+  navigate: NavigateFunction,
+  dispatch: AppDispatch,
 ) {
   const toastId = toast.loading('Loading...');
 
@@ -61,7 +77,7 @@ export async function buyCourse(
       },
     });
     if (!orderResponse) {
-      throw new Error(orderResponse.data.message);
+      toast.error('Could not initiate payment order');
     }
 
     //options
@@ -77,8 +93,9 @@ export async function buyCourse(
         name: `${userDetails.firstName}`,
         email: userDetails.email,
       },
-      handler: function (response) {
+      handler: function (response: RazorpayResponseProps) {
         //send successfull mail
+        console.log('response in buyCourse handler function = ', response);
         sendPaymentSuccessfullEmail(
           response,
           orderResponse.data.data.amount,
@@ -90,20 +107,26 @@ export async function buyCourse(
       },
     };
 
-    const paymentObject = new window.Razorpay(options);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const paymentObject = new (window as any).Razorpay(options);
     paymentObject.open();
-    paymentObject.on('payment.failed', function (response) {
+    paymentObject.on('payment.failed', function () {
       toast.error('Oops, Payment Failed!');
     });
-  } catch (error) {
+  } catch {
     toast.error('Could not make Payment');
   }
   toast.dismiss(toastId);
 }
 
 //send successful payment - email
-async function sendPaymentSuccessfullEmail(response, amount, token) {
+async function sendPaymentSuccessfullEmail(
+  response: RazorpayResponseProps,
+  amount: number,
+  token: string | null,
+) {
   try {
+    console.log('response in sendPaymentSuccessfullEmail = ', response);
     await apiConnector({
       method: 'POST',
       url: SEND_PAYMENT_SUCCESS_EMAIL_API,
@@ -116,13 +139,19 @@ async function sendPaymentSuccessfullEmail(response, amount, token) {
         Authorization: `Bearer ${token}`,
       },
     });
-  } catch (error) {
+  } catch {
     toast.error('Could not send email');
   }
 }
 
 //verify Payment
-async function verifyPayment(bodyData, token, navigate, dispatch) {
+async function verifyPayment(
+  bodyData: RazorpayAndCourseResponseProps,
+  token: string | null,
+  navigate: NavigateFunction,
+  dispatch: AppDispatch,
+) {
+  console.log('bodyData in verifyPayment = ', bodyData);
   const toastId = toast.loading('Verifying Payment....');
   dispatch(setPaymentLoading(true));
 
@@ -145,7 +174,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     toast.success('Payment successful, you are added to the course');
     navigate('/dashboard/enrolled-courses');
     dispatch(resetCart());
-  } catch (error) {
+  } catch {
     toast.error('Could not verify Payment');
   }
   toast.dismiss(toastId);

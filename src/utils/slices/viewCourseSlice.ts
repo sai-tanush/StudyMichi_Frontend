@@ -3,7 +3,7 @@ import { CourseProps, SectionProps } from './courseSlice';
 
 interface initalDataTypes {
   courseSectionData: SectionProps[];
-  courseEntireData: CourseProps;
+  courseEntireData: CourseProps[];
   completedLectures: string[];
   totalNoOfLectures: number;
 }

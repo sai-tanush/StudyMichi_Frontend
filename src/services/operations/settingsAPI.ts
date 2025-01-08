@@ -1,7 +1,10 @@
 import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { AxiosError } from 'axios';
-import { setUser } from '../../utils/slices/profileSlice';
+import {
+  AdditionalDetailsProps,
+  setUser,
+} from '../../utils/slices/profileSlice';
 import { apiConnector } from '../apisconnector';
 import { settingsEndpoints } from '../apis';
 import { logout } from './authAPI';
@@ -14,8 +17,14 @@ const {
   DELETE_PROFILE_API,
 } = settingsEndpoints;
 
+interface ChangePasswordProps {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+
 //display Profile Picture function
-export function updateDisplayPicture(token: string, formData) {
+export function updateDisplayPicture(token: string, formData: FormData) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -34,7 +43,7 @@ export function updateDisplayPicture(token: string, formData) {
       }
       toast.success('Display Picture Updated Successfully');
       dispatch(setUser(response.data.data));
-    } catch (error) {
+    } catch {
       toast.error('Could Not Update Display Picture');
     }
     toast.dismiss(toastId);
@@ -42,7 +51,7 @@ export function updateDisplayPicture(token: string, formData) {
 }
 
 //update Profile Details function
-export function updateProfile(token: string, formData) {
+export function updateProfile(token: string, formData: AdditionalDetailsProps) {
   return async (dispatch: AppDispatch) => {
     const toastId = toast.loading('Loading...');
     try {
@@ -61,7 +70,7 @@ export function updateProfile(token: string, formData) {
 
       dispatch(setUser({ ...response.data.updatedUserDetails }));
       toast.success('Profile Updated Successfully');
-    } catch (error) {
+    } catch {
       toast.error('Could Not Update Profile');
     }
     toast.dismiss(toastId);
@@ -69,7 +78,11 @@ export function updateProfile(token: string, formData) {
 }
 
 //change user Password function
-export async function changePassword(token: string, formData) {
+export async function changePassword(
+  token: string,
+  formData: ChangePasswordProps,
+) {
+  console.log('formData in changePassword = ', formData);
   const toastId = toast.loading('Loading...');
   try {
     const response = await apiConnector({
@@ -113,7 +126,7 @@ export function deleteProfile(token: string, navigate: NavigateFunction) {
       }
       toast.success('Profile Deleted Successfully');
       dispatch(logout(navigate));
-    } catch (error) {
+    } catch {
       toast.error('Could Not Delete Profile');
     }
     toast.dismiss(toastId);
