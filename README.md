@@ -132,8 +132,3 @@ The platform employs a modular and scalable architecture:
 
 * **Mobile Application**: Develop a dedicated mobile app for Android and iOS platforms.
 
-
-
-## Screenshots
-
-![App Screenshot](https://raw.githubusercontent.com/gourangpathak/StudyNotion-An-Online-Education-Platform/refs/heads/master/images/architecture.png)
