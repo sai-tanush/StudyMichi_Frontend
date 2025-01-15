@@ -88,7 +88,7 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
                   </div>
                 </Td>
                 <Td>2hr 30min</Td>
-                <Td>${course.price}</Td>
+                <Td>₹{course.price}</Td>
                 <Td className="">
                   <button
                     disabled={loading}
