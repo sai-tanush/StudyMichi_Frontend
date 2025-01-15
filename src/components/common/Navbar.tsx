@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
                   ) : (
                     <Link to={navElement?.path || '/'}>
                       <p
-                        className={`text-xs lg:text-lg ${matchRoute({ route: navElement?.path }) ? 'text-yellow-300' : 'text-richblack-25'}`}
+                        className={`text-xs lg:text-lg ${matchRoute({ route: navElement?.path }) ? 'text-yellow-100' : 'text-richblack-25'}`}
                       >
                         {navElement.title}
                       </p>
