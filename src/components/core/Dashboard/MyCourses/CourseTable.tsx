@@ -13,6 +13,7 @@ import {
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { CourseProps } from '../../../../utils/slices/courseSlice';
 import useAuth from '../../../../hooks/useAuth';
+import { convertToDate } from '../../../../utils/helperFunctions/convertToDate';
 
 interface CourseTableProps {
   courses: CourseProps[];
@@ -69,7 +70,12 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
                   <div>
                     <p>{course.courseName}</p>
                     <p>{course.courseDescription}</p>
-                    <p>Created: </p>
+                    <p>
+                      Created:{' '}
+                      {course.createdAt
+                        ? convertToDate(course.createdAt)
+                        : 'Date not Available'}
+                    </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="text-pink-100">Drafted</p>
                     ) : (
