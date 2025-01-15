@@ -215,7 +215,6 @@ export const createSubSection = async (
   data: FormData,
   token: string | null,
 ) => {
-  console.log('formData in createSubSection = ', data);
   let result = null;
   const toastId = toast.loading('Loading...');
   try {
