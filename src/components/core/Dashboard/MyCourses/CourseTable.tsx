@@ -68,9 +68,13 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, setCourses }) => {
                     className="h-[150px] w-[220px] rounded-lg object-cover"
                   />
                   <div>
-                    <p>{course.courseName}</p>
-                    <p>{course.courseDescription}</p>
-                    <p>
+                    <p className="text-richblack-5 text-xl font-semibold">
+                      {course.courseName}
+                    </p>
+                    <p className="text-richblack-5 text-md">
+                      {course.courseDescription}
+                    </p>
+                    <p className="text-blue-100">
                       Created:{' '}
                       {course.createdAt
                         ? convertToDate(course.createdAt)
