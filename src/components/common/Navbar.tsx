@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
         url: categories.CATEGORIES_API,
       });
       setSsubLinks(result.data.allCategories);
-    } catch (err) {
+    } catch {
       toast.error('Could not fetch the category list');
     }
     setLoading(false);
